@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/Public/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/css/owl.carousel.css" />
+		<style type="text/css">
+			.page a.cur {
+				background: #aacd06;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+		<!--header-->
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a th:href="@{/c/lsm/homeUrl}">首页</a><span class="ht_line"></span>
+						<a href="javascript:;">商家入驻</a><span class="ht_line"></span>
+						<a href="/fw-bzzx.html">帮助中心</a><span class="ht_line"></span>
+						<a href="/fw-gyht.html">关于韩汀</a><span class="ht_line"></span>
+						<a href="/fw-lxwm.html">联系我们</a>
+					</div>
+
+					<div class="top_right">
+						<a href="javascript:;" name="">登录</a><span class="ht_line"></span>
+						<a href="javascript:;">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="b_box nav_header community_header">
+				<a href="javascript:;" class="logo logo_community">御品韩汀.社区</a>
+				<ul class="nav_ul">
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-zjyTAB&stid=1}"><span class="community_sp csp1"></span><br>自驾游</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-wzxTAB&stid=2}"><span class="community_sp csp2"></span><br>微整形</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-lxzjTAB&stid=3}"><span class="community_sp csp3"></span><br>留学中介</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-hyfyTAB&stid=4}"><span class="community_sp csp4"></span><br>韩语翻译</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-xxzyTAB&stid=5}"><span class="community_sp csp5"></span><br>学习资源</a>
+					</li>
+					<li>
+						<a href="javascript:;"><span class="community_sp csp6"></span><br>韩汀物流</a>
+					</li>
+					<li class="cur">
+						<a th:href="@{/c/sxy/column?pid=1&page=1&orderId=1&essence=0}"><span class="community_sp csp7"></span><br>韩汀·论坛</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--header end-->
+
+		<div class="bg_c2 pt1">
+			<div class="b_box">
+				<!--left bar-->
+				<div class="bbs_left_bar">
+					<h1 class="bbs_left_title">韩汀·论坛</h1>
+					<ul class="bbs_left_list">
+						<li class="cur">
+							<a th:href="@{/c/sxy/hotPost(page=1)}"><span class="line"></span>热门话题</a>
+						</li>
+						<li>
+							<a th:href="@{/c/sxy/myPost(type=1,page=1,title=${param.title})}"><span class="line"></span>我的韩汀论坛</a>
+						</li>
+						<!-- 版块列表 -->
+						<li th:each="temp,item : ${BLIST}">
+							<a th:href="@{/c/sxy/column(pid=${temp.fmid},page=1,orderId=${param.orderId},essence=0)}"><span class="line"></span><span th:text="${temp.fmname}"></span></a>
+						</li>
+					</ul>
+				</div>
+				<!--left bar end-->
+				
+				<!--right bar-->
+				<div class="bbs_right_bar">
+					<div class="ad_banner">
+						<a href="http://www.yphting.com"><img src="/Uploads/adv/2017-06/20170605022035-73347.jpg" alt="社区广告图" width="880" height="100"></a>
+					</div>
+					<dl class="community_dl ">
+						<dt><span class="bbs_top_title">热门话题</span></dt>
+						<dd>
+							<form method="get" th:action="@{/c/sxy/hotPost}" id="formfind">
+								<div class="search_sec">
+									<input type="hidden" name="page" th:value="1"/>
+									<input type="text" name="title" placeholder="帖子搜索" class="s_sec_input">
+									<input type="submit" value="" class="s_sec_btn">
+								</div>
+							</form>
+						</dd>
+					</dl>
+
+					<!-- list  帖子列表-->
+					<ul class="bbs_list_ul">
+						<li th:each="temp,item : ${PAGE_INFO.list}">
+							<p class="bbs_user_photo">
+								<a th:href="@{/c/sxy/toCenter(userId=${temp.user.userid},type=1,page=1)}">
+									<img th:src="${temp.user.userimgpath}" th:alt="${temp.user.username}">
+									<!--  商铺帖子
+									<img src="/Public/images/bbs_user_i.png" alt="" class="bbs_user_i">
+									-->
+								</a>
+							</p>
+							<div class="bbs_user_text">
+								<h3 class="bbs_text_title" >
+									<img th:if="${temp.essence==true}" src="/Public/images/i_jh.png" style="padding-bottom:2px;">
+									<img th:if="${temp.solid==true}" src="/Public/images/i_ding.png" style="padding-bottom:2px;">
+									<a  th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}" th:text="${temp.title}"></a>
+								</h3>
+								<p class="bbs_user_i">
+									<a th:href="@{/c/sxy/column(pid=${temp.forum.pid},page=1,forumId=${temp.forum.fmid},orderId=0,essence=0)}" th:text="${temp.forum.fmname}">韩国大学简介</a><span class="bbs_dot">·</span>
+									<a th:href="@{/c/sxy/toCenter(userId=${temp.user.userid},type=1,page=1)}" th:text="${temp.user.username}">坏坏带点乖.</a><span class="bbs_dot">·</span>
+									<a  th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"><span th:text="${temp.count}">2</span>条回复</a><span class="bbs_dot">·</span><span th:text="${#dates.format(temp.releasetime, 'yyyy-MM-dd HH:mm')}">16</span><span class="bbs_dot"></span>
+									<span th:if="${temp.count!=0}"><span>·&nbsp;&nbsp;&nbsp;&nbsp;</span>最后回复									
+									<a  th:href="@{/c/sxy/toCenter(userId=${temp.lastcomment.user.userid},type=1,page=1)}" class="lst_nem" th:text="${temp.lastcomment.user.username}">chaki</a></span>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<!-- list end -->
+					<!--page  分页-->
+					<div class="page_w">
+						<div class="page">
+							<div class="nav">
+								<a th:if="${PAGE_INFO.isHasPreviousPage()}" class="page_prev prevdisabled" th:href="@{/c/sxy/hotPost(page=${PAGE_INFO.prePage},title=${param.title})}">上一页</a> 
+								<a th:href="@{/c/sxy/hotPost(page=${item.count},title=${param.title})}" th:data-page="${item.count}" th:each="temp,item : ${PAGE_INFO.navigatepageNums}" th:text="${item.count}"></a>
+								<a th:if="${PAGE_INFO.isHasNextPage()}" class="page_next nextdisabled" th:href="@{/c/sxy/hotPost(page=${PAGE_INFO.nextPage},title=${param.title})}">下一页</a>
+							</div>
+						</div>
+					</div>
+					<!--page end-->
+				</div>
+				<!--right bar end-->
+
+				<div class="clear"></div>
+				<!--ad-->
+				<div class="ad_box2">
+					<a href=""><img src="/Public/images/ad/3.jpg" alt="底部广告 说吧"></a>
+				</div>
+				<!--ad end-->
+			</div>
+		</div>
+
+		<div class="b_box">
+			<a href="javascript:;" class="footer_text">
+				<h2 class="index_h2_title c_0">加入我们<span class="c_1">•</span>招募韩国商家、华人</h2>
+				<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+				<div class="bt_btn_d"><span class="btn_a_more bs_bt_a">商家入驻</span></div>
+			</a>
+		</div>
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="/Public/images/footer_ewm.png" alt="">
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="javascript:;">商家入驻</a>|
+						<a href="javascript:;">帮助中心</a>|
+						<a href="javascript:;">人才招聘</a>|
+						<a href="javascript:;">联系我们</a>|
+						<a href="javascript:;">网站地图</a>|
+						<a href="javascript:;">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江2栋2502号 |网站负责人：夏先生 | 邮编：21917</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 联系电话：0731-2286-7673</p>
+					<p>Copyright © 2016 - 2017 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="javascript:void(0);" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="javascript:void(0);" class="rn_wx">官方微信</a>
+				<div class="over_show"><img src="Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+			</li>
+			<li>
+				<a href="tencent://Message/?Uin=3119683838&amp;websiteName=http://www.yphting.com=&amp;Menu=yes" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="#" class="rn_top" style="display: block;">Back top</a>
+			</li>
+		</ul>
+		<!--right nav end-->
+
+	</body>
+	<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+	<script type="text/javascript">
+		$("[data-page=[[${PAGE_INFO.pageNum}]]]").addClass("cur");
+		$("[data-orderid=[[${param.orderId}]]]").removeClass("bbscura");
+	</script>
+</html>

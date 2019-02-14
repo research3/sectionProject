@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+	</head>
+
+	<body>
+		<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css">
+		<style type="text/css">
+			.edit_pohto dt img {
+				width: 120px;
+				height: 120px;
+			}
+			
+			.information-def {
+				color: #ddd;
+			}
+			
+			.information-error {
+				color: #f00;
+			}
+			
+			.m_zl_r {
+				overflow: visible;
+			}
+		</style>
+		<link rel="stylesheet" href="/Public/js/croppic/croppic.css" type="text/css">
+
+		<!--header-->
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a href="">首页</a><span class="ht_line"></span>
+						<a href="">商家入驻</a><span class="ht_line"></span>
+						<a href="">帮助中心</a><span class="ht_line"></span>
+						<a href="">关于韩汀</a><span class="ht_line"></span>
+						<a href="">联系我们</a>
+					</div>
+					<div class="top_right login_right">
+						<a href="">yuno</a> <span class="ht_line"></span>
+						<a href="">退出</a>
+						<span class="ht_line"></span>
+						<a href=""><img src="/Public/images/e_i.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+			<div class="b_box nav_header community_header">
+				<a class="logo my_logo" href="">御品韩汀</a>
+				<ul class="member_nav_ul">
+					<li id="li1">
+						<a href="">商家中心</a><span class="my_nav_i"></span>
+					</li>
+					<style type="text/css">
+						.layui-layer-btn .layui-layer-btn0 {
+							background: #4c1b98;
+						}
+						
+						.layui-layer-btn .layui-layer-btn0:hover {
+							background: #340d6f;
+						}
+					</style>
+					<li id="li2">
+						<a href="">个人中心</a><span class="my_nav_i"></span>
+					</li>
+					<li id="li3">
+						<a href="">账户设置</a><span class="my_nav_i"></span>
+					</li>
+					<li class="cur" id="li4">
+						<a href="">消息</a><span class="my_nav_i"></span>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<!--header end-->
+
+		<div class="bg_c4 pt1">
+			<div class="b_box">
+				<!--member left-->
+				<div class="member_left">
+					<h1 class="member_left_title">消息</h1>
+					<ul class="member_system_ul">
+						<li class="cur">
+							<a href="/xx-xtxx.html"><span class="msp mss1"></span>系统消息(<span class="sms_sp_n" name="xtxx">0</span>)</a>
+						</li>
+						<li>
+							<a href="/xx-znx.html"><span class="msp mss2"></span>站内信(<span class="sms_sp_n" name="znx">0</span>)</a>
+						</li>
+					</ul>
+				</div>
+				<!--member left end-->
+				<!--member right-->
+				<div class="member_right">
+					<div class="member_system_r_top">系统消息(未读<span class="c_3" name="xtxx">0</span>)</div>
+					<form id="formsms">
+						<ul class="member_s_list_ul">
+							<li>
+								<p class="bbs_user_photo"><img src="/Public/images/sms_sys.png"></p>
+								<div class="m_sys_r">
+									<p class="date_p">2018-10-02</p>
+									<p class="del_btn_p">
+										<a href="" rel="2818">删除</a>
+										<input type="checkbox" class="checkbox_sel" value="2818" name="ids[]">
+									</p>
+								</div>
+								<div class="bbs_user_text">
+									<h3 class="member_s_name">御品韩汀</h3>
+									<p class="email_con ">
+										<a href="#">您的物流订单会员已经支付!订单号：15384518701405</a>
+									</p>
+								</div>
+							</li>
+						</ul>
+						<!--page-->
+						<div class="page_w">
+							<div class="page">
+								<div class="nav">
+									<a class="page_prev prevdisabled" href="javascript:void(0)" name="prePage">上一页</a>
+									<span class="cur">1</span>
+									<a class="page_next" href="javascript:void(0)" name="nextPage">下一页</a>
+								</div>
+							</div>
+							<div class="sys_btn">
+								<a href="javascript:void(0)" class="smszt" name="yidu">置为已读</a>
+								<a href="javascript:void(0)" class="smsdel" name="delete">删除</a>
+							</div>
+						</div>
+						<!--page end-->
+						<input type="hidden" name="__hash__" value="09a5611226521514cd991c02b9488ebb_bad864d36a0b627c1b09e0e84730fa61"></form>
+				</div>
+				<!--member right end-->
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="/Public/images/footer_ewm.png" alt="">
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|
+						<a href="">帮助中心</a>|
+						<a href="">人才招聘</a>|
+						<a href="">联系我们</a>|
+						<a href="">网站地图</a>|
+						<a href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 | 邮编：412000</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="" class="rn_wx">官方微信</a>
+				<div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+			</li>
+			<li>
+				<a href="" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="" class="rn_top">Back top</a>
+			</li>
+		</ul>
+		<!--right nav end-->
+
+	</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/noRead.js"></script>
+<script type="text/javascript">
+weiduInfo();
+var newsType=1;
+var pageNum=1;
+var pageSize=8;
+	function queryXX(){
+		$.getJSON("/c/szy/user/queryNewPageInfo",{"newsType":newsType,"pageNum":pageNum,"pageSize":pageSize},function(data){
+			$(".member_s_list_ul").html("");
+		
+			$.each(data.list,function(i,obj){
+				var li;
+				if(obj.readstate==false){
+				
+					li=$('<li><p class="bbs_user_photo "><img src="/Public/images/sms_sys.png"></p><div class="m_sys_r"><p class="date_p">'+obj.sendingtime+'</p><p class="del_btn_p"><a href="" rel="2818">删除</a><input type="checkbox" class="checkbox_sel"  id='+obj.newsid+' name="xtxxlist"></p></div><div class="bbs_user_text"><h3 class="member_s_name">御品韩汀</h3><p class="email_con ec2"><a href="javascript:void(0)">'+obj.content+'</a></p></div></li>');		
+				}else{
+					li=$('<li><p class="bbs_user_photo "><img src="/Public/images/sms_sys.png"></p><div class="m_sys_r"><p class="date_p">'+obj.sendingtime+'</p><p class="del_btn_p"><a href="" rel="2818">删除</a><input type="checkbox" class="checkbox_sel"  id='+obj.newsid+' name="xtxxlist"></p></div><div class="bbs_user_text"><h3 class="member_s_name">御品韩汀</h3><p class="email_con "><a href="javascript:void(0)">'+obj.content+'</a></p></div></li>');
+				}
+				$(".member_s_list_ul").append(li);
+			})
+		
+			$("[name=prePage]").attr("id",data.prePage);
+			$("[name=nextPage]").attr("id",data.nextPage);
+		})
+	}
+	$("[name=prePage]").click(function(){
+		pageNum=$(this).attr("id");
+		if(pageNum==0){
+			return;
+		}
+		queryXX();
+	})
+	$("[name=nextPage]").click(function(){
+		pageNum=$(this).attr("id");
+		if(pageNum==0){
+			return;
+		}
+		queryXX();
+	})
+	queryXX();
+	$("[name=yidu]").click(function(){
+		var newsid="";
+		$.each($("[name=xtxxlist]"),function(i,obj){
+			if($(obj).attr("checked")=="checked"){
+				newsid=newsid+","+$(obj).attr("id");
+			}
+		})
+		if(newsid==""){
+			alert("请选择信息");
+			return;
+		}
+		$.post("/c/szy/user/updateXtNews",{"newsID":newsid},function(data){
+			if(data.code="200"){
+				queryXX();
+				weiduInfo();
+			}
+		})
+	})
+	$("[name=delete]").click(function(){
+		var newsid="";
+		$.each($("[name=xtxxlist]"),function(i,obj){
+			if($(obj).attr("checked")=="checked"){
+				newsid=newsid+","+$(obj).attr("id");
+			}
+		})
+		if(newsid==""){
+			alert("请选择信息");
+			return;
+		}
+		if(confirm("确认删除吗？")==false){
+			return;
+		}
+		$.post("/c/szy/user/deleteNews",{"newsID":newsid},function(data){
+			if(data.code="200"){
+				alert("删除成功");
+				queryXX();
+				weiduInfo();
+			}
+		})
+	})
+</script>
+</html>

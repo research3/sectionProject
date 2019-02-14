@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection" />-->	    
+<title>我收到的评价_韩汀社区</title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico" type="image/x-icon" />
+<meta name="keywords" content="御品韩汀，韩汀社区，韩汀，湖南韩汀电子商务有限公司" />
+<meta name="description" content="湖南韩汀电子商务有限公司主要服务范围有海外自驾游，微整形，留学中介，翻译，学习资源，国际物流等项目，主要以大陆国人和海外同胞为服务对象。商家可入驻社区开店，用户可在平台内快速的找到自己需要的服务项目。海外商家对国内用户以及海外同胞开放服务，双方各持所需，互利互惠，是一款海外华人生活，兼职向导平台。 
+
+韩汀宗旨:“崇尚以人为本、客户第一的服务宗旨。热诚为广大客户提供良好的售后服务和技术支持, 保障客户的投资得到良好的回报。”
+
+企业口号：“韩汀—带给你看得到的未来,说不出的精彩!”。
+
+企业理念：”诚信为本,惠于顾客,奉于社会”
+
+企业目标：”建设海外一流社区平台，与广大合作伙伴与时俱进,互利互惠!”。" />
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/common.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jcarousellite.min.js"></script>
+
+<script type="text/javascript" src="/Public/js/swiper-3.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/css/swiper-3.4.2.min.css">
+
+<script>
+_weburl = 'http://yphting.zglxkj.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f" />
+<meta name="__hash__" content="1534c48deb32415b23c7702161d843f7_8f92fb1bde8f3a9f8e799c0a08696a25" /></head>
+<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+<body>
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="/index.php/">首页</a><span class="ht_line"></span><a href="/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="/index.php/Home/About/contact.html">联系我们</a></div>
+			
+			<div class="top_right">
+									<a href="/index.php/Home/Seller/index.html">.2304</a>			<span class="ht_line"></span><a href="/index.php/Home/Member/logout.html">退出</a>
+            <span class="ht_line"></span><a href="/index.php/Home/Member/sms.html"><img src="/Public/images/e_i.png" alt="" /><span class="e_if"></span></a>
+            <script>$('.top_right').addClass('login_right');</script>
+					<!-- 	<span style="font-size:14px;"> &nbsp;&nbsp;| 切换到：<select  id="lang" onchange="changelang();"><option value="" >请选择</option><option value="zh-cn" >简体中文</option> <option value="en-us" >English</option> </select> -->
+			<script language="javascript">
+				function changelang(){
+					var lang=$("#lang").val();
+					if(lang=="zh-cn"){
+						window.location.href='?l=zh-cn';
+					}
+					if(lang=="en-us"){
+						window.location.href='?l=en-us';
+					}
+				}
+				$("#lang").val('');
+
+			</script>
+			<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="/index.php/Home/Index/index.html">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li class="cur" id="li1"><a href="/index.php/Home/Seller/index.html">商家中心</a><span class="my_nav_i"></span></li>
+<style type="text/css">
+.layui-layer-btn .layui-layer-btn0{ background:#4c1b98; }
+.layui-layer-btn .layui-layer-btn0:hover{ background:#340d6f;}
+</style>        	<li  id="li2"><a href="/index.php/Home/Member/index.html">个人中心</a><span class="my_nav_i"></span></li>
+            <li  id="li3"><a href="/index.php/Home/Member/config.html">账户设置</a><span class="my_nav_i"></span></li>
+            <li  id="li4"><a href="/index.php/Home/Member/sms.html">消息<span class="msg_num">5</span></a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+<!--header end-->
+
+<script language="javascript">
+function ordercancel(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+function ordersuccess(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=success&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+function orderaccept(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=accept&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+function ordercancelSeller(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+function orderservice(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=submit&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+function orderShou(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=Shou&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvY29tbWVudC5odG1s';
+}
+</script>
+
+<a href="/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	
+		<!--member left-->
+        <div class="member_left">
+        	<h1 class="member_left_title seller_title">商家中心</h1>
+            <ul class="member_system_ul sj_left_ul">
+            	<li ><a href="/index.php/Home/Seller/order.html"><span class="msp2 pre_c1"></span>我收到的预定</a></li>
+            	<li ><a href="/index.php/Home/Seller/services.html"><span class="msp2 pre_c2"></span>我发布的服务</a></li>
+                <li ><a href="/index.php/Home/Seller/auth.html"><span class="msp2 pre_c3"></span>我提交的鉴定</a></li>
+                <li class="cur"><a href="/index.php/Home/Seller/comment.html"><span class="msp2 pre_c4"></span>我收到的评价</a></li>
+                <li ><a href="/index.php/Home/Seller/logistics.html"><span class="msp2 pre_c5"></span>我发出的物流</a></li>
+                <li ><a href="/index.php/Home/Seller/refund.html"><span class="msp2 pre_c6"></span>我收到的退款<span class="sp_acon_1"></span></a></li>
+                <li ><a href="/index.php/Home/Seller/servicecats.html"><span class="msp2 pre_c3"></span>我的服务类别</a></li>
+                <li ><a href="/index.php/Home/Seller/trustservice.html"><span class="msp2 pre_c3"></span>我提交的托管</a></li>
+            </ul>
+			<div class="ad_left_1"><a href="http://yphting.zglxkj.com/index.php/Home/About/index/key/40.html"><img src="/Uploads/adv/2018-04/20180430101403-42917.gif" alt="商家图片-0224" /></a></div>        </div>
+        <!--member left end-->
+		
+<script language="javascript">
+$(function(){
+	$('.zy_box').hide();
+    $('.h_top').addClass('seller_h_top');
+});
+</script>
+		
+        <!--member right-->
+        <div class="member_right sj_right_box">
+			<div class="member_system_r_top top_nor">
+				<span class="fl">我收到的评价</span>
+			</div>
+            <table class="point_table business_table business_table2" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th width="760">评价</th>
+                    <th width="100" class="th_c">操作</th>
+                </tr>
+			</table>
+		
+			<ul class="my_evaluation_list business_comment_list">
+                <li  th:each="temp,iterState:${PAGE_INFO.list}">
+                    <p class="my_evaluation_img"><img th:src="${temp.userimgpath}" th:alt="${temp.username}" /></p>
+					<p class="date_p fr"><a href="javascript:void(0);" class="btna_s2 btna_hy_a f14">回应评价</a></p>
+					                    <div class="my_evaluation_text">
+                        <h3 class="bbs_text_title c_4"><a href="#" class="name_a_2">[[${temp.username}]]</a>评论了<a href="#">[[${temp.servicetitle}]]</a></h3>
+                       <div th:switch="${temp.serviceappraiselevel}">
+						<div th:case="1" > <div class="star_pl"><span class="star_pl_sp" style="width:20%;"></span></div></div>
+						<div th:case="2" > <div class="star_pl"><span class="star_pl_sp" style="width:40%;"></span></div></div>
+						<div th:case="3" > <div class="star_pl"><span class="star_pl_sp" style="width:60%;"></span></div></div>
+						<div th:case="4" > <div class="star_pl"><span class="star_pl_sp" style="width:80%;"></span></div></div>
+						<div th:case="5" > <div class="star_pl"><span class="star_pl_sp" style="width:100%;"></span></div></div>
+					</div>
+                        <p class="pt_text2" th:text="${temp.serviceappraisecontent}"></p>
+						<p class="c_4 f12" th:text="${temp.serviceappraisedate}"></p>
+				 </div>
+					<!--回应-->
+					<div class="my_hy_box">						
+						<textarea placeholder="您的回应" id="replymsg" rel="307" class="input_c my_hy_area"></textarea>
+						<div class="my_hy_btn">
+							<a href="javascript:void(0);" class="btn_jy_a btn_jy_a3 btn_reply">发布</a>
+							<a href="javascript:void(0);" class="btn_jy_a btn_jy_a4">取消</a>
+						</div>
+					</div>					<!--回应 end-->
+                </li>
+        			
+                </ul>
+			<!--page-->
+            <div class="page">
+            <table>
+            			<tr>
+						<td colspan="7" align="center">
+							
+								<a    th:href="@{queryEvaluation(pageNum=1,pageSize=${PAGE_INFO.pageSize})}" >首页</a>
+								&nbsp;&nbsp;
+								
+								<span th:if="${PAGE_INFO.isHasPreviousPage()}" >
+								<a   th:href="@{queryEvaluation(pageNum=${PAGE_INFO.prePage},pageSize=${PAGE_INFO.pageSize})}">上一页</a>
+								</span>
+									&nbsp;&nbsp;
+								<span th:if="${PAGE_INFO.isHasNextPage()}" >
+								
+									<a th:href="@{queryEvaluation(pageNum=${PAGE_INFO.nextPage},pageSize=${PAGE_INFO.pageSize})}">下一页</a>
+								</span>
+								&nbsp;&nbsp; <a th:href="@{queryEvaluation(pageNum=${PAGE_INFO.lastPage},pageSize=${PAGE_INFO.pageSize})}">末页</a>							
+								&nbsp;&nbsp; &nbsp;&nbsp;第[[${PAGE_INFO.pageNum}]]页/共[[${PAGE_INFO.lastPage}]]页&nbsp;&nbsp;共[[${PAGE_INFO.total}]]条记录
+							
+						</td>
+					
+					</tr>
+					</table>
+		</div>
+		<!--member right end-->
+        <div class="clear"></div>
+        
+        <!--ad-->
+        <div class="ad_box2"><a href=""><img src="/Uploads/adv/2017-01/20170120051911-54044.jpg" alt="" /></a></div>		<!--ad end-->
+	</div>
+</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt="" /></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="/index.php/Home/Member/seller.html">商家入驻</a>|<a href="/index.php/Home/About/help.html">帮助中心</a>|<a href="/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="/index.php/Home/About/contact.html">联系我们</a>|<a href="/index.php/Home/About/sitemap.html">网站地图</a>|<a href="/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" /></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&websiteName=http://yphting.zglxkj.com=&Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+<script>
+function beforeCall2(form, status){
+	showloading();
+}
+function ajaxValidationCallback2(d, form, json, options){
+	console.log(json);
+	showtip(json.msg);
+	if(json.state === 1){
+		setTimeout("location.reload()",2000);
+	}
+};
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#formtopcontact").validationEngine({autoHidePrompt:true,autoHideDelay:1000,binded:false,promptPosition:'topLeft'
+		,ajaxFormValidation: false,ajaxFormValidationMethod: 'post',onBeforeAjaxFormValidation: beforeCall2,onAjaxFormComplete: ajaxValidationCallback2
+	});
+});
+
+function chktop(){
+	_len = $('.chk_1:checked').length;
+	if(!_len){
+		showtip('请选择加盟方式');
+		return false;
+	}
+}
+</script>
+
+<!--联系我们的浮层-->
+<div class="pop_contact">
+	<a href="javascript:void(0);" class="close_pop_contact"></a>
+	<div class="w1000">
+		<div class="pcontact_left">
+			<a href="/index.php/" class="logo">御品韩汀</a>
+			<ul class="pcontact_ul">
+				<li><div class="wr_linka"><a href="http://yphting.zglxkj.com"></a></div>公司官网：http://yphting.zglxkj.com</li>
+				<li><div class="wr_linka"><a href="http://weidian.com/?userid=765635894&wfr=c"></a></div>公司微店：http://weidian.com/?userid=765635894&wfr=c</li>
+			</ul>
+			<ul class="pcontact_ul2">
+				<li><span class="pcu pcu1"></span>联系方式：18773382506</li>
+				<li><span class="pcu pcu2"></span>客服电话：0731-2286-7673</li>
+				<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4 청명타운텔 609호</li>
+				<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+			</ul>
+		</div>
+		<div class="pcontact_right">
+			<h2 class="contact_us_title">和我们联系吧</h2>
+			<form method="post" id="formtopcontact" action="/index.php/Home/About/contact.html" target="topost" onsubmit="return chktop()">
+			<ul class="pcontact_ul3">
+				<li><span class="pcspr pcspr1"></span><input id="name" name="name" class="pop_cus_input validate[required]" placeholder="姓名" type="text"></li>
+				<li><span class="pcspr pcspr2"></span><input name="tel" id="tel" class="pop_cus_input validate[required,custom[phone]]" placeholder="电话" type="text"></li>
+				<li><span class="pcspr pcspr3"></span><input name="email" id="email" class="pop_cus_input validate[required,custom[email]]" placeholder="邮箱" type="text"></li>
+				<li><span class="pcspr pcspr4"></span><input name="content" id="content" class="pop_cus_input validate[required]" placeholder="具体需求" type="text"></li>
+				<li class="sel_work">
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title1" name="title[]" value="我要兼职" class="chk_1" type="checkbox">
+								<label for="title1"></label>
+							</span>
+						</span>
+						<span class="sel_work_text">我要兼职</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title2" name="title[]" value="我要成为代理" class="chk_1" type="checkbox">
+								<label for="title2"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要成为代理</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title3" name="title[]" value="我要咨询整形" class="chk_1" type="checkbox">
+								<label for="title3"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要咨询整形</span>
+					</div>
+				</li>
+				<input type="hidden" name="act" value="contact" />
+				<li><a class="border_tj" href="javascript:void(0);" onclick="$('#formtopcontact').submit()" id="submit-btn">立即提交</a></li>
+			</ul>
+			<input type="hidden" name="__hash__" value="1534c48deb32415b23c7702161d843f7_8f92fb1bde8f3a9f8e799c0a08696a25" /></form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--联系我们的浮层 end-->
+
+<script src="/Public/js/jquery.scrollto.js"></script>
+
+
+
+</body>
+</html>

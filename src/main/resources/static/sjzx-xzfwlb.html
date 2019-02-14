@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/common.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jcarousellite.min.js"></script>
+
+<script type="text/javascript" src="/Public/js/swiper-3.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/css/swiper-3.4.2.min.css">
+
+<script>
+_weburl = 'http://yphting.zglxkj.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f" />
+<meta name="__hash__" content="1fe6e46a42984d214068a45891db5d1a_1f1635428f35c66f0c5ad1226bab022d" /></head>
+<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+<body>
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="/index.php/">首页</a><span class="ht_line"></span><a href="/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="/index.php/Home/About/contact.html">联系我们</a></div>
+			
+			<div class="top_right">
+									<a href="/index.php/Home/Seller/index.html">.2304</a>			<span class="ht_line"></span><a href="/index.php/Home/Member/logout.html">退出</a>
+            <span class="ht_line"></span><a href="/index.php/Home/Member/sms.html"><img src="/Public/images/e_i.png" alt="" /></a>
+            <script>$('.top_right').addClass('login_right');</script>
+					<!-- 	<span style="font-size:14px;"> &nbsp;&nbsp;| 切换到：<select  id="lang" onchange="changelang();"><option value="" >请选择</option><option value="zh-cn" >简体中文</option> <option value="en-us" >English</option> </select> -->
+			<script language="javascript">
+				function changelang(){
+					var lang=$("#lang").val();
+					if(lang=="zh-cn"){
+						window.location.href='?l=zh-cn';
+					}
+					if(lang=="en-us"){
+						window.location.href='?l=en-us';
+					}
+				}
+				$("#lang").val('');
+
+			</script>
+			<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="/index.php/Home/Index/index.html">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li class="cur" id="li1"><a href="/index.php/Home/Seller/index.html">商家中心</a><span class="my_nav_i"></span></li>
+<style type="text/css">
+.layui-layer-btn .layui-layer-btn0{ background:#4c1b98; }
+.layui-layer-btn .layui-layer-btn0:hover{ background:#340d6f;}
+</style>        	<li  id="li2"><a href="/index.php/Home/Member/index.html">个人中心</a><span class="my_nav_i"></span></li>
+            <li  id="li3"><a href="/index.php/Home/Member/config.html">账户设置</a><span class="my_nav_i"></span></li>
+            <li  id="li4"><a href="/index.php/Home/Member/sms.html">消息</a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+<!--header end-->
+
+<script language="javascript">
+function ordercancel(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+function ordersuccess(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=success&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+function orderaccept(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=accept&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+function ordercancelSeller(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+function orderservice(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=submit&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+function orderShou(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=Shou&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYWRkc3YuaHRtbA';
+}
+</script>
+
+<a href="/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	<div class="sv_path border_c sv_nbor">
+            <a href="/index.php/Home/Seller/index.html">商家中心</a><span class="s_sp_v">-</span><a href="/index.php/Home/Seller/services.html">我发布的服务</a><span class="s_sp_v">-</span>发布服务
+        </div>
+		<h2 class="sev_h2_title">选择发布服务类别</h2>
+		<ul class="sss_ul" >
+			<li th:switch="${ZUSER.firstserviceid}" class="cur">
+				<a href="/sjzx-zjyfbfw.html" th:case="1" rel="4"><span class="sel_style_sev sss4"></span>自驾游</a>
+				<a href="/sjzx-wzxfb.html" th:case="2" rel="4"><span class="sel_style_sev sss4"></span>微整形</a>
+				<a href="/sjzx-fbfw.html" th:case="3" rel="4"><span class="sel_style_sev sss4"></span>留学中介</a>
+				<a href="/sjzx-hwfyfb.html" th:case="4" rel="4"><span class="sel_style_sev sss4"></span>韩语翻译</a>
+				<a href="/sjzx-xxzyfb.html" th:case="5" rel="4"><span class="sel_style_sev sss4"></span>学习资源</a>
+			</li>
+			<li th:switch="${ZUSER.secondserviceid}">
+				<a href="/sjzx-zjyfbfw.html" th:case="1" rel="4"><span class="sel_style_sev sss4"></span>自驾游</a>
+				<a href="/sjzx-wzxfb.html" th:case="2" rel="4"><span class="sel_style_sev sss4"></span>微整形</a>
+				<a href="/sjzx-fbfw.html" th:case="3" rel="4"><span class="sel_style_sev sss4"></span>留学中介</a>
+				<a href="/sjzx-hwfyfb.html" th:case="4" rel="4"><span class="sel_style_sev sss4"></span>韩语翻译</a>
+				<a href="/sjzx-xxzyfb.html" th:case="5" rel="4"><span class="sel_style_sev sss4"></span>学习资源</a>
+			</li>	
+		</ul>
+		
+		<input type="hidden" id="catid" value="3" />
+        <div class="business_btn_d business_btn_d2">
+			<a href="javascript:void(0);" class="btn_jy_a btn_jy_a2" onclick="toadd()">选好了，去填写服务内容</a>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$('.sss_ul li:eq(0)').addClass('cur');
+	$('.sss_ul li:last').addClass('last');
+	
+	$('.sss_ul li a').click(function(){
+		$(this).addClass("cur").siblings().removeClass("cur");
+		$('#catid').val($(this).attr('rel'));
+	});
+	
+	checkLen();
+});
+
+function checkLen(){
+	var sssUlL = $('.sss_ul li').length;
+	$('.sss_ul').css({"width":(sssUlL*210+(sssUlL-1)*17)});
+}
+
+function toadd(){
+	_id = $('#catid').val();
+	if(_id){
+		_url = "/index.php?m=Home&c=Seller&a=editsv&catid="+_id;
+		location.href = _url;
+	}
+}
+</script>
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt="" /></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="/index.php/Home/Member/seller.html">商家入驻</a>|<a href="/index.php/Home/About/help.html">帮助中心</a>|<a href="/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="/index.php/Home/About/contact.html">联系我们</a>|<a href="/index.php/Home/About/sitemap.html">网站地图</a>|<a href="/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" /></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&websiteName=http://yphting.zglxkj.com=&Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+<script>
+function beforeCall2(form, status){
+	showloading();
+}
+function ajaxValidationCallback2(d, form, json, options){
+	console.log(json);
+	showtip(json.msg);
+	if(json.state === 1){
+		setTimeout("location.reload()",2000);
+	}
+};
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#formtopcontact").validationEngine({autoHidePrompt:true,autoHideDelay:1000,binded:false,promptPosition:'topLeft'
+		,ajaxFormValidation: false,ajaxFormValidationMethod: 'post',onBeforeAjaxFormValidation: beforeCall2,onAjaxFormComplete: ajaxValidationCallback2
+	});
+});
+
+function chktop(){
+	_len = $('.chk_1:checked').length;
+	if(!_len){
+		showtip('请选择加盟方式');
+		return false;
+	}
+}
+</script>
+
+
+
+<script src="/Public/js/jquery.scrollto.js"></script>
+
+
+
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/sjzx-href.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+</html>

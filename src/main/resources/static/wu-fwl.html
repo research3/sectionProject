@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+ 
+<title>我发出的物流_韩汀社区</title>
+
+<link rel="stylesheet" type="text/css"
+	href="/Public/css/common.css" />
+	<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+<body>
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="">首页</a><span class="ht_line"></span><a href="">商家入驻</a><span class="ht_line"></span><a href="">帮助中心</a><span class="ht_line"></span><a href="">关于韩汀</a><span class="ht_line"></span><a href="">联系我们</a></div>
+			
+			<div class="top_right">
+						<a href="">郑石平</a>
+						<span class="ht_line"></span><a href="">退出</a>
+            <span class="ht_line"></span><a href=""><img src="/Public/images/e_i.png" alt="" /></a>
+						<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+			</div>
+		</div>
+	</div>
+    
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="">御品韩汀</a>
+		<ul class="member_nav_ul">
+			<li  id="li1"><a href="">商家中心</a><span class="my_nav_i"></span></li>
+        	<li class="cur" id="li2"><a href="">个人中心</a><span class="my_nav_i"></span></li>
+            <li  id="li3"><a href="">账户设置</a><span class="my_nav_i"></span></li>
+            <li  id="li4"><a href="">消息</a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+
+
+<a href="" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+		<div class="b_box">
+			<form method="post" enctype="multipart/form-data"
+				action="/zsp/c/addLogistics" id="formmsg">
+				<div class="sv_path border_c sv_nbor">
+					<a href="">会员中心</a><span class="s_sp_v">-</span><a href="">我发出的物流</a><span
+						class="s_sp_v">-</span>提交发货申请
+				</div>
+				<h2 class="sev_h2_title">发货申请</h2>
+				<dl class="info_form_dl">
+					<dt>物品标题</dt>
+					<dd>
+						<input type="text" class="input_c inf_inc validate[required]"
+							name="title" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>物品描述</dt>
+					<dd class="mt10">
+						<textarea class="input_c fy_sh2 validate[required]"
+							name="describe"></textarea>
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt class="mopa">上传物品图片</dt>
+					<dd>
+						<p class="c_4 pat1 dx_text letter_s">
+							请上传物品图片, 最多5张<br />格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。
+						</p>
+						<div class="sel_file_d">
+							<input type="file" id="imgFile" name="imgFile" /> <input
+								type="file" name="imgFile" /> <input type="file" name="imgFile" />
+							<input type="file" name="imgFile" /> <input type="file"
+								name="imgFile" />
+							<!-- <a href="javascript:void(0);" class="sel_file_a" id="uploadimage">上传文件</a> -->
+						</div>
+						<div id="pics">
+							<img id="preShow" src="" alt="请选择预览图片" name="img1" />
+						</div>
+						<div id="picss"></div>
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>重量</dt>
+					<dd>
+						<input type="text" name="kg"
+							class="input_c inf_inc4 validate[required,min[10],custom[integer]]" /><span
+							class="dw_sp c_4">kg</span>
+						<p class="c_4 letter_s">
+							请单次发货10kg以上, 即可有韩汀物流韩国EMS空运权限，如果单次30kg起我们物流上门为您发货。<br />保证2天抵达国内机场，5天内送达，最迟不过一周时间，
+						</p>
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt class="mopa">发货方式</dt>
+					<dd id="iddd" class="f14 shiptype">
+						<span id="fah">自发</span> <input type="hidden" value="1"
+							name="delivery" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt class="mopa">金币</dt>
+					<dd class="f14">
+						<font id="weight">1</font>kg&nbsp;&nbsp;&nbsp;&nbsp;<span
+							name="333" class="num_2 num_1_s" style="display: none;">42</span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+							class="num_2 num_1_s">42</span> <input type="hidden" name="price" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>发货人</dt>
+					<dd>
+						<input type="text" name="username"
+							class="input_c inf_inc4 validate[required]" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>发货人电话</dt>
+					<dd>
+						<input type="text" name="userphone"
+							class="input_c inf_inc4 validate[required]" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>发货信息</dt>
+					<dd class="c_4 f14">
+						<select class="sel_f sel_f2 sel_b2" name="areaid1">
+							<option>请选择</option>
+							<option th:each="temp,iterState:${ShArea}"
+								th:value="${temp.areaid}">[[${temp.name}]]</option>
+						</select> <input type="hidden" name="areaid11"> <select
+							class="sel_f sel_f2 sel_b2" name="areaid2" id="areaid2">
+							<option id="areaid2_option">请选择</option>
+						</select> <input type="hidden" name="areaid22"> <select
+							class="sel_f sel_f2 sel_b2 validate[required]" id="areaid3"
+							name="areaid3">
+							<option value="3">请选择</option>
+						</select> <input type="hidden" name="areaid33"> <input type="text"
+							name="areaid4" class="input_c inf_inc validate[required]" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>收货人</dt>
+					<dd>
+						<input type="text" name="collectgoods"
+							class="input_c inf_inc4 validate[required]" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>收货人电话</dt>
+					<dd>
+						<input type="text" name="collectgoodsphone"
+							class="input_c inf_inc4 validate[required]" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl">
+					<dt>国内收货信息</dt>
+					<dd class="c_4 f14">
+						<select class="sel_f sel_f2 sel_b2" name="shareaid1">
+							<option>请选择</option>
+							<option th:each="temp,iterState:${ShArea}"
+								th:value="${temp.areaid}">[[${temp.name}]]</option>
+						</select> <input type="hidden" name="shareaid11" /> <select
+							class="sel_f sel_f2 sel_b2" name="shareaid2" id="shareaid2">
+							<option>请选择</option>
+						</select> <input type="hidden" name="shareaid22" /> <select
+							class="sel_f sel_f2 sel_b2 validate[required]" id="shareaid3"
+							name="shareaid3">
+							<option value="d">请选择</option>
+						</select> <input type="hidden" name="shareaid33" /> <input type="text"
+							name="shareaid4" class="input_c inf_inc validate[required]" />
+					</dd>
+				</dl>
+				<div class="business_btn_d">
+					<a href="" class="fr btna_s2">取消申请</a> <input type="submit"
+						class="btn_jy_a" id="submit" value="提交发货申请，去支付">
+
+				</div>
+				<script type="text/javascript">
+			 $("[name='kg']").on('input propertychange',function(){
+				
+			  var kg= $("[name='kg']").val();
+			  
+      		  $("#weight").html(kg);
+      		  $("[name='price']").val(kg*42);
+      		   if(kg>10 && kg<30){
+      			   $("[name='delivery']").val(1);
+      			   $("#fah").html("自发");
+      		  }else if(kg>30){
+      			 $("[name='delivery']").val(2);
+      			 $("#fah").html("上门提货");
+      		  }
+      		  
+      	    });
+		            	  var submit=document.getElementById("submit");
+		            	  submit.onclick=function(){
+		     			      var title=$("[name='title']").val();
+		     			      if(title==''){
+		            			  alert("标题不能为空");
+		     			    	  return false;
+		            		  }
+		     			     var describe=$("[name='describe']").val();
+		     			      if(describe==''){
+		            			  alert("描述不能为空");
+		     			    	  return false;
+		            		  }name="kg"
+		     			     var kg=$("[name='kg']").val();
+		     			      if(kg==''){
+		            			  alert("重量不能为空");
+		     			    	  return false;
+		            		  }
+		     			     var userPhone=$("[name='userPhone']").val();
+		     			      if(userPhone==''){
+		            			  alert("发货人不能为空");
+		     			    	  return false;
+		            		  }
+		     			      var collectGoods=$("[name='collectGoods']").val();
+		     			      if(collectGoods==''){
+		            			  alert("发货人电话不能为空");
+		     			    	  return false;
+		            		  }
+		     			      var address=$("[name='address']").find("option:selected").val();
+		     			      if(address==''){
+		            			  alert("请选择发货所在国");
+		     			    	  return false;
+		            		  }
+		     			      
+		     			     var areaid2=$("[name='areaid2']").val();
+		     			      if(areaid2==''){
+		            			  alert("请选择发货区域");
+		     			    	  return false;
+		            		  }
+		     			     var areaid3=$("[name='areaid3']").val();
+		     			      if(areaid3 ==''){
+		            			  alert("请选择地址");
+		     			    	  return false;
+		            		  }
+		     			     var address=$("[name='address']").val();
+		     			      if(address ==''){
+		            			  alert("请输入发货详细地址");
+		     			    	  return false;
+		            		  }
+		     			      
+		     			     var collectGoods=$("[name='collectGoods']").val();
+		     			      if(collectGoods ==''){
+		            			  alert("请输入收货人姓名");
+		     			    	  return false;
+		            		  }
+		     			      
+		     			     var collectGoodsPhone=$("[name='collectGoodsPhone']").val();
+		     			      if(collectGoodsPhone ==''){
+		            			  alert("请输入发货人电话");
+		     			    	  return false;
+		            		  }
+		     			      
+		     			     var shareaid1=$("[name='shareaid1']").val();
+		     			      if(shareaid1 ==''){
+		            			  alert("请选择收货所在国");
+		     			    	  return false;
+		            		  }
+		     			      
+		     			     var shareaid2=$("[name='shareaid2']").val();
+		     			      if(shareaid2==''){
+		            			  alert("请选择收货区域");
+		     			    	  return false;
+		            		  }
+		     			     var shareaid3=$("[name='shareaid3']").val();
+		     			      if(shareaid3==''){
+		            			  alert("请选择收货地址");
+		     			    	  return false;
+		            		  }
+		     			     var shaddress=$("[name='shaddress']").val();
+		     			      if(shaddress==''){
+		            			  alert("请输入收货详细地址");
+		     			    	  return false;
+		            		  }
+		            	  } 	
+		            	  $("[name='kg']").on('input propertychange',function(){
+		            		   var kg=$("[name='kg']").val();
+
+				                  if(isNaN(kg)){
+				                	  $("[name='kg']").val("");
+		            			  alert("请填写正确的数字");
+			            	      } 
+				                  if(num<=0){
+			            			  alert("重量不能小于0")
+			            			  return false;
+			            		  }
+
+		            	  });
+		            	  //发货人地址 
+		            	  $("[name='areaid1']").change(function(){
+		            		 var id= $("[name='areaid1']").find("option:selected").val();
+		            		 var areaid1= $("[name='areaid1']").find("option:selected").html();
+		            		 $("[name='areaid11']").val(areaid1);
+		            		 $("#areaid2").html("");
+		            		 $.ajax("/zsp/c/getShAreaBy?id="+id,{
+		            				type:"get",
+		            				dataType:"json",
+		            				timeout:5000,
+		            				success:function(data){
+		            				   $.each(data,function(i,obj){
+		            					  var opt=$("<option></option>").val(obj.areaid).text(obj.name);
+		            					  $("#areaid2").append(opt);
+		            				   }); 
+		            			    }
+		            			});
+		            	  });
+		            	   $("[name='areaid2']").change(function(){
+			            		 var id= $("[name='areaid2']").find("option:selected").val();
+			            		 $("#areaid3").html("");
+			            		 var areaid2= $("[name='areaid2']").find("option:selected").html();
+			            		 $("[name='areaid22']").val(areaid2);
+			            		 $.ajax("/zsp/c/getShAreaBy?id="+id,{
+			            				type:"get",
+			            				dataType:"json",
+			            				timeout:5000,
+			            				success:function(data){
+			            				   $.each(data,function(i,obj){
+			            					   var opt=$("<option></option>").val(obj.areaid).text(obj.name);
+				            					  $("#areaid3").append(opt);
+			            				   }); 
+			            			    }
+			            			});
+			            	  });
+		            	   $("[name='areaid3']").change(function(){
+			            		 var areaid3= $("[name='areaid3']").find("option:selected").html();
+			            		 $("[name='areaid33']").val(areaid3);
+			            	  });
+		            	   $("[name='shareaid3']").change(function(){
+			            		 var areaid3= $("[name='shareaid3']").find("option:selected").html();
+			            		 $("[name='shareaid33']").val(areaid3);
+			            	  });
+		            	   
+		            	  //收货人地址 
+		            	  $("[name='shareaid1']").change(function(){
+			            		 var id= $("[name='shareaid1']").find("option:selected").val();
+			            		 var shareaid2= $("[name='shareaid1']").find("option:selected").html();
+			            		 $("[name='shareaid11']").val(shareaid2);
+			            		 $("[name='shareaid2']").html("");
+			            		  $.ajax("/zsp/c/getShAreaBy?id="+id,{
+			            				type:"get",
+			            				dataType:"json",
+			            				timeout:5000,
+			            				success:function(data){
+			            				   $.each(data,function(i,obj){
+			            					   var opt=$("<option></option>").val(obj.areaid).text(obj.name);
+				            					  $("[name='shareaid2']").append(opt);
+			            				
+			            				   }); 
+			            			    }
+			            			}); 
+			            	  });
+		            	  	  $("[name='shareaid2']").change(function(){
+			            		 var id= $("[name='shareaid2']").find("option:selected").val();
+			            		 var shareaid3= $("[name='shareaid2']").find("option:selected").html();
+			            		 $("[name='shareaid22']").val(shareaid3);
+			            		   $.ajax("/zsp/c/getShAreaBy?id="+id,{
+			            				type:"get",
+			            				dataType:"json",
+			            				timeout:5000,
+			            				success:function(data){
+			            				   $.each(data,function(i,obj){
+			            					   var opt=$("<option></option>").val(obj.areaid).text(obj.name);
+				            					  $("[name='shareaid3']").append(opt);
+			            				   }); 
+			            			    }
+			            			}); 
+			            	  }); 
+				</script>
+		</div>
+	</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt="" /></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="">商家入驻</a>|<a href="/index.php?m=Home&c=About&a=help">帮助中心</a>|<a href="/index.php?m=Home&c=About&a=index&key=jobs">人才招聘</a>|<a href="/index.php?m=Home&c=About&a=contact">联系我们</a>|<a href="/index.php?m=Home&c=About&a=sitemap">网站地图</a>|<a href="/index.php?m=Home&c=About&a=terms">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江2栋2502号 |网站负责人：夏先生 |   邮编：21917</p>
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 联系电话：0731-2286-7673</p>
+			<p>Copyright © 2016 - 2017 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-282802603</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" /></div></li>
+	<li><a href="" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+
+<!--联系我们的浮层-->
+<div class="pop_contact">
+	<a href="javascript:void(0);" class="close_pop_contact"></a>
+	<div class="w1000">
+		<div class="pcontact_left">
+			<a href="/index.php?m=&" class="logo">御品韩汀</a>
+			<ul class="pcontact_ul">
+				<li><div class="wr_linka"><a href=""></a></div>公司官网：http://www.yphting.com</li>
+				<li><div class="wr_linka"><a href=""></a></div>公司微店：http://weidian.com/?userid=765635894&wfr=c</li>
+			</ul>
+			<ul class="pcontact_ul2">
+				<li><span class="pcu pcu1"></span>联系方式：0731-2286-7673</li>
+				<li><span class="pcu pcu2"></span>客服电话：0731-282802603</li>
+				<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4 청명타운텔 609호</li>
+				<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+			</ul>
+		</div>
+		<div class="pcontact_right">
+			<h2 class="contact_us_title">和我们联系吧</h2>
+			<form method="post" id="formtopcontact" action="" target="topost" onsubmit="return chktop()">
+			<ul class="pcontact_ul3">
+				<li><span class="pcspr pcspr1"></span><input id="name" name="name" class="pop_cus_input validate[required]" placeholder="姓名" type="text"></li>
+				<li><span class="pcspr pcspr2"></span><input name="tel" id="tel" class="pop_cus_input validate[required,custom[phone]]" placeholder="电话" type="text"></li>
+				<li><span class="pcspr pcspr3"></span><input name="email" id="email" class="pop_cus_input validate[required,custom[email]]" placeholder="邮箱" type="text"></li>
+				<li><span class="pcspr pcspr4"></span><input name="content" id="content" class="pop_cus_input validate[required]" placeholder="具体需求" type="text"></li>
+				<li class="sel_work">
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title1" name="title[]" value="我要兼职" class="chk_1" type="checkbox">
+								<label for="title1"></label>
+							</span>
+						</span>
+						<span class="sel_work_text">我要兼职</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title2" name="title[]" value="我要成为代理" class="chk_1" type="checkbox">
+								<label for="title2"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要成为代理</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title3" name="title[]" value="我要咨询整形" class="chk_1" type="checkbox">
+								<label for="title3"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要咨询整形</span>
+					</div>
+				</li>
+				<li><a class="border_tj" href="javascript:void(0);" id="submit-btn">立即提交</a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--联系我们的浮层 end-->
+<script type="text/javascript" src="/Public/js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	//data:base64数据       name:文件名(feng.jpg)
+	var imgObj = {
+		"data" : "",
+		"name" : ""
+	};//图片对象
+	$(function() {
+		//选择预览图片
+		$("[name='imgFile']").on(
+				"change",
+				function(e) {
+					var fr = new FileReader();
+					var file = this.files[0];
+					var _temp = file.name.match(/\.jpg|\.png|\.gif|\.bmp/i);
+					if (!_temp) {
+						this.value = "";
+						alert("目前只支持jpg,png,bmp,gif格式图片文件");
+						return false;
+					} else if (file.size > (1024 * 1024)) {
+						this.value = "";
+						alert("目前只支持小于1M大小图片文件");
+						return false;
+					}
+					fr.readAsDataURL(file);//读取文件
+					//操作文件事件
+					fr.onload = function() {
+						var base64Data = this.result;//获得base编码字符串格式
+						imgObj.name = file.name;//设置文件名
+						imgObj.data = base64Data.substring(base64Data
+								.indexOf(';base64,') + 8);//设置base64数据字符串
+						$("#preShow").attr("src", base64Data);//显示图片
+						
+					};
+				});
+	});
+</script>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</body>
+</html>

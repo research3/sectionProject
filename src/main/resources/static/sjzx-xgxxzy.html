@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection" />-->	    
+<title>修改服务_修改我发布的服务_韩汀社区</title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico" type="image/x-icon" />
+<meta name="keywords" content="御品韩汀，韩汀社区，韩汀，湖南韩汀电子商务有限公司" />
+<meta name="description" content="湖南韩汀电子商务有限公司主要服务范围有海外自驾游，微整形，留学中介，翻译，学习资源，国际物流等项目，主要以大陆国人和海外同胞为服务对象。商家可入驻社区开店，用户可在平台内快速的找到自己需要的服务项目。海外商家对国内用户以及海外同胞开放服务，双方各持所需，互利互惠，是一款海外华人生活，兼职向导平台。 
+
+韩汀宗旨:“崇尚以人为本、客户第一的服务宗旨。热诚为广大客户提供良好的售后服务和技术支持, 保障客户的投资得到良好的回报。”
+
+企业口号：“韩汀—带给你看得到的未来,说不出的精彩!”。
+
+企业理念：”诚信为本,惠于顾客,奉于社会”
+
+企业目标：”建设海外一流社区平台，与广大合作伙伴与时俱进,互利互惠!”。" />
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/common.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jcarousellite.min.js"></script>
+
+<script type="text/javascript" src="/Public/js/swiper-3.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/css/swiper-3.4.2.min.css">
+
+<script>
+_weburl = 'http://yphting.zglxkj.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f" />
+<meta name="__hash__" content="c7be73a3b52dcd1397eb5ae3afa1a3c4_4cfd9919941f4dedf8d926993292696e" /></head>
+<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/Public/js/Jcrop/css/jquery.Jcrop.css" type="text/css"/>
+<script src="/Public/js/Jcrop/js/jquery.Jcrop.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+function chkform()
+{
+	showloading();
+}
+function beforeCall(form, status){
+	showloading();
+}
+function ajaxValidationCallback(d, form, json, options){
+	closetip();
+	console.log(json);
+	showtip(json.msg);
+	if(json.state === 1){
+		setTimeout("location.href='/index.php/Home/Seller/services.html'",2000);
+	}
+};
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#formpost").validationEngine({autoHidePrompt:true,autoHideDelay:2000,binded:false
+		,ajaxFormValidation: false,ajaxFormValidationMethod: 'post',onBeforeAjaxFormValidation: beforeCall,onAjaxFormComplete: ajaxValidationCallback
+	});
+});
+$(function(){
+	//click button
+	$("#areaids").click(function(){
+		var linktext = $(this).attr('value');
+		if($(this).attr('checked'))
+		{
+			$(':checkbox[name="areaids[]"]').each(function(){
+				$(this).attr('checked',true);
+			});
+			$(this).attr('value','取消选择');
+		}
+		else
+		{
+			$(':checkbox[name="areaids[]"]').each(function(){
+				$(this).attr('checked',false);
+			});
+			$(this).attr('value','选择所有');
+		}
+	});
+});
+function selectallcitys(id){
+	if($("#checkbox"+id).attr('checked'))
+	{
+		$('input[type=checkbox].checkbox'+id).each(function(){
+//		$(':checkbox[name="areaids[]"].checkbox'+id).each(function(){
+			$(this).attr('checked',true);
+		});
+		$(this).attr('value','取消选择');
+	}
+	else
+	{
+		$('input[type=checkbox].checkbox'+id).each(function(){
+//		$(':checkbox[name="areaids[]"].checkbox'+id).each(function(){
+			$(this).attr('checked',false);
+		});
+		$(this).attr('value','选择所有');
+	}
+}
+function chkServ(){
+	_leng = $('.bodys .inf_inc6').length;
+	for(i=0; i<_leng; i++){
+		_val = $('.bodys .inf_inc6:eq('+i+')').val();
+		if(!_val){
+			showtip('服务内容标题不能为空！');
+			$('.bodys .inf_inc6:eq('+i+')').focus();
+			return false;
+		}
+	}
+}
+</script>
+<style>
+/*.zjy_upload_img img{ width: 148px; height:98px;}*/
+.jcrop_upload_ul {
+	overflow: hidden;
+	position: relative;
+	z-index: 2;
+	margin-bottom: 26px;
+    width:100%;
+}
+.jcrop_upload_ul li {
+	width:50%;
+}
+.jcrop_upload_ul li:first-child {
+	float:left;
+}
+.jcrop_upload_ul li:last-child {
+	float:right;
+}
+.pic_pic_cut{
+	display:none;
+}
+
+.zjy_upload_img img{
+	 position: relative;
+	 width:400px;
+	 height:280px;
+ }
+.zjy_upload_img_cut {
+	position: relative;
+	width:50%;
+	margin-left:60px;
+	align:right;
+}
+.zjy_upload_img_cut img{
+	position: relative;
+	width:50%;
+	align:center;
+}
+.upload_file {
+	position: relative;
+	margin: -5px 0px 0px -175px;
+	height: 98px;
+	width: 148px;
+	display: block;
+}
+.jcropx_a {
+	position: absolute;
+	top: 0;
+	right: 60px;
+	z-index: 3;
+	height: 24px;
+	width: 24px;
+	background: #f9f7f7 url(/Public/images/jcropx.png) no-repeat 50% 50%;
+}
+.jcropu_a {
+	position: absolute;
+	top: 0;
+	right: 30px;
+	z-index: 3;
+	height: 24px;
+	width: 24px;
+	background: #f9f7f7 url(/Public/images/jcropu.png) no-repeat 50% 50%;
+}
+
+.upload_a {
+	position: absolute;
+	top: 0;
+	right: 90px;
+	z-index: 3;
+	height: 24px;
+	width: 24px;
+	background: #f9f7f7 url(/Public/images/add_i.png) no-repeat 50% 50%;
+}
+.upload_img_name {
+	text-align: center;
+	font-size: 14px;
+	line-height: 24px;
+	padding-top: 0px;
+	color: #82685c;
+	background: #ece8e7;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	z-index: 3;
+	width: 100%;
+}
+p.upload_img_name{
+	width:400px;
+}
+.del_cut {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 3;
+	height: 24px;
+	width: 24px;
+	background: #f9f7f7 url(/Public/images/c_btna1.png) no-repeat 50% 50%;
+}
+/*.zjy_upload_img img{ width: 148px; height:98px;}*/
+</style>
+
+<body>
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="/index.php/">首页</a><span class="ht_line"></span><a href="/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="/index.php/Home/About/contact.html">联系我们</a></div>
+			
+			<div class="top_right">
+									<a href="/index.php/Home/Seller/index.html">黑夜</a>			<span class="ht_line"></span><a href="/index.php/Home/Member/logout.html">退出</a>
+            <span class="ht_line"></span><a href="/index.php/Home/Member/sms.html"><img src="/Public/images/e_i.png" alt="" /><span class="e_if"></span></a>
+            <script>$('.top_right').addClass('login_right');</script>
+					<!-- 	<span style="font-size:14px;"> &nbsp;&nbsp;| 切换到：<select  id="lang" onchange="changelang();"><option value="" >请选择</option><option value="zh-cn" >简体中文</option> <option value="en-us" >English</option> </select> -->
+			<script language="javascript">
+				function changelang(){
+					var lang=$("#lang").val();
+					if(lang=="zh-cn"){
+						window.location.href='?l=zh-cn';
+					}
+					if(lang=="en-us"){
+						window.location.href='?l=en-us';
+					}
+				}
+				$("#lang").val('');
+
+			</script>
+			<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="/index.php/Home/Index/index.html">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li class="cur" id="li1"><a href="/index.php/Home/Seller/index.html">商家中心</a><span class="my_nav_i"></span></li>
+<style type="text/css">
+.layui-layer-btn .layui-layer-btn0{ background:#4c1b98; }
+.layui-layer-btn .layui-layer-btn0:hover{ background:#340d6f;}
+</style>        	<li  id="li2"><a href="/index.php/Home/Member/index.html">个人中心</a><span class="my_nav_i"></span></li>
+            <li  id="li3"><a href="/index.php/Home/Member/config.html">账户设置</a><span class="my_nav_i"></span></li>
+            <li  id="li4"><a href="/index.php/Home/Member/sms.html">消息<span class="msg_num">1</span></a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+<!--header end-->
+
+<script language="javascript">
+function ordercancel(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+function ordersuccess(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=success&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+function orderaccept(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=accept&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+function ordercancelSeller(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+function orderservice(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=submit&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+function orderShou(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=Shou&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvZWRpdHN2L2FpZC82MTYuaHRtbA';
+}
+</script>
+
+<a href="/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+<script language="javascript">
+$(function(){
+	$('.zy_box').hide();
+    $('.h_top').addClass('seller_h_top');
+});
+function showcitys(countryid){
+	if(countryid==''){
+		$(".city").hide();
+	}else{
+		$(".ocity").hide();
+		$(".city").show();
+		$(".city"+countryid).show();
+	}
+}
+</script>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	<div class="sv_path border_c sv_nbor">
+            <a href="/index.php/Home/Seller/index.html">商家中心</a><span class="s_sp_v">-</span><a href="/index.php/Home/Seller/services.html">我修改的服务</a><span class="s_sp_v">-</span>修改 英语资料        </div>
+		<h2 class="sev_h2_title">修改英语资料服务</h2>
+		<form method="post" target="topost" id="formpost" onSubmit="return chkServ();" action="zg/c/updateServicesxxzy" enctype="multipart/form-data">
+			<input type="hidden" name="serviceID" value="${Services.serviceid}" />
+			<input type="hidden" name="stid" value="5" />
+			<dl class="info_form_dl">
+					<dt>资源类别</dt>
+					<dd>
+						<select class="sel_f sel_f2 sel_b5 validate[required]" name="resourceID">
+							<option value="">请选择下列选项类别</option>
+							<option value="23"  selected>留学资料</option><option value="21" >复习资料</option><option value="63" >学术论文</option><option value="22" >备考资料</option><option value="52" >其它资料</option>						</select>
+					</dd>
+				</dl>
+			<dl class="info_form_dl">
+				<dt>标题</dt>
+				<dd class="mt10">
+					<input type="text" name="serviceTitle" value="" class="input_c inf_inc validate[required]" th:value="${Services.servicetitle}" />
+				</dd>
+			</dl>
+			
+			
+			<dl class="info_form_dl">
+				<dt class="mopa">上传服务图片</dt>
+				<dd>
+					<p class="c_4 pat1 dx_text zc_info">请上传服务图片, 图片尺寸请保持<span class="xx_sp">750px*500px</span>, 最多5张<br />格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过2M。</p>
+					<ul class="jcrop_upload_ul" id="pic1">
+						<li >
+						<p class="upload_img_name" style="width: 500px">封面图
+							<input name="serviceCoverImg" type="file" id="serviceCoverImg" style="display: none" th:value="${Services.servicecoverimg}">
+								<img    th:src="${Services.servicecoverimg}"  >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);"  style="margin-left:180px;"  class="sel_file_a"  onclick="serviceCoverImg.click();">上传图片</a>
+						</div>
+
+						</p>
+						</li>
+	                    <li >
+							<div class="zjy_upload_img_cut" >
+								<input type="hidden"  name="main_photo_cut" id="pic1_pic_csrc" value="" />
+								<img   class="pic_pic_cut pic1_pic_cut"  id='pic1_pic_cut' src="" alt="封面图" />
+								<p class="upload_img_name pic_pic_cut pic1_pic_cut">封面裁剪图
+									<a href="javascript:void(0);" class="del_cut" rel="main_photo"></a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul  class="jcrop_upload_ul"  id="pic2">
+						<li>
+				
+							<p class="upload_img_name" style="width: 500px">细节图
+						<input name="serviceImgUrlOne" type="file" id="serviceImgUrlOne" style="display: none" th:value="${Services.serviceimgurlone}">
+						<img th:src="${Services.serviceimgurlone}"  >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);" style="margin-left:180px;" class="sel_file_a"  onclick="serviceImgUrlOne.click();">上传图片</a>
+						</div>
+
+						</p>
+						</li>
+						<li style="float:right;">
+							<div class="zjy_upload_img_cut"  >
+								<input type="hidden"  name="main_photo2_cut" id="pic2_pic_csrc" value="" />
+								<img   class="pic_pic_cut pic2_pic_cut"   id='pic2_pic_cut' src="" alt="细节图" />
+								<p class="upload_img_name pic_pic_cut pic2_pic_cut">细节裁剪图
+									<a href="javascript:void(0);" class="del_cut" rel="main_photo2"></a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul  class="jcrop_upload_ul"  id="pic3">
+								<li>
+	
+						<p class="upload_img_name" style="width: 500px">细节图
+							<input name="serviceImgUrlTwo" type="file" id="serviceImgUrlTwo" style="display: none" th:value="${Services.serviceimgurltwo}">
+						<img th:src="${Services.serviceimgurltwo}"  >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);"   style="margin-left:180px;" class="sel_file_a"  onclick="serviceImgUrlTwo.click();">上传图片</a>
+						</div>
+
+						</p>
+						</li>
+						<li style="float:right;">
+							<div class="zjy_upload_img_cut"  >
+								<input type="hidden"  name="main_photo3_cut" id="pic3_pic_csrc" value="" />
+								<img class="pic_pic_cut pic3_pic_cut"   id='pic3_pic_cut'  src="" alt="细节图" />
+								<p class="upload_img_name pic_pic_cut pic3_pic_cut">细节裁剪图
+									<a href="javascript:void(0);" class="del_cut" rel="main_photo3"></a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul  class="jcrop_upload_ul"  id="pic4">
+						<li>
+								<p class="upload_img_name" style="width: 500px">细节图
+							<input name="serviceImgUrlThree" type="file" id="serviceImgUrlThree" style="display: none" th:value="${Services.serviceimgurlthree}">
+						<img th:src="${Services.serviceimgurlthree}" >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);"   style="margin-left:180px;"  class="sel_file_a"  onclick="serviceImgUrlThree.click();">上传图片</a>
+						</div>
+
+						</p>
+						</li>
+						<li style="float:right;">
+							<div class="zjy_upload_img_cut"  >
+								<input type="hidden"  name="main_photo4_cut" id="pic4_pic_csrc" value="" />
+								<img class="pic_pic_cut pic4_pic_cut"  id='pic4_pic_cut' src="" alt="细节图" />
+								<p class="upload_img_name pic_pic_cut pic4_pic_cut">细节裁剪图
+									<a href="javascript:void(0);" class="del_cut" rel="main_photo4"></a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul  class="jcrop_upload_ul"  id="pic5">
+							<li>
+						<p class="upload_img_name" style="width: 500px">细节图
+						<input name="serviceImgUrlFour" type="file" id="serviceImgUrlFour" style="display: none" th:value="${Services.serviceimgurlfour}">
+						<img th:src="${Services.serviceimgurlfour}" >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);" style="margin-left:180px;"    class="sel_file_a"  onclick="serviceImgUrlFour.click();">上传图片</a>
+						</div>
+
+						</p>
+						</li>
+						<li style="float:right;">
+							<div class="zjy_upload_img_cut"  >
+								<input type="hidden"  name="main_photo5_cut" id="pic5_pic_csrc" value="" />
+								<img  class="pic_pic_cut pic5_pic_cut"   id='pic5_pic_cut' src="" alt="细节图"  />
+								<p class="upload_img_name pic_pic_cut pic5_pic_cut">细节裁剪图
+									<a href="javascript:void(0);" class="del_cut" rel="main_photo5"></a>
+								</p>
+							</div>
+						</li>
+					</ul>
+
+				</dd>
+			</dl>
+						<dl class="info_form_dl">
+				<dt>副标题</dt>
+				<dd>
+					<input type="text" class="input_c inf_inc validate[required]" th:value="${Services.servicefutitle}" name="serviceFuTitle" />
+				</dd>
+			</dl>
+			<dl class="info_form_dl">
+				<dt>金币价格</dt>
+				<dd class="mt10">				
+										<input type="text" th:value="${Services.serviceprice}" class="input_c inf_inc mt5 validate[required,custom[integer]]" name="servicePrice" />										<p class="c_4 zc_info">我们会对您的交易收取10%的服务费</p>
+				</dd>
+			</dl>
+			<dl class="info_form_dl">
+				<dt class="mopa">学校地区</dt>
+				<dd class="c_4 f14">
+				<select class="sel_f sel_f2 sel_b2" id="shengid" onChange="setarea(this.value, 'cityid')">
+						<option value="400" selected>韩国</option>					</select>
+					<select class="sel_f sel_f2 sel_b2" name="schoolRegion" id="cityid" onChange="setarea(this.value, 'areaid1')">
+						<option value="">请选择</option>
+						<option value="首尔特别市" selected>首尔特别市</option><option value="首尔特别市" >釜山广域市</option><option value="大邱广域市" >大邱广域市</option><option value="仁川广域市" >仁川广域市</option><option value="光州广域市" >光州广域市</option><option value="大田广域市" >大田广域市</option><option value="蔚山广域市" >蔚山广域市</option><option value="济州特别自治道" >济州特别自治道</option><option value="江原道" >江原道</option><option value="庆尚北道" >庆尚北道</option><option value="庆尚南道" >庆尚南道</option><option value="忠清北道" >忠清北道</option><option value="忠清南道" >忠清南道</option><option value="全罗北道" >全罗北道</option><option value="全罗南道" >全罗南道</option><option value="京畿道" >京畿道</option><option value="世宗特别自治市" >世宗特别自治市</option>					</select>
+				
+					</dd>
+				<dt class="mopa">学科</dt>
+				<dd class="c_4 f14">
+					<p class="mt5">中文</p>					
+					<input type="text" class="input_c inf_inc mt5 validate[required]" name="schoolNameByCN"  th:value="${Services.schoolnamebycn}" placeholder="学校" />
+					<input type="text" class="input_c inf_inc mt5 validate[required]" name="majoyNameByCN" th:value="${Services.majoynamebycn}" placeholder="专业" />
+					<p class="mt5">韩文</p>
+					<!--
+					<select class="sel_f sel_f2 sel_b2" id="shengid2" onChange="setarea(this.value, 'cityid2')">
+						<option value="400" >韩国</option>					</select>
+					<select class="sel_f sel_f2 sel_b2" id="cityid2" onChange="setarea(this.value, 'areaid2')">
+						<option value="">请选择</option>
+						<option value="401" >首尔特别市</option><option value="402" >釜山广域市</option><option value="403" >大邱广域市</option><option value="404" >仁川广域市</option><option value="405" >光州广域市</option><option value="406" >大田广域市</option><option value="407" >蔚山广域市</option><option value="408" >济州特别自治道</option><option value="409" >江原道</option><option value="410" >庆尚北道</option><option value="411" >庆尚南道</option><option value="412" >忠清北道</option><option value="413" >忠清南道</option><option value="414" >全罗北道</option><option value="415" >全罗南道</option><option value="416" >京畿道</option><option value="592" >世宗特别自治市</option>					</select>
+					<select class="sel_f sel_f2 sel_b2 validate[required]" name="areaid2" id="areaid2">
+						<option value="">请选择</option>
+											</select>
+					-->
+					<input type="text" class="input_c inf_inc mt5 validate[required]" name="schoolNameByROK" th:value="${Services.schoolnamebyrok}" placeholder="학교" />
+					<input type="text" class="input_c inf_inc mt5 validate[required]" name="majoyNameByROK" th:value="${Services.majoynamebyrok}" placeholder="전공" />
+					<p class="f12 mt10">为了更好搜索到您的服务，请填写正确的中韩文对应学科</p>
+				</dd>
+			</dl>									<dl class="info_form_dl">
+				<dt>费用说明</dt>
+				<dd class="mt10">
+					<textarea class="input_c fy_sh1 validate[required]" name="serviceCostTypeID">[[${Services.servicecosttypeid}]]</textarea>
+				</dd>
+			</dl>
+			<dl class="info_form_dl">
+				<dt class="mopa">服务简介</dt>
+				<dd>
+					<div class="a_b_edit">
+					<textarea name="serviceIntro" id="content" style="width:700px; height:600px;">[[${Services.serviceintro}]]</textarea>
+					</div>
+				</dd>
+			</dl>
+						<dl class="info_form_dl">
+				<dt class="mopa">上传资料</dt>
+				<dd>
+					<p class="c_4 pat1 dx_text">请上传相关资料，最大文件请勿超过25<span class="zmdx">M</span>。如超过25<span class="zmdx">M</span>,建议上传到云盘，添加URL做成超链接，以密码方式下载。<br/>
+					支持文件格式: gif、jpg、jpeg、png, txt, pdf, word, ppt, excel, hwp, mov, avi, mpeg-4, zip, rar.</p>
+					<input type="file" style="display: none"  name="uploadDataUrl"  id="uploadDataUrl"  th:value="${Services.uploaddataurl}" />
+					<div class="sel_file_d"><a href="javascript:void(0);" class="sel_file_a" id="uploadDataUrl" onclick="uploadDataUrl.click();">上传文件</a></div>
+					<p class="c_4 pat1 dx_text upfiletxt">[[${Services.uploaddataurl}]]　<a href="javascript:;" onClick="removefile(this)" rel="">删除</a></p>
+				</dd>
+			</dl>			<dl class="info_form_dl tk_sel_dl">
+				<dt class="mopa">&nbsp;</dt>
+				<dd>
+					<div class="checkbox_d"><input type="checkbox" checked="checked" />我已经了解《<a href="/index.php/Home/About/index/key/7.html" target="_blank" class="btna_s2">英语资料服务条款</a>》</div>
+				</dd>
+			</dl>			
+			<div class="business_btn_d">
+				<input type="hidden" name="articleid" id="articleid" value="616" />
+				<a href="/index.php/Home/Seller/services.html" class="fr btna_s2">取消发布</a>
+				<a href="javascript:void(0);" onClick="$('#formpost').submit()" class="btn_jy_a btn_jy_a2">修改服务</a>
+			</div>
+		<input type="hidden" name="__hash__" value="c7be73a3b52dcd1397eb5ae3afa1a3c4_4cfd9919941f4dedf8d926993292696e" /></form>
+	</div>
+</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt="" /></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="/index.php/Home/Member/seller.html">商家入驻</a>|<a href="/index.php/Home/About/help.html">帮助中心</a>|<a href="/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="/index.php/Home/About/contact.html">联系我们</a>|<a href="/index.php/Home/About/sitemap.html">网站地图</a>|<a href="/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" /></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&websiteName=http://yphting.zglxkj.com=&Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+<script>
+function beforeCall2(form, status){
+	showloading();
+}
+function ajaxValidationCallback2(d, form, json, options){
+	console.log(json);
+	showtip(json.msg);
+	if(json.state === 1){
+		setTimeout("location.reload()",2000);
+	}
+};
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#formtopcontact").validationEngine({autoHidePrompt:true,autoHideDelay:1000,binded:false,promptPosition:'topLeft'
+		,ajaxFormValidation: false,ajaxFormValidationMethod: 'post',onBeforeAjaxFormValidation: beforeCall2,onAjaxFormComplete: ajaxValidationCallback2
+	});
+});
+
+function chktop(){
+	_len = $('.chk_1:checked').length;
+	if(!_len){
+		showtip('请选择加盟方式');
+		return false;
+	}
+}
+</script>
+
+<!--联系我们的浮层-->
+<div class="pop_contact">
+	<a href="javascript:void(0);" class="close_pop_contact"></a>
+	<div class="w1000">
+		<div class="pcontact_left">
+			<a href="/index.php/" class="logo">御品韩汀</a>
+			<ul class="pcontact_ul">
+				<li><div class="wr_linka"><a href="http://yphting.zglxkj.com"></a></div>公司官网：http://yphting.zglxkj.com</li>
+				<li><div class="wr_linka"><a href="http://weidian.com/?userid=765635894&wfr=c"></a></div>公司微店：http://weidian.com/?userid=765635894&wfr=c</li>
+			</ul>
+			<ul class="pcontact_ul2">
+				<li><span class="pcu pcu1"></span>联系方式：18773382506</li>
+				<li><span class="pcu pcu2"></span>客服电话：0731-2286-7673</li>
+				<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4 청명타운텔 609호</li>
+				<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+			</ul>
+		</div>
+		<div class="pcontact_right">
+			<h2 class="contact_us_title">和我们联系吧</h2>
+			<form method="post" id="formtopcontact" action="/index.php/Home/About/contact.html" target="topost" onsubmit="return chktop()">
+			<ul class="pcontact_ul3">
+				<li><span class="pcspr pcspr1"></span><input id="name" name="name" class="pop_cus_input validate[required]" placeholder="姓名" type="text"></li>
+				<li><span class="pcspr pcspr2"></span><input name="tel" id="tel" class="pop_cus_input validate[required,custom[phone]]" placeholder="电话" type="text"></li>
+				<li><span class="pcspr pcspr3"></span><input name="email" id="email" class="pop_cus_input validate[required,custom[email]]" placeholder="邮箱" type="text"></li>
+				<li><span class="pcspr pcspr4"></span><input name="content" id="content" class="pop_cus_input validate[required]" placeholder="具体需求" type="text"></li>
+				<li class="sel_work">
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title1" name="title[]" value="我要兼职" class="chk_1" type="checkbox">
+								<label for="title1"></label>
+							</span>
+						</span>
+						<span class="sel_work_text">我要兼职</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title2" name="title[]" value="我要成为代理" class="chk_1" type="checkbox">
+								<label for="title2"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要成为代理</span>
+					</div>
+					<div class="sel_work_box">
+						<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title3" name="title[]" value="我要咨询整形" class="chk_1" type="checkbox">
+								<label for="title3"></label> 
+							</span>
+						</span>
+						<span class="sel_work_text">我要咨询整形</span>
+					</div>
+				</li>
+				<input type="hidden" name="act" value="contact" />
+				<li><a class="border_tj" href="javascript:void(0);" onclick="$('#formtopcontact').submit()" id="submit-btn">立即提交</a></li>
+			</ul>
+			<input type="hidden" name="__hash__" value="c7be73a3b52dcd1397eb5ae3afa1a3c4_4cfd9919941f4dedf8d926993292696e" /></form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--联系我们的浮层 end-->
+
+<script src="/Public/js/jquery.scrollto.js"></script>
+
+
+<script>
+function removefile(obj){
+	$('.upfiletxt').html('');
+	$('#upfile,#upfilename').val('');
+}
+</script>
+<script type="text/javascript" th:src="@{/Public/js/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" src="/Public/js/kindeditor/kindeditor-min.js"></script>
+<script language="javascript">
+$(function(){
+	//选择预览图片
+	$("[type=file]").on("change",function(){
+			var el = $(this);
+			var fr = new FileReader();//读取文件
+			var file = this.files[0];//选择第一个文件
+			var _temp = file.name.match(/\.jpg|\.jpeg|\.png|\.gif|\.bmp/i);
+			if (!_temp) {
+				this.value = "";
+				alert("目前只支持jpg,jpeg,bmp,gif,png格式图片文件");
+				return false;
+			} else if (file.size > (1024 * 1024 * 5)) {
+				this.value = "";
+				alert("目前只支持小于5M大小图片文件");
+				return false;
+			}
+			fr.readAsDataURL(file);//读取文件
+			//操作文件事件
+			fr.onload = function() {
+				var base64Data = this.result;//获得base编码字符串格式
+				el.next().attr("src",base64Data).show();
+				el.next().next().find("a").text("重新上传");
+			};
+		}
+	);
+});
+$('#pic1').show();
+
+
+var editor;
+function deldesc(obj){
+	if($('.del_i').length > 1){
+		_aid = $(obj).attr('rel');
+		if(_aid){
+			$.ajax({
+				data: {aid:_aid},
+				type: "post",
+				url: "/index.php/Home/Seller/deldesc.html"
+			})
+		}
+		$(obj).parent().remove();
+	}
+}
+KindEditor.ready(function(K) {
+	editor = K.create('#content', {
+		afterBlur: function () { this.sync(); },
+		uploadJson : '/index.php/Home/Kindeditor/upload/type/desc.html',
+		allowFileManager : false,
+		langType: 'zh_CN',
+		allowPreviewEmoticons : false,
+		allowImageUpload : true
+		//,items : _items
+	});
+});
+var imgUploadBtn0 = document.getElementById("filebt");
+new AjaxUpload(imgUploadBtn0,{
+	action:'/index.php/Home/Kindeditor/upload/dir/file/size/25.html',
+	name:"imgFile",
+	onSubmit:function(file,ext){
+		if(ext && /^(jpg|jpeg|png|gif|txt|pdf|doc|docx|ppt|pptx|xls|xlsx|zip|rar|mp4|avi|ov|hwp|mov)$/.test(ext)){
+			showloading();
+			imgUploadBtn0.innerHTML = "正在上传";
+		}else{
+			showtip('文件格式错误');
+			return false;
+		}
+	},
+	onComplete:function(file,response){
+		imgUploadBtn0.innerHTML = "重新上传";
+		console.log(response);
+		var obj = jQuery.parseJSON(response);
+		console.log(obj);
+		if(obj.error == 0){
+			closetip();
+			$('.upfiletxt').html(obj.file_name+' 　<a href="javascript:;" onclick="removefile(this)" rel="0">删除</a>');
+			$('#upfile').val(obj.url);
+			$('#upfilename').val(obj.file_name);
+		}else
+			showtip(obj.message);
+	}
+});
+
+</script>
+
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/sjzx-href.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+</html>

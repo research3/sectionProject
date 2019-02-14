@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+		<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css">
+		<style type="text/css">
+			.edit_pohto dt img {
+				width: 120px;
+				height: 120px;
+			}
+			
+			.information-def {
+				color: #ddd;
+			}
+			
+			.information-error {
+				color: #f00;
+			}
+			
+			.m_zl_r {
+				overflow: visible;
+			}
+		</style>
+		<link rel="stylesheet" href="/Public/js/croppic/croppic.css" type="text/css">
+	</head>
+
+	<body>
+		<!--header-->
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a href="">首页</a><span class="ht_line"></span>
+						<a href="">商家入驻</a><span class="ht_line"></span>
+						<a href="">帮助中心</a><span class="ht_line"></span>
+						<a href="">关于韩汀</a><span class="ht_line"></span>
+						<a href="">联系我们</a>
+					</div>
+					<div class="top_right login_right">
+						<a href="grzx-index.html">[[${session.USER.username}]]</a> <span class="ht_line"></span>
+						<a href="/c/szy/user/close">退出</a>
+						<span class="ht_line"></span>
+						<a href=""><img src="Public/images/e_i.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+			<div class="b_box nav_header community_header">
+				<a class="logo my_logo" href="">御品韩汀</a>
+				<ul class="member_nav_ul">
+					<li id="li1">
+						<a href="">商家中心</a><span class="my_nav_i"></span>
+					</li>
+					<style type="text/css">
+						.layui-layer-btn .layui-layer-btn0 {
+							background: #4c1b98;
+						}
+						
+						.layui-layer-btn .layui-layer-btn0:hover {
+							background: #340d6f;
+						}
+					</style>
+					<li id="li2">
+						<a href="">个人中心</a><span class="my_nav_i"></span>
+					</li>
+					<li class="cur" id="li3">
+						<a href="">账户设置</a><span class="my_nav_i"></span>
+					</li>
+					<li id="li4">
+						<a href="">消息</a><span class="my_nav_i"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--header end-->
+
+		<div class="bg_c4 pt1">
+			<div class="b_box">
+				<!--member left-->
+				<div class="member_left">
+					<h1 class="member_left_title">账户设置</h1>
+					<ul class="member_system_ul account_ul_a">
+						<li class="cur">
+							<a href="/c/szy/user/queryGrzxInfo"><span class="msp2 pre_c1"></span>个人资料</a>
+						</li>
+						<li>
+							<a href="/zhsz-xgmm.html"><span class="msp2 pre_c2"></span>修改密码</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="msp2 pre_c4"></span>帐号管理</a>
+						</li>
+						<li>
+							<a href="/c/szy/user/getdpszInfo"><span class="msp2 pre_c2"></span>店铺信息</a>
+						</li>
+					</ul>
+				</div>
+				<!--member left end-->
+				<!--member right-->
+				<div class="member_right site_msg_w">
+					<div class="member_system_r_top top_nor">个人资料</div>
+					<h3 class="h3_sec_t">修改头像</h3>
+					<dl class="edit_pohto">
+						<dt>
+							<div class="upload_photo" id="cropContainerEyecandy" style="background:url(http://thirdqq.qlogo.cn/qqapp/101390132/D81FE8BF55FB9B4D96B7DD6B937E776A/100) no-repeat center center;border: solid 1px #dbdbde;height: 118px;width: 118px;position: relative;z-index: 1;float: left;">
+			                	<div class="cropControls cropControlsUpload">
+			                		<i class="cropControlUpload"></i>
+			                	</div>
+			                	<form action="/c/szy/user/updateUserImg"  id="updateUserImg" method="post" enctype="multipart/form-data" class="cropContainerEyecandy_imgUploadForm" style="visibility: hidden;">
+			                		<input type="file" name="img" id="cropContainerEyecandy_imgUploadField">
+			                	</form>
+							</div>
+							<img src="http://thirdqq.qlogo.cn/qqapp/101390132/D81FE8BF55FB9B4D96B7DD6B937E776A/100" width="100" height="100" alt="yuno" id="thumb_preview" style="display:none;">
+						</dt>
+						<dd>
+							<p class="zc_info c_4">请上传头像比例为1:1，尺寸不低于<span class="xx_sp">120px × 120px</span> ,<br>支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+						</dd>
+					</dl>
+					<h3 class="h3_sec_t">修改资料</h3>
+					<form action="/c/szy/user/updateUserInfo" id="formcfg" method="post" target="topost">
+						<ul class="member_zl_ul">
+							<li>
+								<span class="m_zl_sp">用户名</span>
+								<div class="m_zl_r"><span class="c_4" >[[${session.USER.username}]]</span></div>
+								<input type="hidden" name="userid" th:value="${session.USER.userid}"/>
+							</li> 
+							<li>
+								<span class="m_zl_sp">邮箱</span>
+								<div class="m_zl_r">
+									<span class="c_4">[[${session.Email}]]</span>
+								</div>
+							</li>
+							<li>
+								<span class="m_zl_sp">真实姓名</span>
+								<div class="m_zl_r">
+									<input type="text"  placeholder="真实姓名" name="userrealname" id="name" th:value="${session?.USER?.userrealname}" class="input_c w350 validate[required]"> &nbsp;&nbsp;&nbsp;
+									<span id="ts"></span>
+								</div>
+							</li>
+							<li>
+								<span class="m_zl_sp">性别</span>
+								<div class="m_zl_r" th:switch="${session.USER.usersex}">
+									<span th:case="1">
+										<label ><input type="radio" name="usersex" value="1" class="radio_input validate[required]" checked="">男</label>
+										<label class="ml30"><input type="radio" name="usersex" value="2" class="radio_input" >女</label>
+									</span>
+									<span th:case="2">
+										<label><input type="radio" name="usersex" value="1" class="radio_input validate[required]">男</label>
+										<label class="ml30"><input type="radio" name="usersex" value="2" class="radio_input" checked="">女</label>
+									</span>
+								</div>
+							</li>
+							<li>
+								<span class="m_zl_sp">联系电话</span>
+								<div class="m_zl_r">
+									<input type="tel" placeholder="联系电话" id="tel" name="userphone" th:value="${session?.USER?.userphone}" class="input_c w350 validate[required]">&nbsp;&nbsp;&nbsp;&nbsp;<span id="telspan"></span>
+								</div>
+							</li>
+							<li>
+								<span class="m_zl_sp">联系地址</span>
+								<div class="m_zl_r">
+									<div class="sel_city">
+										<select class="sel_f sel_f2" name="provincialid">
+											<option th:if="${session.USER.provincialid}==null" value='0'>请选择</option>
+										</select>
+										<select class="sel_f sel_f2" name="cityid" id="cityid">
+											<option th:if="${session.USER.cityid}==null" value='0'>请选择</option>
+										</select>
+										<select class="sel_f sel_f2 validate[required]" id="countyid" name="countyid">
+											<option th:if="${session.USER.countyid}==null" value='0'>请选择</option>
+										</select>
+									</div>
+									<input type="text" placeholder="" name="addetail" th:value="${session.USER.addetail}" class="input_c w350">
+								</div>
+							</li>
+						</ul>
+						<div class="rechang_top2 rechang_top3">
+							<a href="javascript:void(0)" onclick="$('#formcfg').submit()" class="btn_jy_a">更新</a>
+						</div>
+						<input type="hidden" name="__hash__" value="50a76bd0b36c216a0537cfd4ea89e3bc_4108085a46fdce02fa38d241c6f46cf2">
+					</form>
+				</div>
+				<!--member right end-->
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="Public/images/footer_ewm.png" alt="">
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|
+						<a href="">帮助中心</a>|
+						<a href="">人才招聘</a>|
+						<a href="">联系我们</a>|
+						<a href="">网站地图</a>|
+						<a href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 | 邮编：412000</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="" class="rn_wx">官方微信</a>
+				<div class="over_show"><img src="Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+			</li>
+			<li>
+				<a href="" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="" class="rn_top">Back top</a>
+			</li>
+		</ul>
+		<!--right nav end-->
+
+	</body>
+	<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+	<script type="text/javascript" src="/Public/js/zhsz-href.js"></script>
+	<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" th:inline="javascript">
+		$("#thumb_preview").attr("src",[[${session.USER.userimgpath}]]);
+		$("#cropContainerEyecandy").css("background","url("+[[${session.USER.userimgpath}]]+") no-repeat center center");
+		var provincialID="[[${session.USER.provincialid}]]";
+		var cityID="[[${session.USER.cityid}]]";
+		//国地址
+		function guo(){
+			$.getJSON("/c/szy/user/querySharea",function(data){
+				$.each(data,function(i,obj){
+					if(obj.pid==0){
+						var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+						$("[name=provincialid]").append(option);
+					}
+				})
+				$("[name=provincialid]").val([[${session.USER.provincialid}]]);
+			})
+		}
+		//省
+		function sheng(){
+			$.getJSON("/c/szy/user/querySharea",function(data){
+				if(provincialID!=null){
+					$.each(data,function(i,obj){
+						if(obj.pid==provincialID){
+							var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+							$("[name=cityid]").append(option);
+						}
+					})
+					$("[name=cityid]").val([[${session.USER.cityid}]]);
+				}
+			})
+		}
+		//市
+		function shi(){
+			$.getJSON("/c/szy/user/querySharea",function(data){
+				if(cityID!=null){
+					$.each(data,function(i,obj){
+						if(obj.pid==cityID){
+							var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+							$("[name=countyid]").append(option);
+						}
+					})
+					$("[name=countyid]").val([[${session.USER.countyid}]]);	
+				}
+			})
+		}
+		guo();sheng();shi();
+
+		$("[name=provincialid]").on("change",function(){
+			provincialID=$(this).val();
+			$("[name=cityid]").html("");
+			$("[name=cityid]").append($("<option value='0'>请选择</option>"));
+			sheng();
+			$("[name=countyid]").html("");
+			$("[name=countyid]").append($("<option value='0'>请选择</option>"));
+		})
+		$("[name=cityid]").on("change",function(){
+			$("[name=countyid]").html("");
+			$("[name=countyid]").append($("<option value='0'>请选择</option>"));
+			cityID=$(this).val();
+			shi();
+		})
+		
+		$(".cropControlUpload").click(function(){
+			 $("[name=img]").trigger("click");
+		})
+		$("[name=img]").on("change",function(){
+			$("#updateUserImg").submit();
+		})
+</script>
+</html>

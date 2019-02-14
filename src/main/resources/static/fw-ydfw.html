@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预订服务_韩汀社区</title>
+		<link rel="stylesheet" th:href="@{/Public/css/common.css}" />
+	</head>
+<body>
+	<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+
+	<!--header-->
+	<div class="header" id="botop">
+			<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="/index.php/">首页</a><span class="ht_line"></span><a href="/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="/index.php/Home/About/contact.html">联系我们</a>
+				</div>
+				<div class="top_right login_right">
+					<a href="/index.php/Home/Seller/index.html">透</a>
+					<span class="ht_line"></span>
+					<a href="/index.php/Home/Member/logout.html">退出</a>
+	            	<span class="ht_line"></span>
+	            	<a href="/index.php/Home/Member/sms.html"><img src="/Public/images/e_i.png" alt=""></a>
+				</div>
+			</div>
+		</div>
+	    <div class="b_box nav_header community_header">
+			<a href="/index.php/" class="logo logo_community">御品韩汀.社区</a>
+			<h1 class="header_h1">预定服务</h1>
+		</div>        
+	</div>
+
+	<a href="/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+
+	<div class="bg_c3 pt1">
+		<div class="b_box">
+			<h3 class="yd_sev_h3">预定信息</h3>
+	        <div class="yd_box">
+	        	<table cellpadding="0" cellspacing="0" class="table_d">
+	            	<tbody>
+	            		<tr>
+		                	<td class="yd_t_img"><img th:src="${serDetailObj.serviceCoverImg}" th:alt="${serDetailObj.serviceTitle}"></td>
+		                    <td class="tcel2">
+		                    	<div class="yd_xm_title" th:text="${serDetailObj.serviceTitle}">韩语翻译</div>
+		                        <p th:text="${serDetailObj.serviceFuTitle}">韩语翻译</p>
+		                        <p><span class="num_1" th:text="${serDetailObj.servicePrice}">1</span>
+								[[${srVOobj.serviceTypeID==1?'/'+serDetailObj.serviceHour+'小时/天':''}]]
+								[[${srVOobj.serviceTypeID==4?'/每100字':''}]]
+								</p>
+		                    </td>
+		                  	<td th:if="${srVOobj.serviceTypeID==1}" class="tcel3">
+		                    	<p class="c_2">预约日期</p>
+		                        <p>[[${#dates.format(srVOobj.reserveStartDate,'yyyy-MM-dd')}]] 至 [[${#dates.format(srVOobj.reserveEndDate,'yyyy-MM-dd')}]] </p>
+		                    </td>
+		                    <td th:if="${srVOobj.serviceTypeID==2}" class="tcel3">
+		                    	<p class="c_2">预约日期</p>
+		                        <p th:text="${#dates.format(srVOobj.reserveDate,'yyyy-MM-dd')}">2018-10-31</p>
+		                    </td>
+				            <td th:if="${srVOobj.serviceTypeID==1||srVOobj.serviceTypeID==2||srVOobj.serviceTypeID==3}" class="tcel4">
+		                    	<p class="c_2">
+		                    	[[${srVOobj.serviceTypeID==1?'旅客人数':''}]]
+		                    	[[${srVOobj.serviceTypeID==2?'服务人数':''}]]
+		                    	[[${srVOobj.serviceTypeID==3?'人数':''}]]
+		                    	</p>
+		                        <p>[[${srVOobj.personCount}]]人</p>
+		                    </td>
+		                    <td th:if="${srVOobj.serviceTypeID==1}" class="tcel5">
+		                    	<p class="c_2">预约天数</p>
+		                        <p>[[${srVOobj.reserveDayCount}]]天</p>
+		                    </td>
+							<td th:if="${srVOobj.serviceTypeID==4}" class="tcel4">
+		                    	<p class="c_2">数量</p>
+		                        <p th:text="${srVOobj.quantity}">6</p>
+		                    </td>
+		                    <td class="tcel6">
+		                    	<p class="c_2">小计</p>
+		                        <p><span class="num_2" th:text="${srVOobj.subtotal}">6</span></p>
+		                    </td>
+		                </tr>
+	            	</tbody>
+	        	</table>
+	        </div>
+	        <form id="formbook" method="post" action="/c/lsm/serReserve" enctype="multipart/form-data">
+		        <div class="yd_info">
+					<h3 class="yd_sev_h3" th:if="${srVOobj.serviceTypeID==4}">上传文档信息</h3>
+		            <div class="fa_part" th:if="${srVOobj.serviceTypeID==4}">
+		            	<span class="fa_left">资料类别</span>
+		                <div class="fa_right">
+		                    <select class="sel_zylb" name="resouroeID" id="filetype">
+		                        <option value="0">请选择资料类别</option>
+								<option th:value="${temp.resouroeid}" th:each="temp,iter : ${resouroeList}" th:text="${temp.resouroename}">留学资料</option>                 
+		                    </select>
+		                </div>
+		            </div>
+		            <div class="fa_part" th:if="${srVOobj.serviceTypeID==4}">
+		            	<span class="fa_left">文档上传</span>
+		                <div class="fa_right">
+							<input type="file" name="hyFile" id="hyFile" style="display:none;">
+		                	<a href="javascript:void(0);" class="sel_file_a" id="filebt" onclick="hyFile.click()">上传文件</a>
+							<span class="f12 line20_t">翻译很辛苦，请尽量字数勿超过下单总份数×100(因为价格是以每100字为单位哦)。 <br>上传文件请勿超过25<span class="zmdx">M</span>。<br>支持文件格式: txt, pdf, word, ppt, excel, hwp, zip, rar.</span>
+							<div id="picss">
+								<span style="display:none;">20181007023115-30437.pdf ：0.045M　</span>
+							</div>
+		                </div>
+		            </div>			
+		            <div class="fa_part">
+		            	<p>备注留言</p>
+		                <textarea class="text_area_fa" name="remarks"></textarea>
+		            </div>
+		        </div>
+		        <!-- 服务编号 -->
+				<input type="hidden" name="serviceID" th:value="${srVOobj.serviceID}">
+				<!-- 一级服务类别编号 -->
+				<input type="hidden" name="serviceTypeID" th:value="${srVOobj.serviceTypeID}">
+				<!-- 预约开始时间：自驾游 -->
+				<input th:if="${srVOobj.serviceTypeID==1}" type="hidden" name="reserveStartDate" th:value="${#dates.format(srVOobj.reserveStartDate,'yyyy-MM-dd')}">	
+				<!-- 预约结束时间：自驾游 -->
+				<input th:if="${srVOobj.serviceTypeID==1}" type="hidden" name="reserveEndDate" th:value="${#dates.format(srVOobj.reserveEndDate,'yyyy-MM-dd')}">
+				<!-- 预约天数：自驾游 -->
+				<input th:if="${srVOobj.serviceTypeID==1}" type="hidden" name="reserveDayCount" th:value="${srVOobj.reserveDayCount}">
+				<!-- 预约日期：微整形 -->
+				<input th:if="${srVOobj.serviceTypeID==2}" type="hidden" name="reserveDate" th:value="${#dates.format(srVOobj.reserveDate,'yyyy-MM-dd')}">
+				<!-- 人数：自驾游、微整形、留学中介 -->
+				<input th:if="${srVOobj.serviceTypeID==1||srVOobj.serviceTypeID==2||srVOobj.serviceTypeID==3}" type="hidden" name="personCount" th:value="${srVOobj.personCount}">
+				<!-- 数量：韩语翻译 -->
+				<input th:if="${srVOobj.serviceTypeID==4}" type="hidden" name="quantity" th:value="${srVOobj.quantity}">
+				<!-- 小计 -->
+				<input type="hidden" name="subtotal" th:value="${srVOobj.subtotal}">
+		        <div class="fa_xz">
+		        	<div class="fa_zf_r">需要支付<span class="jy_num" th:text="${srVOobj.subtotal}">6</span><a href="javascript:void(0);" class="btn_jy_a f22" onclick="submitCheck()">提交预定</a></div>
+		        	<a href="/index.php/Home/About/trading.html" target="_blank" class="jyxz_btn">交易须知</a>
+		        </div>
+		    </form>
+		</div>
+	</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="/index.php/Home/Member/seller.html">商家入驻</a>|<a href="/index.php/Home/About/help.html">帮助中心</a>|<a href="/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="/index.php/Home/About/contact.html">联系我们</a>|<a href="/index.php/Home/About/sitemap.html">网站地图</a>|<a href="/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel" style="display: none;">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show" style="display: none;"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&amp;websiteName=http://yphting.zglxkj.com=&amp;Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top" style="display: none;">Back top</a></li>
+</ul>
+
+
+
+</body>
+	<script type="text/javascript " th:src="@{/Public/js/jquery-1.8.3.min.js}"></script>
+	<script type="text/javascript" th:src="@{/Public/js/sessionHeader.js}"></script>
+	<script type="text/javascript" th:src="@{/Public/js/headLeftNav.js}"></script>
+	<script>
+		
+		jQuery(".right_nav li a.rn_tel, a.rn_wx").hover(function(){
+			jQuery(this).next().show(300);
+		},function(){
+			jQuery(this).next().hide();
+		})
+		jQuery(window).scroll(function() {
+			if(jQuery(window).scrollTop() >= 500) {
+				jQuery(".rn_top").fadeIn(300);
+			} else {
+				jQuery(".rn_top").fadeOut(300);
+			}
+		})
+		jQuery(".rn_top").click(function() {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 500);
+		});
+		
+		//选择上传文件
+		$("[name=hyFile]").on("change",
+			function(e) {
+				//当前元素
+				var el = $(this);
+				var fr = new FileReader();//读取文件
+				var file = this.files[0];//选择第一个文件
+				var _temp = file.name.match(/\.txt|\.pdf|\.doc|\.docx|\.ppt|\.xls|\.xlsx|\.hwp|\.zip|\.rar/i);
+				if (!_temp) {
+					this.value = "";
+					alert("目前只支持txt, pdf, word, ppt, excel, hwp, zip, rar格式文件");
+					return false;
+				} else if (file.size > (1024 * 1024 * 25)) {
+					this.value = "";
+					alert("目前只支持小于25M大小文件");
+					jQuery("#filebt").text("上传文件");
+					jQuery("#picss span").hide();
+					return false;
+				}
+				fr.readAsDataURL(file);//读取文件
+				//操作文件事件
+				fr.onload = function() {
+					var hyfile = jQuery("[name=hyFile]").val();	//文件名
+					var hyfileSize = (file.size/1024/1024).toString();
+					hyfileSize = hyfileSize.substring(0,hyfileSize.lastIndexOf(".")+4);	//文件大小MB
+					var hyfileName = hyfile.substring(hyfile.lastIndexOf("\\")+1);
+					jQuery("#picss span").show().text(hyfileName+" ："+hyfileSize+"M");
+					jQuery("#filebt").text("重新上传");
+				};
+			}
+		);
+		//提交预定
+		function submitCheck(){
+			jQuery.getJSON("/c/szy/user/queryAUser",function(data){
+				if(data){	//如果已登录
+					var serUserID = [[${serDetailObj.userID}]];
+					var loginUserID = data.userid;
+					if(serUserID==loginUserID){	//如果是自己的服务
+						location.href="/fw-selfSerHint.html";
+					}else{	//可以预定
+						if([[${srVOobj.serviceTypeID}]]==4){
+							if(jQuery("select[name=resouroeID]").val()==0){
+								alert("请选择上传资料类别！");
+							}else if(jQuery("[name=hyFile]").val()==""){
+								alert("请上传你要翻译的文件！");
+							}else{
+								jQuery("#formbook").submit();
+							}
+						}else{
+							jQuery("#formbook").submit();
+						}
+					}
+				}else{	//如果没登录
+					location.href="/fw-loginHint.html";
+				}
+			});
+		}
+	</script>
+	
+</html>

@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+<title>我发出的物流_韩汀社区</title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico"
+	type="image/x-icon" />
+
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/common.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jcarousellite.min.js"></script>
+
+<script type="text/javascript" src="/Public/js/swiper-3.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/Public/css/swiper-3.4.2.min.css">
+<body>
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="/index.php/">首页</a><span class="ht_line"></span><a href="">商家入驻</a><span
+						class="ht_line"></span><a href="">帮助中心</a><span class="ht_line"></span><a
+						href="">关于韩汀</a><span class="ht_line"></span><a href="">联系我们</a>
+				</div>
+
+				<div class="top_right">
+					<a href="">郑石平</a> <span class="ht_line"></span><a href="">退出</a> <span
+						class="ht_line"></span><a href=""><img
+						src="/Public/images/e_i.png" alt="" /></a>
+
+					<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+				</div>
+			</div>
+		</div>
+
+		<div class="b_box nav_header community_header">
+			<a class="logo my_logo" href="">御品韩汀</a>
+			<ul class="member_nav_ul">
+				<li id="li1"><a href="">商家中心</a><span class="my_nav_i"></span></li>
+				<style type="text/css">
+.layui-layer-btn .layui-layer-btn0 {
+	background: #4c1b98;
+}
+
+.layui-layer-btn .layui-layer-btn0:hover {
+	background: #340d6f;
+}
+</style>
+				<li class="cur" id="li2"><a href="">个人中心</a><span
+					class="my_nav_i"></span></li>
+				<li id="li3"><a href="">账户设置</a><span class="my_nav_i"></span></li>
+				<li id="li4"><a href="">消息</a><span class="my_nav_i"></span></li>
+
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+
+	<a href="" class="zy_box">预定流程指引</a>
+
+	<div class="bg_c4 pt1">
+		<div class="b_box">
+			<div class="sv_path border_c sv_nbor">
+				<div class="fr c_4">
+					<a href="" class="btna_s2 f14">交易须知</a>
+				</div>
+				<a href="">会员中心</a> <span class="s_sp_v">-</span><a href="">我发出的物流</a>
+			</div>
+			<div class="business_order_nav business_order_nav_1mem">
+				<ul class="business_order_nav_ul">
+					<li class="cur"><a href="javascript:void(0);">提交发货申请</a></li>
+					<li class="cur"><a href="javascript:void(0);">审核中</a></li>
+					<li class="cur"><a href="javascript:void(0);">审核通过</a></li>
+					<li><a href="javascript:void(0);">已发国际EMS</a></li>
+					<li><a href="javascript:void(0);">完成发货</a></li>
+				</ul>
+			</div>
+		<!-- 	<p class="c_4 f12">用户发货单号</p>
+							<p class="mt5">weew ewwew</p>
+							<p class="c_4 f12">单号提交时间</p>
+							<p class="mt5">2018-10-22 23:12</p> -->
+			<script type="text/javascript">
+				$(function() {
+					$(".business_order_nav_ul .cur:not(':last')").removeClass(
+							'cur').addClass('pass');
+				});
+			</script>
+			<div class="business_order_box_1mem business_order_box">
+<!--                  <form action="/zsp/c/updateLogistics" method="post">
+ -->     				<p class="f14 mt10">
+					<span class="c_4">物流服务状态</span>
+					<span class="big_font d_ff">待提供国际单号</span>
+					<!-- <span >物流单号</span><input type="text" name="number1">
+					<span >物流公司</span><input type="text" name="number2">
+					<input type="hidden" th:value="${logistics.logisticsid}" name="logisticsid">
+					<input type="submit"
+						class="btn_jy_a" id="submit" value="提交"> -->
+				</p>
+<!-- 				</form>
+ -->				</div>
+
+				<div class="my_booking_cont">
+					<ul class="my_booking_cont_ul">
+					<li class="cel_1">
+						<p class="c_4 f12">服务订单号</p>
+						<p class="mt5" th:text="${logistics.orderid}">15395256239412</p>
+						<p class="c_4 f12">发货方式</p>
+						<p class="mt5" th:if="${logistics.delivery==1}">自发</p>
+						<p class="mt5" th:if="${logistics.delivery==2}">上门提货</p>
+						<p class="c_4 f12">下单时间</p>
+						<p class="mt5"
+							th:text="${#dates.format(logistics.ordertime,'yyyy-MM-dd HH:mm:ss')}">2018-10-14
+							22:00</p>
+							<!-- <p class="c_4 f12">审核通过时间</p>
+                    <p class="mt5">2018-10-22 13:32</p>		 -->			
+	</li>
+					<li class="cel_2">
+						<p class="c_4 f12 mt10">物品信息</p>
+						<p class="c_4 f12">重量</p>
+						<p class="mt5" th:text="${logistics.kg}">11kg</p>
+						<p class="c_4 f12">金币金额</p>
+						<div class="num_1 f16 mt5" th:text="${logistics.price}">462</div>
+						<p class="c_4 f12">物品标题与描述</p>
+						<p th:text="${logistics.title}">yyy</p>
+						<p class="f12 mt5 line20" th:text="${logistics.describe}">gg</p>
+						<div class="tk_img_d2">
+							<img src="./wl-xianq_files/20181014095949-98206.png" alt=""
+								width="100">
+						</div>
+					</li>
+					<li>
+						<p class="c_4 f12">您的发货信息</p>
+						<p class="mt5" th:text="${logistics.useraddr}">
+							中国 湖北 天门市 111 <br>1 1
+						</p>
+						<p class="c_4 f12">您的收货信息</p>
+						<p class="mt5" th:text="${logistics.collectgoodsaddr}">
+							中国 湖南 怀化市 1111 <br>111 11
+						</p>
+					</li>
+				</ul>
+				</div>
+
+
+
+			</div>
+		</div>
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="/Public/images/footer_ewm.png" alt="" />
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|<a
+							href="">帮助中心</a>|<a
+							href="">人才招聘</a>|<a
+							href="">联系我们</a>|<a
+							href="">网站地图</a>|<a
+							href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |
+						邮编：412000</p>
+
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+						官方热线电话：0731-2286-7673</p>
+
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li><a href="javascript:void(0);" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div></li>
+			<li><a href="javascript:void(0);" class="rn_wx">官方微信</a>
+				<div class="over_show">
+					<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+				</div></li>
+			<li><a
+				href=""
+				class="rn_kf">在线客服</a></li>
+			<li><a href="#" class="rn_top">Back top</a></li>
+		</ul>
+		<!--right nav end-->
+
+		<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css" />
+		<script
+			src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js"
+			type="text/javascript" charset="utf-8">
+			
+		</script>
+		<script src="/Public/js/valid/jquery.validationEngine.js"
+			type="text/javascript" charset="utf-8">
+			
+		</script>
+	
+
+
+		<script src="/Public/js/jquery.scrollto.js"></script>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</body>
+</html>

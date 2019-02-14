@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+	</head>
+
+	<body>
+		<!--header-->
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a href="">首页</a><span class="ht_line"></span>
+						<a href="">商家入驻</a><span class="ht_line"></span>
+						<a href="">帮助中心</a><span class="ht_line"></span>
+						<a href="">关于韩汀</a><span class="ht_line"></span>
+						<a href="">联系我们</a>
+					</div>
+					<div class="top_right">
+						<a href="">郑石平</a> <span class="ht_line"></span>
+						<a href="">退出</a> <span class="ht_line"></span>
+						<a href=""><img src="/Public/images/e_i.png" alt="" /></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="b_box nav_header community_header">
+				<a class="logo my_logo" href="">御品韩汀</a>
+				<ul class="member_nav_ul">
+					<li id="li1">
+						<a href="">商家中心</a><span class="my_nav_i"></span></li>
+					<style type="text/css">
+						.layui-layer-btn .layui-layer-btn0 {
+							background: #4c1b98;
+						}
+						
+						.layui-layer-btn .layui-layer-btn0:hover {
+							background: #340d6f;
+						}
+					</style>
+					<li class="cur" id="li2">
+						<a href="">个人中心</a><span class="my_nav_i"></span></li>
+					<li id="li3">
+						<a href="">账户设置</a><span class="my_nav_i"></span></li>
+					<li id="li4">
+						<a href="">消息</a><span class="my_nav_i"></span></li>
+
+				</ul>
+			</div>
+		</div>
+		<!--header end-->
+
+		<div class="bg_c4 pt1">
+			<div class="b_box">
+				<div class="sv_path border_c sv_nbor mpt0">
+					<div class="fr c_4">
+						<a href="" class="btna_s2 f14">交易须知</a>
+					</div>
+					<a href="">个人中心</a><span class="s_sp_v">-</span>
+					<a href="">我预订的服务</a>
+				</div>
+				<div class="my_booking_service_top">
+					<div class="my_booking_left">
+						<p class="c_4 f14">预定服务状态</p>
+						<p class="big_font" th:if="${order.orderstatus==1}">待付款</p>
+						<p class="big_font" th:if="${order.orderstatus==2}">待接单</p>
+						<p class="big_font" th:if="${order.orderstatus==3}">待服务</p>
+						<p class="big_font" th:if="${order.orderstatus==4}">待确认</p>
+						<p class="big_font" th:if="${order.orderstatus==5}">服务完成</p>
+						<p class="big_font" th:if="${order.orderstatus==6}">服务取消</p>
+						<p class="big_font" th:if="${order.orderstatus==7}">未接单</p>
+						<p class="big_font" th:if="${order.orderstatus==8}">已退款</p>
+						<p class="f12 c_4" th:if="${order.orderstatus==1}">请尽快付款以便商家安排时间</p>
+						<div class="btn_a_mt">
+							<a th:href="@{/c/lhy/order/pay(orderid=${order.orderid})}" class="btna_s1" th:if="${order.orderstatus==1}">支付金币</a>
+							<br th:if="${order.orderstatus==1}">
+							<a th:href="@{/c/lhy/order/ok(updateid=${order.orderid})}" class="btna_s1" th:if="${order.orderstatus==4}">确认完成</a>
+							<br th:if="${order.orderstatus==4}">
+							<a th:href="${order.documentpath}" download="" class="btna_s3 mt5" th:if="${order.orderstatus==5&&order.filesatus==2}">下载</a>
+							<br th:if="${order.orderstatus==5&&order.filesatus==2}"/>
+							<a href="" class="btna_s3" th:if="${order.orderstatus==5&&order.commentstatus==1}">评价</a>
+							<br th:if="${order.orderstatus==5&&order.commentstatus==1}"/>
+							<a th:href="@{/c/lhy/order/cancel(updateid=${order.orderid})}" onclick="" th:if="${order.orderstatus==1}">取消服务</a>
+							<a href="" onclick="" th:if="${order.orderstatus==5&&order.refundstatus==0}">申请退款</a>
+						</div>
+						<div class="btn_a_mt" th:if="${order.orderstatus==2||order.orderstatus==3}">-</div>
+						<!--按钮另一种颜色样式为btna_noc-->
+					</div>
+					<div class="my_booking_right">
+						<div class="my_book_spress"><span class="my_book_press_line"></span></div>
+						<ul class="my_booking_service_press_ul my_booking_4">
+							<li th:class="${order.orderstatus>=1?'cur':''}">
+								<span class="mbsp_sp"><span class="mbsp1"></span></span>
+								<p class="mbsp_text">提交预约</p>
+							</li>
+							<li th:class="${order.orderstatus>=2?'cur':''}">
+								<span class="mbsp_sp"><span class="mbsp2"></span></span>
+								<p class="mbsp_text">支付预约</p>
+							</li>
+							<li th:class="${order.orderstatus>=4?'cur':''}">
+								<span class="mbsp_sp"><span class="mbsp4 mbsp4_2"></span></span>
+								<p class="mbsp_text">下载资料</p>
+							</li>
+
+							<li th:class="|${order.orderstatus>=5?'cur':''} last|">
+								<span class="mbsp_sp"><span class="mbsp6"></span></span>
+								<p class="mbsp_text">服务完成</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="my_booking_cont">
+					<ul class="my_booking_cont_ul">
+						<li>
+							<p class="c_4 f12">订单编号</p>
+							<p class="mt5" th:text="${order.orderid}"></p>
+							<p class="c_4 f12">下单时间</p>
+							<p class="mt5" th:text="${#dates.format(order.ordertime,'yyyy-MM-dd')}"></p>
+							<p class="c_4 f12" th:if="${order.paymenttime!=null}">付款时间</p>
+							<p class="mt5" th:if="${order.paymenttime!=null}" th:text="${#dates.format(order.paymenttime,'yyyy-MM-dd')}"></p>
+							<p class="c_4 f12" th:if="${order.receipttime!=null}">接单时间</p>
+							<p class="mt5" th:if="${order.receipttime!=null}" th:text="${#dates.format(order.receipttime,'yyyy-MM-dd')}"></p>
+							<p class="c_4 f12" th:if="${order.provideservicestime!=null}">提供服务时间</p>
+							<p class="mt5" th:if="${order.provideservicestime!=null}" th:text="${#dates.format(order.provideservicestime,'yyyy-MM-dd')}"></p>
+							<p class="c_4 f12" th:if="${order.completetime!=null}">完成时间</p>
+							<p class="mt5" th:if="${order.completetime!=null}" th:text="${#dates.format(order.completetime,'yyyy-MM-dd')}"></p>
+							<p class="c_4 f12">商家</p>
+							<p class="mt10">
+								<a target="_blank" href="" th:text="${order.service.user.shopname}"></a>
+							</p>
+							<p class="c_4 f12">总金币</p>
+							<div class="num_1 f16" th:text="${order.smallplan}">1</div>
+						</li>
+						<li>
+							<p class="c_4 f12">类别</p>
+							<p class="mt5" th:text="${order.service.serviceType.stname}"></p>
+						</li>
+						<li>
+							<p class="c_4 f12">所预定服务</p>
+							<dl class="my_booking_img_text">
+								<dt><img th:src="${order.service.servicecoverimg}" alt="" width="135"></dt>
+								<dd>
+									<p>
+										<a href="" target="_blank" th:text="${order.service.servicetitle}"></a>
+									</p>
+									<p></p>
+									<div class="num_1 num_2_s f14" th:text="${order.service.serviceprice}"></div>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--站内信 弹框-->
+		<div id="pop_bg"></div>
+		<div class="site_email_pop">
+			<a href="" class="close_pop_btn"></a>
+			<h2 class="site_h2">
+				与<span class="mlr10"></span>站内信
+			</h2>
+			<dl class="send_site_email">
+				<dt>
+					<img src="/Public/images/bbs_user_photo.png" alt=""
+						class="user_photo_site" />
+				</dt>
+				<dd>
+					<input type="hidden" id="smsuid" value="" />
+					<textarea class="input_c in_site_text" id="smsmsg"></textarea>
+					<div class="member_bt_btm2">
+						<a href="" class="btna_acancel">取消</a>
+						<a href="" onclick="sendsms()">发送</a>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<!--站内信 弹框 end-->
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="/Public/images/footer_ewm.png" alt="" />
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|
+						<a href="">帮助中心</a>|
+						<a href="">人才招聘</a>|
+						<a href="">联系我们</a>|
+						<a href="">网站地图</a>|
+						<a href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 | 邮编：412000
+					</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673
+					</p>
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="" class="rn_wx">官方微信</a>
+				<div class="over_show">
+					<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+				</div>
+			</li>
+			<li>
+				<a href="" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="" class="rn_top">Back top</a>
+			</li>
+		</ul>
+	</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</html>

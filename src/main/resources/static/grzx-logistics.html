@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>我发出的物流_韩汀社区</title>
+
+<link rel="stylesheet" type="text/css"
+	href="/Public/css/common.css" />
+<body>
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="">首页</a><span class="ht_line"></span><a
+						href="">商家入驻</a><span
+						class="ht_line"></span><a href="">帮助中心</a><span
+						class="ht_line"></span><a href="">关于韩汀</a><span
+						class="ht_line"></span><a
+						href="">联系我们</a>
+				</div>
+
+				<div class="top_right">
+					<a href="index.html">郑石平</a> <span class="ht_line"></span><a
+						href="">退出</a> <span class="ht_line"></span><a href=""><img
+						src="/Public/images/e_i.png" alt="" /></a>
+
+					<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+				</div>
+			</div>
+		</div>
+
+		<div class="b_box nav_header community_header">
+			<a class="logo my_logo" href="">御品韩汀</a>
+			<ul class="member_nav_ul">
+				<li id="li1"><a href="">商家中心</a><span class="my_nav_i"></span></li>
+				<style type="text/css">
+.layui-layer-btn .layui-layer-btn0 {
+	background: #4c1b98;
+}
+
+.layui-layer-btn .layui-layer-btn0:hover {
+	background: #340d6f;
+}
+</style>
+				<li class="cur" id="li2"><a href="">个人中心</a><span
+					class="my_nav_i"></span></li>
+				<li id="li3"><a href="">账户设置</a><span class="my_nav_i"></span></li>
+				<li id="li4"><a href="">消息</a><span class="my_nav_i"></span></li>
+
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+
+	<a href="" class="zy_box">预定流程指引</a>
+
+	<div class="bg_c4 pt1">
+		<div class="b_box">
+			<!--member left-->
+			<div class="member_left">
+				<h1 class="member_left_title">个人中心</h1>
+				<ul class="member_system_ul">
+					<li><a href=""><span class="msp2 pre_c1"></span>我预订的服务</a>
+					</li>
+					<li><a href=""><span
+							class="msp2 pre_c2"></span>我的下载</a></li>
+					<li><a href=""><span class="msp2 community_sp csp7"></span>我的帖子</a>
+					</li>
+
+					<li><a href="/zsp/c/getServicesByUserId"><span class="msp2 pre_c3"></span>我的收藏</a>
+					</li>
+					<li><a href="/zsp/c/goldnotesQueryAll"><span class="msp2 pre_c4"></span>我的金币</a>
+					</li>
+					<li><a href="/zsp/c/QueryAll"><span class="msp2 pre_c5"></span>我的积分</a>
+					</li>
+					<li><a href="/zsp/c/EvaluationService"><span class="msp2 pre_c6"></span>我的评价</a>
+					</li>
+					<li><a href=""><span class="msp2 pre_c7"></span>我的退款</a>
+					</li>
+					<li><a href="/zsp/c/getListLogistics"><span
+							class="msp2 pre_c8"></span>我的物流</a></li>
+					<li><a target="_blank" href="javascript.void(0);"><span
+							class="msp2 pre_c9"></span>帮助中心</a></li>
+				</ul>
+
+			</div>
+			<!--member left end-->
+			<!--member right-->
+			<div class="member_right sj_right_box">
+				<div class="member_system_r_top">
+					<div class="search_right_box">
+						<div class="search_sec">
+							<form method="post">
+								<input type="text" name="findkey" placeholder="输入物流订单号或物品标题"
+									class="s_sec_input" /><input type="submit" value=""
+									class="s_sec_btn" /> 	</form>
+						</div>
+					</div>
+					<span class="fl"><a href="">我发出的物流</a>&nbsp;&nbsp; <a
+						href="/zsp/c/getShAreaById" class="btn_jy_a btn_jy_a3_4" id="btna_ship">我要发物流</a></span>
+					<div class="clear"></div>
+				</div>
+				<div class="my_wl_text c222">
+					韩汀网普通会员者可享受单次<span class="f18">10kg</span>起韩汀物流韩国EMS空运权限，单次<span
+						class="f18">30kg起上门为您发货</span>，2天抵达国内机场，5-7天内送达，解决区域贸易限制问题。
+				</div>
+				<table
+					class="point_table business_table business_table2 y_mem_table"
+					cellpadding="0" cellspacing="0">
+					<thead style="background-color: #EFEFEF">
+						<tr>
+							<th width="120">订单号</th>
+							<th width="120">标题</th>
+							<th width="120">重量</th>
+							<th width="100">下单日期</th>
+							<th width="120">金币金额</th>
+							<th width="120">发货方式</th>
+							<th width="120">状态</th>
+							<th width="120" class="th_c">操作</th>
+						</tr>
+					</thead>
+					<tbody th:remove="${PAGE_INFO.list.size()==0?'none':'all-but-first'}">
+						<tr th:each="temp,iterState:${PAGE_INFO.list}">
+							<th th:text="${temp.orderid}" width="80">订单号</th>
+							<th th:text="${temp.title}" width="80"><br />标题</th>
+							<th th:text="${temp.kg}" width="80"><br />重量</th>
+							<th th:text="${#dates.format(temp.ordertime,'yyyy-MM-dd HH:mm:ss')}"
+								width="80">下单日期</th>
+							<th width="80"><span  class="num_1">[[${temp.price}]]</span>金币</th>
+							<th th:if="${temp.delivery==1}" width="80">自发</th>
+							<th th:if="${temp.delivery==2}" width="80">上门提货</th>
+							<th th:if="${temp.auditstatus==1}" width="80">提交发货申请</th>
+							<th th:if="${temp.auditstatus==2}" width="80">待审核</th>
+							<th th:if="${temp.auditstatus==3}" width="80">审核通过</th>
+							<th th:if="${temp.auditstatus==4}" width="80">待提供快递单号</th>
+							<th th:if="${temp.auditstatus==5}" width="80">完成发货</th>
+<!-- 							<span th:if="${temp.mstate==0}" style="color:blue;">未读</span>
+ -->							
+							<th  width="80" class="th_c">
+
+								 <a  th:if="${temp.auditstatus==1}" th:href="@{/zsp/c/getLogisticsByPrice(id=${temp.logisticsid})}"
+								 class="btna_s2">去支付</a> 
+							<br />
+								 <a th:href="@{/zsp/c/getLogistics(id=${temp.logisticsid},auditstatus=${temp.auditstatus})}" 
+								class="btna_s2">查看详细</a></th>
+						</tr>
+					</tbody>
+				</table>
+				<!--page-->
+				<div class="page">
+					<a
+						th:href="@{/zsp/c/getListLogistics(p=0,s=${PAGE_INFO.pageSize})}">首页</a>
+					<a
+						th:href='@{/zsp/c/getListLogistics(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize})}'>上一页</a>
+					<a
+						th:href="@{/zsp/c/getListLogistics(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize})}">下一页</a>
+					<a
+						th:href="@{/zsp/c/getListLogistics(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize})}">末页</a>
+
+				</div>
+				<!--page end-->
+			</div>
+			<!--member right end-->
+			<div class="clear"></div>
+
+			<!--ad-->
+			<!--ad end-->
+		</div>
+	</div>
+
+	<!--我要发物流 弹框-->
+	<div id="pop_bg"></div>
+	<div class="site_ship_pop">
+		<a href="javascript:void(0);" class="close_pop_btn"></a>
+		<h2 class="site_h2">填写您的发货单号</h2>
+		<p class="f14 ship_text">请发货到我们的地址：영통구 영통동 청명로 1019-29 3층</p>
+
+		<div class="kd_box">
+			<span class="f14">快递公司</span><input type="text"
+				class="input_c inf_inc3" />
+		</div>
+		<div class="kd_box">
+			<span class="f14">快递单号</span><input type="text"
+				class="input_c inf_inc3" />
+		</div>
+		<div class="my_hy_btn ship_btn">
+			<a href="javascript:void(0);" class="btn_jy_a btn_jy_a4">取消</a> <a
+				href="javascript:void(0);" class="btn_jy_a btn_jy_a3">提交</a>
+		</div>
+
+	</div>
+	<!--我要发物流 弹框 end-->
+
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="/Public/images/footer_ewm.png" alt="" />
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="">商家入驻</a>|<a href="">帮助中心</a>|<a
+						href="">人才招聘</a>|<a
+						href="">联系我们</a>|<a
+						href="">网站地图</a>|<a
+						href="">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |
+					邮编：412000</p>
+
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					官方热线电话：0731-2286-7673</p>
+
+				<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="javascript:void(0);" class="rn_tel">客服电话</a>
+			<div class="over_show kf_tel">0731-2286-7673</div></li>
+		<li><a href="javascript:void(0);" class="rn_wx">官方微信</a>
+			<div class="over_show">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+			</div></li>
+		<li><a href="" class="rn_kf">在线客服</a></li>
+		<li><a href="#" class="rn_top">Back top</a></li>
+	</ul>
+	<!--right nav end-->
+
+	<!--联系我们的浮层-->
+	<div class="pop_contact">
+		<a href="javascript:void(0);" class="close_pop_contact"></a>
+		<div class="w1000">
+			<div class="pcontact_left">
+				<a href="" class="logo">御品韩汀</a>
+				<ul class="pcontact_ul">
+					<li><div class="wr_linka">
+							<a href=""></a>
+						</div>公司官网：http://yphting.zglxkj.com</li>
+					<li><div class="wr_linka">
+							<a href=""></a>
+						</div>公司微店：http://weidian.com/?userid=765635894&wfr=c</li>
+				</ul>
+				<ul class="pcontact_ul2">
+					<li><span class="pcu pcu1"></span>联系方式：18773382506</li>
+					<li><span class="pcu pcu2"></span>客服电话：0731-2286-7673</li>
+					<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4
+						청명타운텔 609호</li>
+					<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+				</ul>
+			</div>
+			<div class="pcontact_right">
+				<h2 class="contact_us_title">和我们联系吧</h2>
+				<form method="post" id="formtopcontact" action="" target="topost"
+					onsubmit="return chktop()">
+					<ul class="pcontact_ul3">
+						<li><span class="pcspr pcspr1"></span><input id="name"
+							name="name" class="pop_cus_input validate[required]"
+							placeholder="姓名" type="text"></li>
+						<li><span class="pcspr pcspr2"></span><input name="tel"
+							id="tel" class="pop_cus_input validate[required,custom[phone]]"
+							placeholder="电话" type="text"></li>
+						<li><span class="pcspr pcspr3"></span><input name="email"
+							id="email" class="pop_cus_input validate[required,custom[email]]"
+							placeholder="邮箱" type="text"></li>
+						<li><span class="pcspr pcspr4"></span><input name="content"
+							id="content" class="pop_cus_input validate[required]"
+							placeholder="具体需求" type="text"></li>
+						<li class="sel_work">
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title1" name="title[]"
+										value="我要兼职" class="chk_1" type="checkbox"> <label
+										for="title1"></label>
+								</span>
+								</span> <span class="sel_work_text">我要兼职</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title2" name="title[]"
+										value="我要成为代理" class="chk_1" type="checkbox"> <label
+										for="title2"></label>
+								</span>
+								</span> <span class="sel_work_text">我要成为代理</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title3" name="title[]"
+										value="我要咨询整形" class="chk_1" type="checkbox"> <label
+										for="title3"></label>
+								</span>
+								</span> <span class="sel_work_text">我要咨询整形</span>
+							</div>
+						</li>
+				<li><a class="border_tj" href="javascript:void(0);"
+							id="submit-btn">立即提交</a></li>
+					</ul>
+			</form>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</body>
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</html>

@@ -1,0 +1,16 @@
+ yyHref="/c/szy/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID=";
+ fbHref="/zg/c/getServices?pageNum=1&pageSize=5";
+ jdHref="/zg/c/queryAppraisalapply";
+ pjHref="";
+ wlHref="";
+ tkHref="/c/lhy/refund/list";
+ lbHref="";
+ tgHref="";
+ $(".member_system_ul li:eq(0) a").attr("href",yyHref);
+ $(".member_system_ul li:eq(1) a").attr("href",fbHref);
+ $(".member_system_ul li:eq(2) a").attr("href",jdHref);
+ $(".member_system_ul li:eq(3) a").attr("href",pjHref);
+ $(".member_system_ul li:eq(4) a").attr("href",wlHref);
+ $(".member_system_ul li:eq(5) a").attr("href",tkHref);
+ $(".member_system_ul li:eq(6) a").attr("href",lbHref);
+ $(".member_system_ul li:eq(7) a").attr("href",tgHref);

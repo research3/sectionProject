@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<iframe name="topost" id="topost" style="display:none;"></iframe>
+		<link rel="stylesheet" type="text/css" href="/Public/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/css/owl.carousel.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/js/layer/skin/layer.css" />
+
+		<!--header-->
+		<div class="header" id="botop">
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a th:href="@{/c/lsm/homeUrl}">首页</a><span class="ht_line"></span>
+						<a href="javascript:;">商家入驻</a><span class="ht_line"></span>
+						<a href="/fw-bzzx.html">帮助中心</a><span class="ht_line"></span>
+						<a href="/fw-gyht.html">关于韩汀</a><span class="ht_line"></span>
+						<a href="/fw-lxwm.html">联系我们</a>
+					</div>
+
+					<div class="top_right">
+						<a href="javascript:;">登录</a><span class="ht_line"></span>
+						<a href="javascript:;">注册</a>
+						<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+					</div>
+				</div>
+			</div>
+			<div class="b_box nav_header community_header">
+				<a href="javascript:;" class="logo logo_community">御品韩汀.社区</a>
+				<ul class="nav_ul">
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-zjyTAB&stid=1}"><span class="community_sp csp1"></span><br>自驾游</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-wzxTAB&stid=2}"><span class="community_sp csp2"></span><br>微整形</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-lxzjTAB&stid=3}"><span class="community_sp csp3"></span><br>留学中介</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-hyfyTAB&stid=4}"><span class="community_sp csp4"></span><br>韩语翻译</a>
+					</li>
+					<li>
+						<a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-xxzyTAB&stid=5}"><span class="community_sp csp5"></span><br>学习资源</a>
+					</li>
+					<li>
+						<a href="javascript:;"><span class="community_sp csp6"></span><br>韩汀物流</a>
+					</li>
+					<li class="cur">
+						<a th:href="@{/c/sxy/column?pid=1&page=1&orderId=1&essence=0}"><span class="community_sp csp7"></span><br>韩汀·论坛</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+			<!--header end-->
+
+			<div class="bg_c2 pt1">
+				<div class="b_box">
+					<!--center bar-->
+					<div class="bbs_ft_box">
+						<h2 class="h60_title"><a href="javascript:;" class="btna_s6">你说我说</a> - 发帖</h2>
+						<div class="ft_sec">发贴前了解所在版的讨论主题和相关规定，不发表与版规不符的言论，不在他人的帖子内发表与主帖内容无关的言论。<br>尊重他人的知识产权，不得剽窃他人作品，转载和引用他人作品时应符合版权许可。 </div>
+						<form id="formmsg" method="post" target="topost" onsubmit="return chkforms()">
+							<div class="ft_part_d">
+								<!--
+                                	作者：1154044031@qq.com
+                                	时间：2018-10-07
+                                	描述：此处需要二级联动动态加载
+                                -->
+								<select class="sel_f" id="pid" name="pid" onchange="getChild(this.value)">
+									<option value="">选择栏目</option>
+									<option th:each="temp,item : ${BLIST}" th:value="${temp.fmid}" th:text="${temp.fmname}">留学简介</option>
+								</select>
+								<select class="sel_f validate[required]" name="catid" id="catid">
+									<option value="">选择栏目</option>
+									<option value="">韩国大学简介</option>
+								</select>
+							</div>
+							<div class="ft_part_d">
+								<input type="text" placeholder="标题（必填*）" name="subject" id="subject" th:value="${POST.title}" class="input_c validate[required]">
+							</div>
+							<div class="ft_part_d">
+								<div class="ke-container ke-container-default" style="width: 1100px;margin-bottom:30px;">
+									<textarea name="content" id="content" style="width: 1100px; height: 400px; display: none;" th:utext="${POST.content}"></textarea>
+								</div>
+							<div class="bbs_btn_bt">
+								<a href="javascript:void(0);" onclick="$('#formmsg').submit()" class="btn_jy_a">发帖</a>
+							</div>
+							<input type="hidden" name="articleid" value="0">
+							<input type="hidden" name="__hash__" value="618218c6553357a3830dad57daac5fc6_4fb4e421bb37ff6aac646368d044eb38"></form>
+					</div>
+					<!--center bar end-->
+
+					<div class="clear"></div>
+					<!--ad-->
+					<div class="ad_box2">
+						<a href="javascript:;"><img src="/Public/images/ad/3.jpg" alt="底部广告 说吧"></a>
+					</div>
+					<!--ad end-->
+				</div>
+			</div>
+
+			<div class="b_box">
+				<a href="javascript:;" class="footer_text">
+					<h2 class="index_h2_title c_0">加入我们<span class="c_1">•</span>招募韩国商家、华人</h2>
+					<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+					<div class="bt_btn_d"><span class="btn_a_more bs_bt_a">商家入驻</span></div>
+				</a>
+			</div>
+
+			<!--footer-->
+			<div class="footer community_footer_dl">
+				<dl class="footer_dl">
+					<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+					<dd>
+						<p class="flink">
+							<a href="javascript:;">商家入驻</a>|
+							<a href="javascript:;">帮助中心</a>|
+							<a href="javascript:;">人才招聘</a>|
+							<a href="javascript:;">联系我们</a>|
+							<a href="javascript:;">网站地图</a>|
+							<a href="javascript:;">使用条款</a>
+						</p>
+						<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江2栋2502号 |网站负责人：夏先生 | 邮编：21917</p>
+						<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 联系电话：0731-2286-7673</p>
+						<p>Copyright © 2016 - 2017 yphting.com 版权所有</p>
+					</dd>
+				</dl>
+			</div>
+			<!--footer end-->
+
+			<!--right nav-->
+			<ul class="right_nav">
+				<li>
+					<a href="javascript:void(0);" class="rn_tel">客服电话</a>
+					<div class="over_show kf_tel">0731-2286-7673</div>
+				</li>
+				<li>
+					<a href="javascript:void(0);" class="rn_wx">官方微信</a>
+					<div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+				</li>
+				<li>
+					<a href="javascript:;" class="rn_kf">在线客服</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="rn_top" style="display: block;">Back top</a>
+				</li>
+			</ul>
+
+			<!--联系我们的浮层-->
+			<div class="pop_contact">
+				<a href="javascript:void(0);" class="close_pop_contact"></a>
+				<div class="w1000">
+					<div class="pcontact_left">
+						<a href="javascript:;" class="logo">御品韩汀</a>
+						<ul class="pcontact_ul">
+							<li>
+								<div class="wr_linka">
+									<a href="javascript:;"></a>
+								</div>公司官网：http://www.yphting.com</li>
+							<li>
+								<div class="wr_linka">
+									<a href="javascript:;"></a>
+								</div>公司微店：http://weidian.com/?userid=765635894&amp;wfr=c</li>
+						</ul>
+						<ul class="pcontact_ul2">
+							<li><span class="pcu pcu1"></span>联系方式：0731-2286-7673</li>
+							<li><span class="pcu pcu2"></span>客服电话：0731-2286-7673</li>
+							<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4 청명타운텔 609호</li>
+							<li class="last">
+								<h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+						</ul>
+					</div>
+					<div class="pcontact_right">
+						<h2 class="contact_us_title">和我们联系吧</h2>
+						<form method="post" id="formtopcontact" action="javascript:;" target="topost" onsubmit="return chktop()">
+							<ul class="pcontact_ul3">
+								<li><span class="pcspr pcspr1"></span><input id="name" name="name" class="pop_cus_input validate[required]" placeholder="姓名" type="text"></li>
+								<li><span class="pcspr pcspr2"></span><input name="tel" id="tel" class="pop_cus_input validate[required,custom[phone]]" placeholder="电话" type="text"></li>
+								<li><span class="pcspr pcspr3"></span><input name="email" id="email" class="pop_cus_input validate[required,custom[email]]" placeholder="邮箱" type="text"></li>
+								<li><span class="pcspr pcspr4"></span><input name="content" id="content" class="pop_cus_input validate[required]" placeholder="具体需求" type="text"></li>
+								<li class="sel_work">
+									<div class="sel_work_box">
+										<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title1" name="title[]" value="我要兼职" class="chk_1" type="checkbox">
+								<label for="title1"></label>
+							</span>
+										</span>
+										<span class="sel_work_text">我要兼职</span>
+									</div>
+									<div class="sel_work_box">
+										<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title2" name="title[]" value="我要成为代理" class="chk_1" type="checkbox">
+								<label for="title2"></label> 
+							</span>
+										</span>
+										<span class="sel_work_text">我要成为代理</span>
+									</div>
+									<div class="sel_work_box">
+										<span class="input-group-addon">
+							<span class="hz_icon_top">
+								<input id="title3" name="title[]" value="我要咨询整形" class="chk_1" type="checkbox">
+								<label for="title3"></label> 
+							</span>
+										</span>
+										<span class="sel_work_text">我要咨询整形</span>
+									</div>
+								</li>
+								<input type="hidden" name="act" value="contact">
+								<li>
+									<a class="border_tj" href="javascript:void(0);" onclick="$('#formtopcontact').submit()" id="submit-btn">立即提交</a>
+								</li>
+							</ul>
+							<input type="hidden" name="__hash__" value="618218c6553357a3830dad57daac5fc6_4fb4e421bb37ff6aac646368d044eb38"></form>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<input type="file" name="imgFile" style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: none; z-index: 2147483583;"><input type="file" name="imgFile" style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: none; z-index: 2147483583;"><input type="file" name="imgFile" style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: none; z-index: 2147483583;">
+			</body>			
+			<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+			<script type="text/javascript" src="/Public/js/common.js"></script>
+			<script src="/Public/js/layer/layer.js"></script>
+			<!-- 导入css,使用默认样式 -->
+			<link rel="stylesheet"	href="/Public/js/kindeditor/themes/default/default.css" />
+			<!-- 导入kindeditor的核心js包 -->
+			<script charset="utf-8" src="/Public/js/kindeditor/kindeditor-all.js"></script>
+			<!-- 导入kindeditor的语言包-->
+			<script charset="utf-8" src="/Public/js/kindeditor/lang/zh_CN.js"></script>
+
+
+			<script>
+			//富文本
+			var editor = null;
+			KindEditor.ready(function(k){
+			    editor = k.create('#content',{
+			        resizeType: 0,
+			        cssPath : ['/js/kindeditor/plugins/code/prettify.css'],
+			        filterMode: true,
+			        allowFileManager: true,
+			        uploadJson: '/c/sxy/kindeditor/upload',
+			        fileManagerJson : '/c/sxy/kindeditor/manager',
+			        afterBlur : function() {
+			            this.sync();
+			        }
+			    });
+			    editor.html($("#content").html());
+			});
+
+			</script>
+			<script type="text/javascript">
+			 $("[name=pid] option[value=[[${pid}]]]" ).attr("selected","selected")
+				showCount([[${pid}]],function(){
+					console.info($("[name=catid] option[value=[[${fmid}]]]"))
+					$("[name=catid] option[value=[[${fmid}]]]").attr("selected","selected");
+				});
+				$("[name=pid]").change(function(){
+					var pfmid = $(this).val();
+					showCount(pfmid);
+				})
+			function showCount(pid,callback){
+				$.ajax({
+					url:"/c/sxy/showColumn",
+					data:{"pid":pid},
+					type:"get",
+					dataType:"json",
+					success:function(data){
+						$("[name=catid]").find("option:gt(0)").remove();
+						$.each(data,function(i,obj){
+							var option = $("<option></option>").val(obj.fmid).html(obj.fmname);;
+							$("[name=catid]").append(option);
+						})
+						if(callback){
+							callback();
+						}
+					},
+					error:function(){
+						alert("操作错误！");
+					}
+				})
+			}
+			//编辑触发事件
+			$(".btn_jy_a").click(function(){
+				if($("[name=catid]").val()==""||$("[name=subject]").val()==""||$("[name=content]").val()==""){
+					alert("请填写完整的信息！");
+				}else{
+					var obj = new Object();
+					obj["postid"] = "[[${POST.postid}]]"
+					obj["fmid"] = $("[name=catid]").val();
+				 	obj["title"] = $("[name=subject]").val();
+				 	obj["content"] = $("[name=content]").val();
+				 	obj["userid"] = "[[${POST.user.userid}]]";
+				 	/*var year = new Date().getFullYear();
+				 	var month = new Date().getMonth()+1;
+				 	var day = new Date().getDate();
+				 	var hour = new Date().getHours();
+				 	var minute = new Date().getMinutes();
+				 	var second = new Date().getSeconds();*/
+				 	obj["releasetime"] = new Date();
+				 	updatePost(obj);
+				}
+			})
+			
+			//编辑帖子
+			function updatePost(obj){
+			 	$.ajax({
+			 		url:"/c/sxy/updatePost",
+			 		type:"post",
+			 		data:JSON.stringify(obj),
+					contentType:"application/json",
+					success:function(data){
+						if(data.code=="200"){
+							alert("编辑成功。");
+							location.href="/c/sxy/column?pid=1&orderId=1&essence=1";
+						}else{
+							alert("编辑失败。");
+						}
+					},
+					error:function(){
+						alert("操作错误！");
+					}
+			 	})
+			}
+			</script>
+</html>

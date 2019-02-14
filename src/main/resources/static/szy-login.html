@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登陆_韩汀社区</title>
+<link rel="stylesheet" href="/Public/css/common.css" />
+<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/Public/js/code.js"></script>
+<style type="text/css">
+.yzmCode {
+	background: #F7E7F3;
+	text-align: center;
+	line-height: 44px;
+	color: #A0522D;
+	font-weight:700;
+	border-radius: 3px;
+	height: 39px;
+	width: 136px;
+	display: inline-block;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	user-select: none;
+}
+</style>
+</head>
+<body>
+	<!--header-->
+	<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav">
+				<a href="">首页</a><span class="ht_line"></span> <a href="">商家入驻</a><span
+					class="ht_line"></span> <a href="">帮助中心</a><span class="ht_line"></span>
+				<a href="">关于韩汀</a><span class="ht_line"></span> <a href="">联系我们</a>
+			</div>
+			<div class="top_right login_right">
+				<a href="/szy-login.html">登陆</a> <span class="ht_line">
+				</span> <a href="/szy-zuce.html">注册</a>
+			</div>
+		</div>
+	</div>
+	<div class="b_box nav_header community_header">
+		<a href="" class="logo logo_community"></a>
+		<div class="logo_right_text">欢迎登录</div>
+	</div>
+	<!--header end-->
+	<div class="bg_c4 pt1">
+		<div class="b_box">
+			<dl class="login_dl">
+				<dt>
+					<a href=""><img
+						src="/Uploads/image/2018-09/20180429124619-44314.jpg" width="680"
+						height="420" alt="首页登入图-gif"></a>
+				</dt>
+				<dd>
+					<form action="javascript:void(0)" method="get" id="formlogin" target="topost" onsubmit="return submit1();">
+						<h1 class="login_title">使用邮箱登录</h1>
+						<ul class="login_ul">
+							<li><input type="email" placeholder="邮箱" name="email"
+								class="input_c validate[required,custom[email]]"></li>
+							<li><input type="password" placeholder="密码" name="password"
+								class="input_c validate[required,minSize[6]]"></li>
+							<li><input type="text" placeholder="验证码" name="code"
+								id="code" class="input_c validate[required]">
+								 <span class="yzmCode"></span></li>
+							<li><a href="javascript:void(0);" class="login_abtn" name="login">立即登录</a>
+							</li>
+							<li class="forget_reg"><a href="/szy-zuce.html" class="fr">还没有账号？点击注册»</a><a href="/szy-mima.html">忘记密码»</a></li>
+						</ul>
+						<input type="submit" style="display: none;"> 
+					</form>
+					<h1 class="login_title_2">使用第三方账号登录</h1>
+					<div class="other_login">
+						<a href="" class="zh_sp zh_qq"></a> <a href="" class="zh_sp zh_wx"></a>
+						<a href="" class="zh_sp zh_wb"></a>
+						<!-- /index.php/Home/Login/oauth/type/sina.html -->
+						<a href="javascript:void(0);" id="fblogin" class="zh_sp zh_fb"></a>
+					</div>
+
+					<div id="wb_connect_btn" style="display: none;"></div>
+				</dd>
+			</dl>
+		</div>
+	</div>
+
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="/Public/images/footer_ewm.png" alt="">
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="">商家入驻</a>| <a href="">帮助中心</a>| <a href="">人才招聘</a>| <a
+						href="">联系我们</a>| <a href="">网站地图</a>| <a href="">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |
+					邮编：412000</p>
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					官方热线电话：0731-2286-7673</p>
+				<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="" class="rn_tel">客服电话</a>
+			<div class="over_show kf_tel">0731-2286-7673</div></li>
+		<li><a href="" class="rn_wx">官方微信</a>
+			<div class="over_show">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm">
+			</div></li>
+		<li><a href="" class="rn_kf">在线客服</a></li>
+		<li><a href="" class="rn_top">Back top</a></li>
+	</ul>
+	<!--right nav end-->
+</body>
+<script type="text/javascript" src="/Public/js/security.js"></script>
+<script type="text/javascript">
+		create_code();
+		function submit1(){
+			var email=$("[name=email]").val();
+			var password=$("[name=password]").val();
+			if(email==""||password==""){
+				alert("请填写完整信息");
+				return false;
+			}else{
+				var code=$("[name=code]").val();
+				var yzmCode=$(".yzmCode").html();
+				if(yzmCode.toLowerCase()==code.toLowerCase()){
+					return true;
+				}else{
+					$("[name=code]").val("");
+					create_code();
+					alert("验证码错误");
+					return false;
+				}
+			}
+		}
+		$("[name=login]").click(function(){
+			if(!submit1()){
+				return;
+			} 
+			var email=$("[name=email]").val();
+			var password=$("[name=password]").val();
+			$.getJSON("/c/szy/user/rsaKey",{"email":email},function(data){
+				   var pwdKey = new RSAUtils.getKeyPair(data.exponent,"",data.modulus);
+	               var reversedPwd = password.split("").reverse().join("");
+	               var encrypedPwd = RSAUtils.encryptedString(pwdKey,reversedPwd);
+	           		$.getJSON("/c/szy/user/checkRSAKey",{"email":email,"password":encrypedPwd},function(result){
+	           			if(result.code=="200"){
+	           				alert("登陆成功！");
+	           				location.href="/c/lhy/center/home";
+	           			}else if(result.code=="500"){
+	           				alert("登陆失败！账户或密码错误");
+	           				$("[name=password]").val("");
+	           			}else{
+	           				alert("系统异常："+result.msg);
+	           			}
+	           		})
+			})
+		})
+	</script>
+	<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+	
+</html>

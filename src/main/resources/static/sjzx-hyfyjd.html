@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection" />-->	    
+<title>韩语翻译鉴定申请_韩汀社区</title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico" type="image/x-icon" />
+<meta name="keywords" content="御品韩汀，韩汀社区，韩汀，湖南韩汀电子商务有限公司" />
+<meta name="description" content="湖南韩汀电子商务有限公司主要服务范围有海外自驾游，微整形，留学中介，翻译，学习资源，国际物流等项目，主要以大陆国人和海外同胞为服务对象。商家可入驻社区开店，用户可在平台内快速的找到自己需要的服务项目。海外商家对国内用户以及海外同胞开放服务，双方各持所需，互利互惠，是一款海外华人生活，兼职向导平台。 
+
+韩汀宗旨:“崇尚以人为本、客户第一的服务宗旨。热诚为广大客户提供良好的售后服务和技术支持, 保障客户的投资得到良好的回报。”
+
+企业口号：“韩汀—带给你看得到的未来,说不出的精彩!”。
+
+企业理念：”诚信为本,惠于顾客,奉于社会”
+
+企业目标：”建设海外一流社区平台，与广大合作伙伴与时俱进,互利互惠!”。" />
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/common.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<script type="text/javascript" src="/Public/js/jcarousellite.min.js"></script>
+
+<script type="text/javascript" src="/Public/js/swiper-3.4.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Public/css/swiper-3.4.2.min.css">
+
+<script>
+_weburl = 'http://yphting.zglxkj.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f" />
+<meta name="__hash__" content="7f8fb91a41c8eac95df4bee5b0d2fc1b_c71d279fbf02284cb7d6afdd479b4d24" /></head>
+<iframe name="topost" id="topost" style="display:none;"></iframe>
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+<script>
+function chkform()
+{
+	showloading();
+}
+function beforeCall(form, status){
+	if($('#office_has2').attr('checked')){
+		_cid = $('#office_city_id').val();
+		_add = $('#office_address').val();
+		if(!_cid || !_add){
+			showtip('请选择办公室！');return false;
+		}
+	}
+	showloading();
+}
+
+</script>
+
+<body>
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="/index.php/">首页</a><span class="ht_line"></span><a href="/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="/index.php/Home/About/contact.html">联系我们</a></div>
+			
+			<div class="top_right">
+									<a href="/index.php/Home/Seller/index.html">1</a>			<span class="ht_line"></span><a href="/index.php/Home/Member/logout.html">退出</a>
+            <span class="ht_line"></span><a href="/index.php/Home/Member/sms.html"><img src="/Public/images/e_i.png" alt="" /><span class="e_if"></span></a>
+            <script>$('.top_right').addClass('login_right');</script>
+					<!-- 	<span style="font-size:14px;"> &nbsp;&nbsp;| 切换到：<select  id="lang" onchange="changelang();"><option value="" >请选择</option><option value="zh-cn" >简体中文</option> <option value="en-us" >English</option> </select> -->
+			<script language="javascript">
+				function changelang(){
+					var lang=$("#lang").val();
+					if(lang=="zh-cn"){
+						window.location.href='?l=zh-cn';
+					}
+					if(lang=="en-us"){
+						window.location.href='?l=en-us';
+					}
+				}
+				$("#lang").val('');
+
+			</script>
+			<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="/index.php/Home/Index/index.html">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li class="cur" id="li1"><a href="/index.php/Home/Seller/index.html">商家中心</a><span class="my_nav_i"></span></li>
+<style type="text/css">
+.layui-layer-btn .layui-layer-btn0{ background:#4c1b98; }
+.layui-layer-btn .layui-layer-btn0:hover{ background:#340d6f;}
+</style>        	<li  id="li2"><a href="/index.php/Home/Member/index.html">个人中心</a><span class="my_nav_i"></span></li>
+            <li  id="li3"><a href="/index.php/Home/Member/config.html">账户设置</a><span class="my_nav_i"></span></li>
+            <li  id="li4"><a href="/index.php/Home/Member/sms.html">消息<span class="msg_num">8</span></a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+<!--header end-->
+
+<script language="javascript">
+function ordercancel(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+function ordersuccess(_oid){
+    location.href = "/index.php?m=Home&c=Member&a=setzt&oid="+_oid+'&act=success&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+function orderaccept(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=accept&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+function ordercancelSeller(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=cancel&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+function orderservice(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=submit&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+function orderShou(_oid){
+    location.href = "/index.php?m=Home&c=Seller&a=orderzt&oid="+_oid+'&act=Shou&continue=aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvSG9tZS9TZWxsZXIvYXV0aC9haWQvNi5odG1s';
+}
+</script>
+
+<a href="/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	
+		<!--member left-->
+        <div class="member_left">
+        	<h1 class="member_left_title seller_title">商家中心</h1>
+            <ul class="member_system_ul sj_left_ul">
+            	<li ><a href="/index.php/Home/Seller/order.html"><span class="msp2 pre_c1"></span>我收到的预定</a></li>
+            	<li ><a href="/index.php/Home/Seller/services.html"><span class="msp2 pre_c2"></span>我发布的服务</a></li>
+                <li class="cur"><a href="/index.php/Home/Seller/auth.html"><span class="msp2 pre_c3"></span>我提交的鉴定</a></li>
+                <li ><a href="/index.php/Home/Seller/comment.html"><span class="msp2 pre_c4"></span>我收到的评价</a></li>
+                <li ><a href="/index.php/Home/Seller/logistics.html"><span class="msp2 pre_c5"></span>我发出的物流</a></li>
+                <li ><a href="/index.php/Home/Seller/refund.html"><span class="msp2 pre_c6"></span>我收到的退款<span class="sp_acon_1"></span></a></li>
+                <li ><a href="/index.php/Home/Seller/servicecats.html"><span class="msp2 pre_c3"></span>我的服务类别</a></li>
+                <li ><a href="/index.php/Home/Seller/trustservice.html"><span class="msp2 pre_c3"></span>我提交的托管</a></li>
+            </ul>
+			<div class="ad_left_1"></div>        </div>
+        <!--member left end-->
+		
+<script language="javascript">
+$(function(){
+	$('.zy_box').hide();
+    $('.h_top').addClass('seller_h_top');
+});
+</script>
+		
+        <!--member right-->
+        <div class="member_right sj_right_box">
+			<form method="post"  id="formmsg" onSubmit="return chkform();"  action="zg/c/addhyfyjd" enctype="multipart/form-data">
+				<input type="hidden" name="stid" value="4" />
+			
+				<div class="member_system_r_top pl15 mt20">
+					韩语翻译鉴定申请
+					<div class="my_wl_text ptb20">申请通过韩汀的服务鉴定，能增强用户信任感，提高成交率，还等什么，快快填写提交吧！</div>
+				</div>
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>姓名：</dt>
+					<dd>
+						<input type="text" class="input_c inf_inc validate[required]" name="name" value=""/>
+					</dd>
+				</dl>
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>性别：</dt>
+					<dd class="mtb">
+						<label><input type="radio"  value="1" name="sex" class="radio_input validate[required]" />男</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<label><input type="radio"  value="2" name="sex" class="radio_input" />女</label>
+					</dd>
+				</dl>
+								<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>签证类型：</dt>
+					<dd>
+						<select class="sel_f sel_f2 sel_b3 validate[required]" name="visatype">
+							<option value="">请选择</option>
+							<option value="D-1文化艺术" >D-1文化艺术</option><option value="D-2留学签证" >D-2留学签证</option><option value="D-3产业研修" >D-3产业研修</option><option value="D-4语言研修" >D-4语言研修</option><option value="D-8投资" >D-8投资</option><option value="D-7驻在" >D-7驻在</option><option value="D-10求职签" >D-10求职签</option><option value="F-2 居住" >F-2 居住</option><option value="F-5永驻" >F-5永驻</option><option value="E-1教授" >E-1教授</option><option value="E-3研究" >E-3研究</option><option value="E-4技术指导" >E-4技术指导</option><option value="E-5专门职业" >E-5专门职业</option><option value="E-8研修就业" >E-8研修就业</option><option value="B-1签证豁免" >B-1签证豁免</option><option value="B-2旅游过境" >B-2旅游过境</option><option value="F-6结婚移民" >F-6结婚移民</option><option value="其它" >其它</option>						</select>
+					</dd>
+				</dl>
+				<dl class="info_form_dl info_form_dl2">
+					<dt class="two_h_dt"><span class="c_x">*</span>身份证／<br />登入证号码：</dt>
+					<dd>
+						<select class="sel_f sel_f2 sel_b3 mrr1" name="documentType">
+							<option value="1" >身份证号码</option>
+							<option value="2" >登入证号码</option>
+						</select>
+						<input type="text" class="input_c inf_inc2 validate[required]" value="" name="certificates" />
+					</dd>
+				</dl>
+											<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>翻译资质：</dt>
+					<dd>
+						<select class="mt5 sel_f sel_f2 sel_b3 validate[required]" name="translateType">
+							<option value="">请选择</option>
+							<option value="1" >证书</option><option value="2" >语言成绩</option>
+						</select>
+						<p class="c_4 pat1 dx_text zc_info">格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+						<input  type="file" name="translate" id="translatesa" style="display: none">
+						<img src="">
+						<div class="sel_file_d">
+							<span><a href="javascript:void(0);"  class="sel_file_a"  onclick="translatesa.click();">上传图片</a></span>
+						</div>
+					</dd>
+				</dl>	
+			
+						
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>是否有办公室：</dt>
+					<dd class="mtb">
+						<div class="mt5">
+							<label><input type="radio" name="office" id="office_has1" value="true" class="radio_input" onclick="$('.office_div').show()" />有</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input type="radio" name="office" id="office_has2" value="false" class="radio_input validate[required]" onclick="$('.office_div').hide()" />无</label>
+						</div>
+						<div class="office_div">
+							<input  class="input_c inf_inc validate[required]"  type="text" name="officeCountry" >国家<br><br>
+						<input  class="input_c inf_inc validate[required]"  type="text" name="officeProvince">省<br><br>
+						<input  class="input_c inf_inc validate[required]"  type="text" name="officeCity">市<br><br>
+						<input type="text" name="officeDetailed" class="input_c inf_inc validate[required]" value="" />详细地址<br><br>
+						</div>
+					</dd>
+				</dl>																<dl class="info_form_dl info_form_dl2">
+					<dt class="mopa">韩国营业执照：</dt>
+					<dd>
+						<p class="c_4 pat1 dx_text zc_info">请上传韩国营业执照 <br />格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+						<input name="koreaLicense" type="file" id="koreaLicense" style="display: none">
+						<img src=""   >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);"  class="sel_file_a"  onclick="koreaLicense.click();">上传图片</a>
+						</div>
+					</dd>
+				</dl>				
+									<dl class="info_form_dl info_form_dl2">
+					<dt>网址：</dt>
+					<dd>
+						<input type="text" class="input_c inf_inc validate[custom[url]]" name="translateWebsite" value="" />
+					</dd>
+				</dl>				<dl class="info_form_dl info_form_dl2">
+										<dt>在韩工作时间：</dt>					<dd>
+						<select class="sel_f sel_f2 sel_b3 " name="inKorea">
+							<option value="">请选择</option>
+							<option value="1～2年" >1～2年</option><option value="3～4年" >3～4年</option><option value="5～6年" >5～6年</option><option value="6年以上" >6年以上</option>						</select>
+					</dd>
+				</dl>
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>联系电话：</dt>
+					<dd>
+						<input type="text" class="input_c inf_inc validate[required]" name="phone" value="" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>邮箱地址：</dt>
+					<dd>
+						<input type="text" name="email" class="input_c inf_inc validate[required,custom[email]]" value="" />
+					</dd>
+				</dl>
+				<dl class="info_form_dl info_form_dl2">
+					<dt><span class="c_x">*</span>在韩住址：</dt>
+					<dd>
+						<input  class="input_c inf_inc validate[required]"  type="text" name="country" >国家<br><br>
+						<input  class="input_c inf_inc validate[required]"  type="text" name="provincialID">省<br><br>
+						<input  class="input_c inf_inc validate[required]"  type="text" name="cityID">市<br><br>
+						<input type="text" name="detailed" class="input_c inf_inc validate[required]" value="" />详细地址<br><br>
+					</dd>
+				</dl>
+		
+							<dl class="info_form_dl info_form_dl2">
+					<dt class="mopa">相关证明文件：</dt>
+					<dd>	
+						<p class="c_4 pat1 dx_text zc_info">请提交相关证明图片 <br />支持图片格式: GIF、JPG、JPEG、PNG大小不超过5M。</p>
+						<input name="schoolReport" type="file" id="schoolReport" style="display: none">
+						<img src="" >
+						<div class="sel_file_d">
+							<a href="javascript:void(0);"  class="sel_file_a"  onclick="schoolReport.click();">上传图片</a>
+						</div>
+					</dd>
+				</dl>
+								<div class="business_btn_d business_btn_d3">
+				
+					<a href="javascript:void(0);" onclick="$('#formmsg').submit()" class="btn_jy_a btn_jy_a2">提交申请</a>
+				</div>
+			<input type="hidden" name="__hash__" value="7f8fb91a41c8eac95df4bee5b0d2fc1b_c71d279fbf02284cb7d6afdd479b4d24" /></form>
+		</div>
+		<!--member right end-->
+        <div class="clear"></div>
+
+	</div>
+</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/Public/images/footer_ewm.png" alt="" /></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="/index.php/Home/Member/seller.html">商家入驻</a>|<a href="/index.php/Home/About/help.html">帮助中心</a>|<a href="/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="/index.php/Home/About/contact.html">联系我们</a>|<a href="/index.php/Home/About/sitemap.html">网站地图</a>|<a href="/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" /></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&websiteName=http://yphting.zglxkj.com=&Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+
+
+
+<script src="/Public/js/jquery.scrollto.js"></script>
+
+<script type="text/javascript" th:src="@{/Public/js/jquery-1.8.3.min.js}"></script>
+
+<script src="/Public/js/ajaxupload.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Public/js/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//选择预览图片
+	$("[type=file]").on("change",function(){
+			var el = $(this);
+			var fr = new FileReader();//读取文件
+			var file = this.files[0];//选择第一个文件
+			var _temp = file.name.match(/\.jpg|\.jpeg|\.png|\.gif|\.bmp/i);
+			if (!_temp) {
+				this.value = "";
+				alert("目前只支持jpg,jpeg,bmp,gif,png格式图片文件");
+				return false;
+			} else if (file.size > (1024 * 1024 * 5)) {
+				this.value = "";
+				alert("目前只支持小于5M大小图片文件");
+				return false;
+			}
+			fr.readAsDataURL(file);//读取文件
+			//操作文件事件
+			fr.onload = function() {
+				var base64Data = this.result;//获得base编码字符串格式
+				el.next().attr("src",base64Data).show();
+				el.next().next().find("a").text("重新上传");
+			};
+		}
+	);
+});
+	
+</script>
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/sjzx-href.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+</html>

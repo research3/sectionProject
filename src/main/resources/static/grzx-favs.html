@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>我的收藏_韩汀社区</title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico"
+	type="image/x-icon" />
+
+<link href="/Public/css/owl.carousel.css" rel="stylesheet" />
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/Public/js/layer/layer.js"></script>
+
+</head>
+<iframe name="topost" id="topost" style="display: none;"></iframe>
+
+<script src="/Public/js/jquery.raty.min.js"></script>
+<body>
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="/index.php?m=&">首页</a><span class="ht_line"></span><a
+						href="">商家入驻</a><span
+						class="ht_line"></span><a href="">帮助中心</a><span
+						class="ht_line"></span><a href="">关于韩汀</a><span
+						class="ht_line"></span><a
+						href="">联系我们</a>
+				</div>
+
+				<div class="top_right">
+					<a href="">郑石平</a> <span
+						class="ht_line"></span><a href="">退出</a> <span class="ht_line"></span><a
+						href="">
+						<!--<img src="/  /Public/images/e_i.png" alt="" />--> <img
+						src="/Public/images/e_i.png" alt="" />
+					</a>
+					<script>
+						$('.top_right').addClass('login_right');
+					</script>
+					<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+				</div>
+			</div>
+		</div>
+
+		<div class="b_box nav_header community_header">
+			<a class="logo my_logo" href="">御品韩汀</a>
+			<ul class="member_nav_ul">
+				<li id="li1"><a href="">商家中心</a><span
+					class="my_nav_i"></span></li>
+				<li class="cur" id="li2"><a href="">个人中心</a><span
+					class="my_nav_i"></span></li>
+				<li id="li3"><a href="">账户设置</a><span class="my_nav_i"></span></li>
+				<li id="li4"><a href="">消息</a><span class="my_nav_i"></span></li>
+
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+
+	<div class="bg_c4 pt2">
+		<div class="b_box">
+			<div class="collection_top">
+				<div class="fr">
+					<form method="post">
+						<div class="search_sec">
+							<input type="text" name="findkey" placeholder="输入服务名称或商家名称搜索"
+								class="s_sec_input" /><input type="submit" value=""
+								class="s_sec_btn" />
+						</div>
+						<input type="hidden" name="t" value="1" /> <input type="hidden"
+							name="catid" value="0" />
+				</div>
+				<div class="collection_tab">
+					<a href="/zsp/c/getServicesByUserId" class="cur">服务收藏</a> <a href="/zsp/c/getMerchantCollectionById">商家收藏</a>
+				</div>
+			</div>
+			<!--collection_box-->
+			<div class="collection_box">
+				<ul class="pre_about_info collection_nav">
+					<li class="cur"><a href="">全部</a></li>
+				</ul>
+				<script>
+					$('.collection_nav li:last').addClass('last');
+				</script>
+				<ul class="us_ul_list collection_list_ul" th:remove="${PAGE_INFO.list.size()==0?'none':'all-but-first'}">
+					<li class="col_156" th:each="temp,iterState:${PAGE_INFO.list}">
+						<div class="per_pic">
+							<a href="" target="_blank"> <img th:src="${temp.servicecoverimg}"/>
+							</a> <span class="del_collection" rel="156"></span>
+						</div>
+						<div class="per_text">
+							<a href=""
+								target="_blank">
+								<h3>[[${temp.servicetitle}]]</h3>
+								<dl class="collection_bt_dl">
+									<dt>
+										<div class="i_3">[[${temp.serviceprice}]]</div>
+									</dt>
+									<dd>
+										<div class="star_pl">
+											<span class="star_pl_sp" style="width: 60%;"></span>
+										</div>
+									</dd>
+								</dl>
+							</a>
+						</div> 
+					</li>
+				</ul>
+
+				<!--page-->
+				<div class="page">
+					<div class='nav'>
+						<a class="page_prev prevdisabled" href="javascript:;">上一页</a> <span
+							class="cur">1</span> <a class="page_next nextdisabled"
+							href="javascript:;">下一页</a>
+					</div>
+				</div>
+				<!--page end-->
+
+				<div class="service_recs">服务推荐</div>
+				<div id="service_recs" class="owl-carousel">
+				        <div class="item" th:each="temp2,iterState:${LIST}">
+						<ul class="us_ul_list">
+							<li><a href=""
+								target="_blank">
+									<div class="per_pic">
+										<img th:src="${temp2.serviceCoverImg}"  />
+									</div>
+									<div class="per_text">
+										<h3>[[${temp2.shopName}]]</h3>
+										<dl class="star_user_dl fl">
+											<dt>
+											<img alt="" src="">
+ 												<img th:src="${temp2.shopImg}"  class="star_user_photo" />
+ 											</dt>
+											<dd>
+												<div class="star_user_name_s">
+													<h3 class="star_user_name">[[${temp2.userName}]]</h3>
+												</div>
+											</dd>
+										</dl>
+										<div class="fr i_3">[[${temp2.servicePrice}]]</div>
+										<div class="clear"></div>
+									</div>
+							</a></li>
+						</ul>
+					</div> 
+					
+				</div>
+			</div>
+			<!--collection_box end-->
+
+		</div>
+	</div>
+	<div class="b_box">
+		<!--ad-->
+		<div class="ad_box2">
+			<a href=""><img src="/Public/images/ad/3.jpg" alt="底部广告 说吧" /></a>
+		</div> 
+		<!--ad end-->
+		<a href="" class="footer_text">
+			<h2 class="index_h2_title c_0">
+				加入我们<span class="c_1">&#8226;</span>招募韩国商家、华人
+			</h2>
+			<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+			<div class="bt_btn_d">
+				<span class="btn_a_more bs_bt_a">商家入驻</span>
+			</div>
+		</a>
+	</div>
+
+	<script src="/Public/js/owl.carousel.js"></script>
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="Public/images/footer_ewm.png" alt="" />
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="">商家入驻</a>|<a
+						href="">帮助中心</a>|<a
+						href="">人才招聘</a>|<a
+						href="">联系我们</a>|<a
+						href="">网站地图</a>|<a
+						href="">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江2栋2502号 |网站负责人：夏先生 |
+					邮编：21917</p>
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					联系电话：0731-2286-7673</p>
+				<p>Copyright © 2016 - 2017 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="javascript:void(0);" class="rn_tel">客服电话</a>
+		<div class="over_show kf_tel">0731-282802603</div></li>
+		<li><a href="javascript:void(0);" class="rn_wx">官方微信</a>
+		<div class="over_show">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+			</div></li>
+		<li><a
+			href=""
+			class="rn_kf">在线客服</a></li>
+		<li><a href="#" class="rn_top">Back top</a></li>
+	</ul>
+	<!--right nav end-->
+
+
+	<link href="/Public/js/valid/css/validationEngine.jquery.css" />
+
+
+	<script
+		src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js"></script>
+
+	<script src="/Public/js/valid/jquery.validationEngine.js"></script>
+	<!--联系我们的浮层-->
+	<div class="pop_contact">
+		<a href="javascript:void(0);" class="close_pop_contact"></a>
+		<div class="w1000">
+			<div class="pcontact_left">
+				<a href="" class="logo">御品韩汀</a>
+				<ul class="pcontact_ul">
+					<li><div class="wr_linka">
+							<a href="http://www.yphting.com"></a>
+						</div>公司官网：http://www.yphting.com</li>
+					<li><div class="wr_linka">
+							<a href=""></a>
+						</div>公司微店：http://weidian./?userid=765635894&wfr=c</li>
+				</ul>
+				<ul class="pcontact_ul2">
+					<li><span class="pcu pcu1"></span>联系方式：0731-2286-7673</li>
+					<li><span class="pcu pcu2"></span>客服电话：0731-282802603</li>
+					<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4
+						청명타운텔 609호</li>
+					<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+				</ul>
+			</div>
+			<div class="pcontact_right">
+				<h2 class="contact_us_title">和我们联系吧</h2>
+				<form method="post" id="formtopcontact"
+					action="" target="topost"
+					onsubmit="return chktop()">
+					<ul class="pcontact_ul3">
+						<li><span class="pcspr pcspr1"></span><input id="name"
+							name="name" class="pop_cus_input validate[required]"
+							placeholder="姓名" type="text"></li>
+						<li><span class="pcspr pcspr2"></span><input name="tel"
+							id="tel" class="pop_cus_input validate[required,custom[phone]]"
+							placeholder="电话" type="text"></li>
+						<li><span class="pcspr pcspr3"></span><input name="email"
+							id="email" class="pop_cus_input validate[required,custom[email]]"
+							placeholder="邮箱" type="text"></li>
+						<li><span class="pcspr pcspr4"></span><input name="content"
+							id="content" class="pop_cus_input validate[required]"
+							placeholder="具体需求" type="text"></li>
+						<li class="sel_work">
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title1" name="title[]"
+										value="我要兼职" class="chk_1" type="checkbox"> <label
+										for="title1"></label>
+								</span>
+								</span> <span class="sel_work_text">我要兼职</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title2" name="title[]"
+										value="我要成为代理" class="chk_1" type="checkbox"> <label
+										for="title2"></label>
+								</span>
+								</span> <span class="sel_work_text">我要成为代理</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title3" name="title[]"
+										value="我要咨询整形" class="chk_1" type="checkbox"> <label
+										for="title3"></label>
+								</span>
+								</span> <span class="sel_work_text">我要咨询整形</span>
+							</div>
+						</li>
+						<li><a class="border_tj" href="javascript:void(0);" id="submit-btn">立即提交</a></li>
+					</ul>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--联系我们的浮层 end-->
+
+
+
+	<script src="/Public/js/jquery.scrollto.js"></script>
+	<script src="/Public/js/common.js"></script>
+
+	<script>
+		$(function() {
+			//$('.del_collection').show();
+			$('.collection_list_ul li').live('mouseover', function() {
+				$(this).find('.del_collection').show();
+			}).live('mouseout', function() {
+				$(this).find('.del_collection').hide();
+			});
+			$("#service_recs").owlCarousel({
+				navigation : true,
+				pagination : false,
+				items : 4
+			});
+
+		});
+		
+	</script>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</body>
+</html>

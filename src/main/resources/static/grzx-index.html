@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>会员中心_韩汀社区</title>
+<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+
+<link href="/Public/css/common.css" rel="stylesheet" />
+<script src="/Public/js/common.js"></script>
+</head>
+
+
+<body>
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="fw-sy.html">首页</a><span class="ht_line"></span> <a
+						href="/c/lsm/merchantEnterUrl">商家入驻</a><span class="ht_line"></span>
+					<a href="javascript.void(0);">帮助中心</a><span class="ht_line"></span>
+					<a href="javascript.void(0);">关于韩汀</a><span class="ht_line"></span>
+					<a href="javascript.void(0);">联系我们</a>
+				</div>
+
+				<div class="top_right">
+					<a href="javascript.void(0);">郑石平</a> <span class="ht_line"></span>
+					<a href="javascript.void(0);">退出</a> <span class="ht_line"></span>
+					<a href="javascript.void(0);"><img src="Public/images/e_i.png"
+						alt="" /></a>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="b_box nav_header community_header">
+			<a class="logo my_logo" href="javascript.void(0);">御品韩汀</a>
+			<ul class="member_nav_ul">
+				<li id="li1"><a href="">商家中心</a><span
+					class="my_nav_i"></span></li>
+				<li class="cur" id="li2"><a href="javascript.void(0);">个人中心</a><span
+					class="my_nav_i"></span></li>
+				<li id="li3"><a href="javascript.void(0);">账户设置</a><span
+					class="my_nav_i"></span></li>
+				<li id="li4"><a href="/xx-xtxx.html">消息</a><span
+					class="my_nav_i"></span></li>
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+
+	<a href="javascript.void(0);" class="zy_box">预定流程指引</a>
+
+	<div class="bg_c4 pt1">
+		<div class="b_box">
+			<!--member left-->
+			<div class="member_left">
+				<h1 class="member_left_title">个人中心</h1>
+				<ul class="member_system_ul">
+					<li><a href="/c/lhy/order/query/list"><span
+							class="msp2 pre_c1"></span>我预订的服务</a></li>
+					<li><a href="/grzx-downloads.html"><span
+							class="msp2 pre_c2"></span>我的下载</a></li>
+					<li><a href=""><span class="msp2 community_sp csp7"></span>我的帖子</a>
+					</li>
+
+					<li><a href="/grzx-favs.html"><span class="msp2 pre_c3"></span>我的收藏</a>
+					</li>
+					<li><a href="/zsp/c/goldnotesQueryAll"><span
+							class="msp2 pre_c4"></span>我的金币</a></li>
+					<li><a href="/zsp/c/QueryAll"><span class="msp2 pre_c5"></span>我的积分</a>
+					</li>
+					<li><a href="/grzx-comments.html"><span class="msp2 pre_c6"></span>我的评价</a>
+					</li>
+					<li><a href="/grzx-refunds.html"><span class="msp2 pre_c7"></span>我的退款</a>
+					</li>
+					<li><a href="/grzx-logistics.html"><span
+							class="msp2 pre_c8"></span>我的物流</a></li>
+					<li><a target="_blank" href="javascript.void(0);"><span
+							class="msp2 pre_c9"></span>帮助中心</a></li>
+				</ul>
+			</div>
+			<!--member left end-->
+			<!--member right-->
+			<div class="member_right site_msg_w">
+				<dl class="pre_udl">
+					<dt>
+						<img th:src="${user.userimgpath}" />
+					</dt>
+					<dd>
+						<div class="pre_c_name">
+							[[${user.username}]] <a href="/c/szy/user/queryGrzxInfo" class="edit_a">更改资料</a>
+						</div>
+						<ul class="pre_uul">
+							<li><span class="prus psi1">积分</span>[[${user.userintegral}]]</li>
+							<li><span class="prus psi2">金币</span>[[${user.usermoney}]]</li>
+						</ul>
+						<a href="javascript:void(0);" class="qdao" onclick="sign()"><span
+							class="qm_i"></span>签到送积分</a>
+					</dd>
+				</dl>
+				<ul class="pre_about_info">
+					<li><a th:href="@{/c/lhy/order/query/list(status=1)}">待付款<span class="pre_asp" th:text="${orderInfo.topay}">1</span></a>
+					</li>
+					<li><a th:href="@{/c/lhy/order/query/list(status=3)}">商家接单<span
+							class="pre_asp" th:text="${orderInfo.receipt}">0</span></a></li>
+					<li><a th:href="@{/c/lhy/order/query/list(status=4)}">待确认<span class="pre_asp" th:text="${orderInfo.tbconfirmed}">0</span></a>
+					</li>
+					<li class="last"><a th:href="@{/c/lhy/order/query/list(status=5,commentstatus=1)}">待评价<span
+							class="pre_asp" th:text="${orderInfo.tbevaluated}">0</span></a></li>
+				</ul>
+				<h2 class="pre_h2_title">最新预订了</h2>
+				<ul class="you_yd_news">
+					<li th:each="temp:${list}">
+						<div class="you_yd_img">
+							<img th:src="${temp.service.servicecoverimg}" width="135" height="90"/>
+						</div>
+						<a th:href="@{/c/lhy/order/query/detail(orderid=${temp.orderid})}" class="btn_a_yyd">查看详细</a>
+						<div class="you_yd_text">
+							<div class="yd_xm_title" th:text="${temp.service.servicetitle}"></div>
+							<p th:text="${temp.service.servicefutitle}"></p>
+							<p>
+								<span class="num_1" th:text="${temp.service.serviceprice}"></span>
+							</p>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+			<!--member right end-->
+			<div class="clear"></div>
+			<!--ad-->
+			<div class="ad_box2">
+				<a href=""><img src="/Public/images/ad/4.jpg" alt="底部广告 说吧" /></a>
+			</div>
+			<!--ad end-->
+		</div>
+	</div>
+
+	<div class="b_box">
+		<a href="javascript.void(0);" class="footer_text">
+			<h2 class="index_h2_title c_0">
+				加入我们<span class="c_1">&#8226;</span>招募韩国商家、华人
+			</h2>
+			<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+			<div class="bt_btn_d">
+				<span class="btn_a_more bs_bt_a">商家入驻</span>
+			</div>
+		</a>
+	</div>
+
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="/Public/images/footer_ewm.png" alt="" />
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="javascript.void(0);">商家入驻</a>| <a
+						href="javascript.void(0);">帮助中心</a>| <a href="javascript.void(0);">人才招聘</a>|
+					<a href="javascript.void(0);">联系我们</a>| <a
+						href="javascript.void(0);">网站地图</a>| <a href="javascript.void(0);">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |
+					邮编：412000</p>
+
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					官方热线电话：0731-2286-7673</p>
+
+				<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="javascript:void(0);" class="rn_tel">客服电话</a>
+			<div class="over_show kf_tel">0731-2286-7673</div></li>
+		<li><a href="javascript:void(0);" class="rn_wx">官方微信</a>
+			<div class="over_show">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+			</div></li>
+		<li><a
+			href="tencent://Message/?Uin=3119683838&websiteName=http://yphting.zglxkj.com=&Menu=yes"
+			class="rn_kf">在线客服</a></li>
+		<li><a href="#" class="rn_top">Back top</a></li>
+	</ul>
+	<!--right nav end-->
+
+	<!--签到 弹框-->
+	<div class="qdao_pop">
+		签到成功！<br />您已获得10积分
+	</div>
+	<!--签到 弹框 end-->
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</html>

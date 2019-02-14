@@ -1,0 +1,682 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection" />-->
+<title></title>
+<link rel="shortcut icon" href="/Public/images/favicon.ico"
+	type="image/x-icon">
+<meta name="keywords" content="御品韩汀，韩汀社区，韩汀，湖南韩汀电子商务有限公司">
+<meta name="description"
+	content="湖南韩汀电子商务有限公司主要服务范围有海外自驾游，微整形，留学中介，翻译，学习资源，国际物流等项目，主要以大陆国人和海外同胞为服务对象。商家可入驻社区开店，用户可在平台内快速的找到自己需要的服务项目。海外商家对国内用户以及海外同胞开放服务，双方各持所需，互利互惠，是一款海外华人生活，兼职向导平台。 
+韩汀宗旨:“崇尚以人为本、客户第一的服务宗旨。热诚为广大客户提供良好的售后服务和技术支持, 保障客户的投资得到良好的回报。”
+企业口号：“韩汀—带给你看得到的未来,说不出的精彩!”。
+企业理念：”诚信为本,惠于顾客,奉于社会”
+企业目标：”建设海外一流社区平台，与广大合作伙伴与时俱进,互利互惠!”。">
+<link href="/Public/css/owl.carousel.css" rel="stylesheet">
+<link href="/Public/css/common.css" rel="stylesheet">
+<script src="/Public/js/jquery-1.8.3.min.js"></script>
+<script src="/Public/js/layer/layer.js"></script>
+<link rel="stylesheet"
+	href="http://www.yphting.com/Public/js/layer/skin/layer.css"
+	id="layui_layer_skinlayercss" style="">
+<script>
+	_weburl = 'http://www.yphting.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f">
+<meta name="__hash__"
+	content="7f7418b74e88ee86446521ffaa06f686_98345e7d9252a993b1514a431135b51a">
+<script
+	src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=427753"></script>
+<link rel="stylesheet"
+	href="http://bdimg.share.baidu.com/static/api/css/share_style0_24.css">
+<style type="text/css">
+.tz_detail_btn_a a {
+	padding: 0;
+}
+
+.page a.cur {
+	background: #aacd06;
+	color: #fff;
+}
+</style>
+</head>
+
+<body>
+	<iframe name="topost" id="topost" style="display: none;"></iframe>
+
+	<link rel="stylesheet"
+		href="/Public/js/valid/css/validationEngine.jquery.css"
+		type="text/css">
+
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a th:href="@{/c/lsm/homeUrl}">首页</a><span class="ht_line"></span>
+					<a href="javascript:;">商家入驻</a><span class="ht_line"></span> <a
+						href="/fw-bzzx.html">帮助中心</a><span class="ht_line"></span> <a
+						href="/fw-gyht.html">关于韩汀</a><span class="ht_line"></span> <a
+						href="/fw-lxwm.html">联系我们</a>
+				</div>
+
+				<div class="top_right">
+					<a href="javascript:void(0);">登录</a><span class="ht_line"></span><a
+						href="javascript:void(0);">注册</a>
+					<!--
+			<a href="javascript:void(0);" class="i_rover"></a>
+			-->
+				</div>
+			</div>
+		</div>
+		<div class="b_box nav_header community_header">
+			<a href="javascript:void(0);" class="logo logo_community">御品韩汀.社区</a>
+			<ul class="nav_ul">
+				<li><a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-zjyTAB&stid=1}"><span
+						class="community_sp csp1"></span><br>自驾游</a></li>
+				<li><a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-wzxTAB&stid=2}"><span
+						class="community_sp csp2"></span><br>微整形</a></li>
+				<li><a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-lxzjTAB&stid=3}"><span
+						class="community_sp csp3"></span><br>留学中介</a></li>
+				<li><a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-hyfyTAB&stid=4}"><span
+						class="community_sp csp4"></span><br>韩语翻译</a></li>
+				<li><a th:href="@{/c/lsm/serviceUrl?htmlUrl=fw-xxzyTAB&stid=5}"><span
+						class="community_sp csp5"></span><br>学习资源</a></li>
+				<li><a href="javascript:void(0);"><span
+						class="community_sp csp6"></span><br>韩汀物流</a></li>
+				<li class="cur"><a
+					th:href="@{/c/sxy/column?pid=1&page=1&orderId=1&essence=0}"><span
+						class="community_sp csp7"></span><br>韩汀·论坛</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+	<script language="javascript">
+		/*function delbbs() {
+			location.href = '/index.php?m=Home&c=Bbs&a=delbbs&id=148&pid=55&catid=56';
+		}*/
+	</script>
+	<div class="bg_c2 pt1">
+		<div class="b_box">
+
+			<!--left bar-->
+			<div class="bbs_dleft_bar">
+				<dl class="tz10_dl">
+					<dt>
+						<!--<img src="/Public/images/bbs_user_i.png" alt=""
+							class="bdu_img_hgi2">-->
+						<a
+							th:href="@{/c/sxy/toCenter(userId=${POSTVO.user.userid},type=1,page=1)}">
+							<img th:src="${POSTVO.user.userimgpath}"
+							th:alt="${POSTVO.user.username}">
+						</a>
+					</dt>
+					<dd>
+						<h1 class="tz_h1_title">
+							<div class="tz_title_right">
+								<a th:if="${POSTVO.solid==true}" href="javascript:void(0);"
+									class="ria1">顶</a> <a th:if="${POSTVO.essence==true}"
+									href="javascript:void(0);" class="ria2">精</a>
+							</div>
+							<span th:text="${POSTVO.title}">延世大学排名及专业介绍</span>
+							<div th:if="${user.userid==POSTVO.user.userid}"
+								class="tz_title_right">
+								<a th:href="@{/c/sxy/toUpdatePost(postId=${param.postId})}"
+									class="ria3">编辑</a>
+							</div>
+						</h1>
+						<div class="tz_in_t2">
+							<span
+								th:text="${#dates.format(POSTVO.releasetime, 'yyyy-MM-dd HH:mm')}">2017/03/19</span><span
+								class="dot_i3">•</span><a
+								th:href="@{/c/sxy/toCenter(userId=${POSTVO.user.userid},type=1,page=1)}"><span
+								th:text="${POSTVO.user.username}">坏坏带点乖</span>.</a><span
+								class="dot_i3">•</span><a><span
+								th:text="${POSTVO.browsenumber}">381</span>人浏览</a><span
+								class="dot_i3">•</span><a href="#comment"><span
+								th:text="${POSTVO.commentnumber}">2</span>&nbsp;评论</a><span
+								class="dot_i3">•</span><a href="###" class="btna_a_jb">举报</a>
+						</div>
+					</dd>
+				</dl>
+
+				<div class="tz_con">
+					<div class="bbs_dcontext" th:utext="${POSTVO.content}"></div>
+					<div class="tz_detail_btn_a" id="sharediv">
+						<a href="javascript:void(0);" name="good" class="sc_btn"><span
+							class="sc_ic zan_i"></span>赞&nbsp;<font
+							th:text="${POSTVO.fabulousnumber}">6</font></a> <a
+							href="javascript:void(0);" name="collec" class="sc_btn"><span
+							class="sc_ic"></span>收藏&nbsp;<font
+							th:text="${POSTVO.collectionnumber}">3</font></a>
+						<div class="shear_show_d">
+							<div class="bdsharebuttonbox bdshare-button-style0-24"
+								data-bd-bind="1539914596776">
+								<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a
+									href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a
+									href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a
+									href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a><a
+									href="#" class="bds_more" data-cmd="more"></a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--登录后需要隐藏的-->
+				<div th:if="${user.userid==null}"
+					class="hy_box member_bt_btm2 hy_box2">
+					<a href="javascript:void(0);" class="btna_acancel">登录后评论</a> <a
+						href="javascript:void(0);">新用户注册</a>
+				</div>
+				<!--登录后需要隐藏的 end-->
+
+
+				<!-- 登录后显示的评论框 -->
+				<div th:if="${user.userid!=null}" class="login_after_pl_box"
+					id="response_box" style="display: block">
+					<input type="hidden" name="mid" id="mid" value="0">
+					<textarea class="login_after_pl_textarea" placeholder="回应"
+						name="msg" id="msg" rel="201"></textarea>
+					<div class="member_bt_btm2" name="commentmain">
+						<a href="javascript:void(0);">切换评论</a>
+					</div>
+					<div class="member_bt_btm2 tosubmit">
+						<a href="javascript:void(0);">发布</a>
+					</div>
+				</div>
+				<!-- 登录后显示的评论框  end-->
+
+				<h2 class="news_hy_h2">最新回应</h2>
+				<ul class="my_evaluation_list business_comment_list news_hy_list"
+					id="comment">
+					<li th:if="${PAGE_INFO.list.size()!=0}" class="last"
+						th:each="temp,item : ${PAGE_INFO.list}">
+						<p class="my_evaluation_img">
+							<img th:src="${temp.user.userimgpath}"
+								th:alt="${temp.user.username}">
+						</p>
+						<p class="date_p fr"
+							th:text="${#dates.format(temp.reviewtime, 'yyyy-MM-dd HH:mm')}">2018-09-08
+							10:39:57</p>
+						<div class="my_evaluation_text">
+							<h3 class="bbs_text_title">
+								<a
+									th:href="@{/c/sxy/toCenter(userId=${temp.user.userid},type=1,page=1)}"
+									class="name_a_2" th:text="${temp.user.username}">许超雄</a>
+							</h3>
+
+							<!--  回复 -->
+							<div th:if="${temp.pc!=null}" class="hf_show">
+								<span th:text="${temp.pc.content}">墨墨</span> <a
+									th:href="@{/c/sxy/toCenter(userId=${temp.pc.user.userid},type=1,page=1)}"
+									class="btna_s2" th:text="${temp.pc.user.username}">倾心</a>
+							</div>
+
+							<p class="pt_text2" th:text="${temp.content}">666</p>
+							<p class="f12 t_r mt0">
+								<a th:if="${user.userid==temp.user.userid}" href="javascript:;"
+									class="c_4 response_btn remove">删除</a>&nbsp;&nbsp;&nbsp; <a
+									href="javascript:void(0);" th:data-pcid="${temp.pcid}"
+									class="c_4 response_btn backcomment">回应</a>
+							</p>
+						</div>
+					</li>
+					<span th:if="${PAGE_INFO.list.size()==0}"
+						style="font-size: 20px; margin-left: 350px; color: gray;">暂无任何评论</span>
+				</ul>
+				<!--page-->
+				<script type="text/javascript">
+					$('#comment li:last').addClass('last');
+				</script>
+				<div class="page_w">
+					<div class="page">
+						<div class="nav">
+							<a th:if="${PAGE_INFO.isHasPreviousPage()}"
+								class="page_prev prevdisabled"
+								th:href="@{/c/sxy/postDetail(page=${PAGE_INFO.prePage},postId=${param.postId},fmid=${param.fmid},pfmid=${param.pfmid},fmname=${param.fmname})}">上一页</a>
+							<a
+								th:href="@{/c/sxy/postDetail(page=${item.count},postId=${param.postId},fmid=${param.fmid},pfmid=${param.pfmid},fmname=${param.fmname})}"
+								th:data-page="${item.count}"
+								th:each="temp,item : ${PAGE_INFO.navigatepageNums}"
+								th:text="${item.count}">1</a> <a
+								th:if="${PAGE_INFO.isHasNextPage()}"
+								class="page_next nextdisabled"
+								th:href="@{/c/sxy/postDetail(page=${PAGE_INFO.nextPage},postId=${param.postId},fmid=${param.fmid},pfmid=${param.pfmid},fmname=${param.fmname})}">下一页</a>
+						</div>
+					</div>
+				</div>
+				<!--page end-->
+
+			</div>
+			<!--left bar end-->
+
+			<!--right bar-->
+			<div class="bbs_dright_bar">
+				<div class="br_part">
+					<h2 class="bbs_r_say_title">
+						韩汀•论坛 - <a
+							th:href="@{/c/sxy/column(pid=${param.pfmid},page=1,orderId=0,essence=0)}"
+							th:text="${FORUM.fmname}">留学简介</a> - <a
+							th:href="@{/c/sxy/column(pid=${param.pfmid},page=1,forumId=${param.fmid},orderId=0,essence=0)}"
+							th:text="${FMNAME}">韩国大学简介</a>
+					</h2>
+					<!-- 版主 
+					<p class="f14 c_4">
+						版主：<a
+							href="javascript:void(0);"
+							class="btna_s2">abcdefg</a>
+					</p>  -->
+				</div>
+
+				<div class="br_part2">
+					<h2 class="news_talk_title">最新话题</h2>
+					<ul class="news_talk_ul_list">
+						<!-- 详情右侧根据版块对应栏目的最新话题列表 -->
+						<li th:each="temp,item : ${NEWLIST}"><a
+							th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"
+							class="ntul_atext" th:text="${temp.title}">韩语翻译</a>
+							<p class="ntul_infoa">
+								<a
+									th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"></a><span
+									class="dot_i3">•</span><a
+									th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"><span
+									th:text="${temp.commentnumber}">0</span>&nbsp;回复</a>
+							</p></li>
+					</ul>
+				</div>
+
+				<div class="ad_r2">
+					<a href=""><img
+						src="/Uploads/adv/2017-08/20170804123617-43474.gif" alt="社区右侧广告位"
+						width="220" height="200"></a>
+				</div>
+				<div class="br_part2">
+					<h2 class="news_talk_title">热门话题</h2>
+					<ul class="news_talk_ul_list">
+						<li th:each="temp,item : ${HOT.list}"><a
+							th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"
+							class="ntul_atext" th:text="${temp.title}"> 韩语越说越地道</a>
+							<p class="ntul_infoa">
+								<a
+									th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"></a><span
+									class="dot_i3">•</span><a
+									th:href="@{/c/sxy/postDetail(postId=${temp.postid},fmid=${temp.forum.fmid},pfmid=${temp.forum.pid},fmname=${temp.forum.fmname})}"><span
+									th:text="${temp.commentnumber}">4</span>&nbsp;回复</a>
+							</p></li>
+					</ul>
+				</div>
+			</div>
+			<!--right bar end-->
+
+			<div class="clear"></div>
+			<!--ad-->
+			<div class="ad_box2">
+				<a href=""><img src="/Public/images/ad/3.jpg" alt="底部广告 说吧"></a>
+			</div>
+			<!--ad end-->
+		</div>
+	</div>
+
+	<a href="javascript:void(0);" class="footer_text">
+		<h2 class="index_h2_title c_0">
+			加入我们<span class="c_1">•</span>招募韩国商家、华人
+		</h2>
+		<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+		<div class="bt_btn_d">
+			<span class="btn_a_more bs_bt_a">商家入驻</span>
+		</div>
+	</a>
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="/Public/images/footer_ewm.png" alt="">
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="javascript:void(0);">商家入驻</a>|<a
+						href="javascript:void(0);">帮助中心</a>|<a href="javascript:void(0);">人才招聘</a>|<a
+						href="javascript:void(0);">联系我们</a>|<a href="javascript:void(0);">网站地图</a>|<a
+						href="javascript:void(0);">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江2栋2502号 |网站负责人：夏先生 |
+					邮编：21917</p>
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					联系电话：0731-2286-7673</p>
+				<p>Copyright © 2016 - 2017 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="javascript:void(0);" class="rn_tel">客服电话</a>
+			<div class="over_show kf_tel" style="display: none;">0731-282802603</div></li>
+		<li><a href="javascript:void(0);" class="rn_wx">官方微信</a>
+			<div class="over_show" style="display: none;">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm">
+			</div></li>
+		<li><a
+			href="tencent://Message/?Uin=3119683838&amp;websiteName=http://www.yphting.com=&amp;Menu=yes"
+			class="rn_kf">在线客服</a></li>
+		<li><a href="javascript:void(0);" class="rn_top"
+			style="display: none;">Back top</a></li>
+	</ul>
+	<!--right nav end-->
+
+	<link rel="stylesheet"
+		href="/Public/js/valid/css/validationEngine.jquery.css"
+		type="text/css">
+
+	<!--联系我们的浮层-->
+	<div class="pop_contact">
+		<a href="javascript:void(0);" class="close_pop_contact"></a>
+		<div class="w1000">
+			<div class="pcontact_left">
+				<a href="javascript:void(0);" class="logo">御品韩汀</a>
+				<ul class="pcontact_ul">
+					<li><div class="wr_linka">
+							<a href="http://www.yphting.com"></a>
+						</div>公司官网：http://www.yphting.com</li>
+					<li><div class="wr_linka">
+							<a href="http://weidian.com/?userid=765635894&amp;wfr=c"></a>
+						</div>公司微店：http://weidian.com/?userid=765635894&amp;wfr=c</li>
+				</ul>
+				<ul class="pcontact_ul2">
+					<li><span class="pcu pcu1"></span>联系方式：0731-2286-7673</li>
+					<li><span class="pcu pcu2"></span>客服电话：0731-282802603</li>
+					<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4
+						청명타운텔 609호</li>
+					<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+				</ul>
+			</div>
+			<!--  <div class="pcontact_right">
+				<h2 class="contact_us_title">和我们联系吧</h2>
+				<form method="post" id="formtopcontact"
+					action=""
+					target="topost" onsubmit="return chktop()">
+					<ul class="pcontact_ul3">
+						<li><span class="pcspr pcspr1"></span><input id="name"
+							name="name" class="pop_cus_input validate[required]"
+							placeholder="姓名" type="text"></li>
+						<li><span class="pcspr pcspr2"></span><input name="tel"
+							id="tel" class="pop_cus_input validate[required,custom[phone]]"
+							placeholder="电话" type="text"></li>
+						<li><span class="pcspr pcspr3"></span><input name="email"
+							id="email" class="pop_cus_input validate[required,custom[email]]"
+							placeholder="邮箱" type="text"></li>
+						<li><span class="pcspr pcspr4"></span><input name="content"
+							id="content" class="pop_cus_input validate[required]"
+							placeholder="具体需求" type="text"></li>
+						<li class="sel_work">
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title1" name="title[]"
+										value="我要兼职" class="chk_1" type="checkbox"> <label
+										for="title1"></label>
+								</span>
+								</span> <span class="sel_work_text">我要兼职</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title2" name="title[]"
+										value="我要成为代理" class="chk_1" type="checkbox"> <label
+										for="title2"></label>
+								</span>
+								</span> <span class="sel_work_text">我要成为代理</span>
+							</div>
+							<div class="sel_work_box">
+								<span class="input-group-addon"> <span
+									class="hz_icon_top"> <input id="title3" name="title[]"
+										value="我要咨询整形" class="chk_1" type="checkbox"> <label
+										for="title3"></label>
+								</span>
+								</span> <span class="sel_work_text">我要咨询整形</span>
+							</div>
+						</li>
+						<input type="hidden" name="act" value="contact">
+						<li><a class="border_tj" href="javascript:void(0);"
+							onclick="$('#formtopcontact').submit()" id="submit-btn">立即提交</a></li>
+					</ul>
+					<input type="hidden" name="__hash__"
+						value="7f7418b74e88ee86446521ffaa06f686_98345e7d9252a993b1514a431135b51a">
+				</form>
+			</div>-->
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--联系我们的浮层 end-->
+
+	<script src="/Public/js/jquery.scrollto.js"></script>
+	<script src="/Public/js/common.js"></script>
+
+
+	<!--pop bg-->
+	<div id="pop_bg"></div>
+	<div class="pop_con">
+		<a href="javascript:void(0);" class="close_pop"></a>
+		<h2 class="pop_h2">选择举报原因</h2>
+		<form id="formreport">
+			<ul class="pop_sel_jq">
+				<li><label><input type="radio" class="radio_input"
+						name="reason" value="广告或垃圾信息">广告或垃圾信息</label></li>
+				<li><label><input type="radio" class="radio_input"
+						name="reason" value="色情、淫秽或低俗内容">色情、淫秽或低俗内容</label></li>
+				<li><label><input type="radio" class="radio_input"
+						name="reason" value="激进时政或意识形态话题">激进时政或意识形态话题</label></li>
+				<li><label><input type="radio" class="radio_input"
+						name="reason" value="其他原因">其他原因</label></li>
+			</ul>
+			<input type="hidden" name="aid" value="148"> <input
+				type="hidden" name="type" value="3">
+			<div class="t_c">
+				<a href="javascript:void(0);" class="btn_jba">举报</a>
+			</div>
+			<input type="hidden" name="__hash__"
+				value="7f7418b74e88ee86446521ffaa06f686_98345e7d9252a993b1514a431135b51a">
+		</form>
+	</div>
+
+	<div class="pop_con2">
+		<a href="javascript:void(0);" class="close_pop"></a>
+		<h2 class="pop_h2">下载附件</h2>
+		<p class="xh_piont_text">您此次下载将消耗您的0个积分</p>
+
+		<div class="member_bt_btm2 tt_c">
+			<a href="javascript:void(0);" class="btna_acancel">取消</a><a
+				href="javascript:void(0);" class="xh_po_qd">确定</a>
+		</div>
+	</div>
+	<input type="hidden" id="bfid" value="0">
+
+
+	<!--pop bg end-->
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript">
+	$("[data-page=[[${PAGE_INFO.pageNum}]]]").addClass("cur");
+
+	//收藏
+	$("[name=collec]").click(function() {
+		var obj = new Object();
+		obj["pcid"] = "[[${param.postId}]]";
+		/*var year = new Date().getFullYear();
+		var month = new Date().getMonth()+1;
+		var day = new Date().getDate();
+		var hour = new Date().getHours();
+		var minute = new Date().getMinutes();
+		var second = new Date().getSeconds();year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;*/
+		obj["collectiontime"] = new Date();
+		$.ajax({
+			url : "/c/sxy/saveCollection",
+			data : JSON.stringify(obj),
+			type : "post",
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				if (data.code == "100") {
+					alert("请先登录！");
+					location.href = "/szy-login.html";
+				} else if (data.code == "300") {
+					alert("请不要重复收藏！");
+				} else if (data.code == "400") {
+					alert("不允许对自己的帖子收藏！");
+				} else {
+					alert("收藏成功！");
+					window.location.reload();
+				}
+			}
+		})
+	})
+
+	//点赞
+	$("[name=good]").click(function() {
+		var obj = new Object();
+		obj["postid"] = "[[${param.postId}]]";
+		/*var year = new Date().getFullYear();
+		var month = new Date().getMonth()+1;
+		var day = new Date().getDate();
+		var hour = new Date().getHours();
+		var minute = new Date().getMinutes();
+		var second = new Date().getSeconds();year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;*/
+		obj["fabuloustime"] = new Date();
+		$.ajax({
+			url : "/c/sxy/saveFabulous",
+			data : JSON.stringify(obj),
+			type : "post",
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				if (data.code == "100") {
+					alert("请先登录！");
+					location.href = "/szy-login.html";
+				} else if (data.code == "300") {
+					alert("对不起，每条帖子一天只能点赞一次。");
+				} else if (data.code == "400") {
+					alert("不允许对自己的帖子点赞！");
+				} else {
+					alert("点赞成功！");
+					window.location.reload();
+				}
+			}
+		})
+	})
+
+	//评论发布事件
+	$(".tosubmit").click(function() {
+		var userId = "[[${user.userid}]]";
+		var obj = new Object();
+		obj["postid"] = "[[${POSTVO.postid}]]";
+		obj["commentator"] = userId;
+		obj["pid"] = $("[name=mid]").val();
+		obj["content"] = $("[name=msg]").val();
+		/*var year = new Date().getFullYear();
+		var month = new Date().getMonth()+1;
+		var day = new Date().getDate();
+		var hour = new Date().getHours();
+		var minute = new Date().getMinutes();
+		var second = new Date().getSeconds();year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;*/
+		obj["reviewtime"] = new Date();
+		if ($("[name=msg]").val() == "") {
+			alert("请填写评论内容。");
+		} else {
+			queryLastcomment(obj);
+		}
+	})
+
+	//查询用户最新评论时间
+	function queryLastcomment(obj) {
+		$.ajax({
+			url : "/c/sxy/queryLastcomment",
+			data : {
+				"userId" : obj.commentator,
+				"postId" : obj.postid
+			},
+			type : "get",
+			dataType : "json",
+			success : function(data) {
+				if (data != null) {
+					//计算评论与最新评论的时间秒数差
+					var lastcomment = new Date(data.reviewtime).getTime();
+					var comment = new Date().getTime();
+					var seconds = (comment - lastcomment) / 1000;
+					if (seconds <= 30) {
+						alert("请不要操作太快，" + parseInt(30 - seconds) + "秒后再操作。");
+					} else {
+						savecomment(obj);
+					}
+				} else {
+					savecomment(obj);
+				}
+			}
+		})
+	}
+	//新增评论
+	function savecomment(obj) {
+		$.ajax({
+			url : "/c/sxy/saveComment",
+			type : "post",
+			data : JSON.stringify(obj),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				if (data.code == "200") {
+					alert("评论成功。");
+					window.location.reload();
+				} else if (data.code = "300") {
+					alert("评论成功，积分+3");
+					window.location.reload();
+				} else {
+					alert("评论失败。");
+					window.location.reload();
+				}
+			}
+		})
+	}
+
+	//删除评论回复
+	$(".remove").click(function() {
+		var pcid = $(this).next().attr("data-pcid");
+		if (confirm("确定删除该条评论吗？")) {
+			$.ajax({
+				url : "/c/sxy/removeComment",
+				type : "post",
+				data : {
+					"pcid" : pcid
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data.code == "200") {
+						alert("删除成功。");
+						window.location.reload();
+					} else {
+						alert("删除失败。");
+					}
+				}
+			})
+		}
+
+	})
+
+	//点击回复评论
+	$(".backcomment").click(function() {
+		var backuser = $(this).parent().parent().find("h3").find("a").html();
+		$("[name=mid]").val($(this).attr("data-pcid")).val();
+		$("[name=msg]").attr("placeholder", "回应" + backuser);
+	})
+	//点击切换回复主帖
+	$("[name=commentmain]").click(function() {
+		$("[name=mid]").val(0);
+		$("[name=msg]").attr("placeholder", "回应");
+	})
+</script>
+</html>

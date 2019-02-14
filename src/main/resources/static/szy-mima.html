@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改密码_韩汀社区</title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/Public/js/code.js" ></script>
+		<style type="text/css">
+			.yzSpan {
+				display: inline-block;
+				line-height: 20px;
+				height: 20px;
+				width: 100%;
+				color: red;
+				text-indent: 0.5em;
+				margin-top: 5px;
+				display: none;
+			}
+			.yzmCode{
+				background: #F7E7F3; text-align: center; line-height: 44px; color: #fff; border-radius: 3px;
+				height: 39px; width: 136px;
+				display: inline-block;
+				cursor: pointer;
+				position: absolute;
+				bottom: 0px;
+				right: 0px;
+      			user-select:none;
+			}
+			.login_abtn{
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--header-->
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="">首页</a><span class="ht_line"></span>
+					<a href="">商家入驻</a><span class="ht_line"></span>
+					<a href="">帮助中心</a><span class="ht_line"></span>
+					<a href="">关于韩汀</a><span class="ht_line"></span>
+					<a href="">联系我们</a>
+				</div>
+				<div class="top_right login_right">
+					<a href="szy-login.html">登陆</a> <span class="ht_line"></span>
+					<a href="szy-zuce.html">注册</a>
+				</div>
+			</div>
+		</div>
+		<div class="b_box nav_header community_header">
+			<a href="" class="logo logo_community"></a>
+			<div class="logo_right_text">欢迎登录</div>
+		</div>
+		<!--header end-->
+		<div class="bg_c4 pt1">
+			<div class="b_box">
+				<div class="other_mc">
+					<h1 class="login_title">找回密码</h1>
+					<p class="other_p_1">请输入您的注册邮箱，我们会将密码发送到您的邮箱</p>
+					<form action="javascript:void(0)" method="post" id="formlogin" target="topost">
+						<ul class="login_ul">
+							<li><input type="email" placeholder="注册邮箱" class="input_c validate[required,custom[email]]" name="email">
+								<span class="yzSpan" id="emailYz">*请输入正确邮箱</span>
+							</li>
+							<li>
+								<input type="text" placeholder="验证码" class="input_c validate[required]" name="code">
+								<span class="yzmCode" ></span>
+							</li>
+							<li class="send_li_a">
+								<input type="button" name="fasong" class="login_abtn" value="发送密码"  />
+							</li>
+							<li class="forget_reg pt1">
+								<a href="szy-login.html" class="fr">又想起来了，返回»</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript">
+create_code();
+var flag=false;
+$("[name=email]").blur(function() {
+	var email = $(this).val();
+	var reEmail = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+	if(reEmail.test(email)) {
+		$("#emailYz").css("display", "none");
+		$.getJSON("/c/szy/user/yzEmail",{"email":email},function(data){
+			if(data.code=="200"){
+				$("#emailYz").css("display", "block");
+				$("#emailYz").html("*该邮箱未被注册");
+				flag=false;
+			}else{
+				flag=true;
+			}
+		})
+	} else {
+		$("#emailYz").css("display", "block");
+		$("#emailYz").html("*请输入正确邮箱");
+		flag=false;
+	}
+})
+
+$("[name=fasong]").click(function(){
+	if(!flag){
+		alert("请输入正确邮箱！");
+		return;
+	}
+	var code=$("[name=code]").val();
+	var yzmCode=$(".yzmCode").html();
+	if(yzmCode.toLowerCase()==code.toLowerCase()){
+		var email = $("[name=email]").val();
+		$.post("/c/szy/user/updatePwd",{"email":email},function(data){
+			if(data.code=="200"){
+				alert("您的密码重置成功，请进入邮箱查看");
+				location.href="szy-login.html";
+			}else{
+				alert("密码重置失败");
+			}
+		},"json")
+	}else{
+		$("[name=code]").val("");
+		create_code();
+		alert("验证码错误");
+		return;
+	}
+})
+</script>
+</html>

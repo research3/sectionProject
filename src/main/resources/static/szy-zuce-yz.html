@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+		<style type="text/css">
+			.urlspan{
+				display
+			}
+			.login_abtn{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<!--header-->
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="">首页</a><span class="ht_line"></span>
+					<a href="">商家入驻</a><span class="ht_line"></span>
+					<a href="">帮助中心</a><span class="ht_line"></span>
+					<a href="">关于韩汀</a><span class="ht_line"></span>
+					<a href="">联系我们</a>
+				</div>
+				<div class="top_right login_right">
+					<a href="">登陆</a> <span class="ht_line"></span>
+					<a href="">注册</a>
+				</div>
+			</div>
+		</div>
+		<div class="b_box nav_header community_header">
+			<a href="" class="logo logo_community"></a>
+			<div class="logo_right_text">验证邮箱</div>
+		</div>
+		<!--header end-->
+			<div class="bg_c4 pt1">
+			<div class="b_box">
+				<div class="other_mc">
+					<h1 class="login_title reg_title_o">欢迎您注册韩汀社区</h1>
+					<form action="/c/szy//user/saveEmail" method="post" id="formlogin" target="topost" onsubmit="return submit1();">
+						<ul class="login_ul">
+							<li>&nbsp;邮箱：<span class="urlspan" id="email">[[${user.email}]]</span>
+								<input type="hidden" name="email" th:value="${user.email}">
+								<input type="hidden" name="nickName" th:value="${user.nickName}">
+							</li>
+							<li>&nbsp;昵称：<span class="urlspan" id="nickName">[[${user.nickName}]]</span></li>
+							<li><input type="password" name="password" id="password" placeholder="密码(请勿少于6个字符)" class="input_c validate[required,minSize[6]]"></li>
+							<li><input type="password" name="cfpassword" placeholder="重复密码" class="input_c validate[required,equals[password]]"></li>
+							<li><input type="checkbox" checked="checked" name="agree" value="1" placeholder="验证码" class="checkbox_input validate[required]">我已阅读并同意《
+								<a href="" target="_blank" class="btna_s2">会员需知</a>》</li>
+							<li class="send_li_a">
+									<input type="submit" class="login_abtn" value="激活账号"  />
+							</li>
+						</ul>
+						<input type="hidden" name="__hash__" value="0e916945271b2cddc768503fe647aff1_850e0758676d9190d1c73b4306b924ce"></form>
+				</div>
+			</div>
+		</div>
+			<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="Public/images/footer_ewm.png" alt="">
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|
+						<a href="">帮助中心</a>|
+						<a href="">人才招聘</a>|
+						<a href="">联系我们</a>|
+						<a href="">网站地图</a>|
+						<a href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 | 邮编：412000</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+		
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="" class="rn_wx">官方微信</a>
+				<div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+			</li>
+			<li>
+				<a href="" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="" class="rn_top">Back top</a>
+			</li>
+		</ul>
+		<!--right nav end-->
+		
+	</body>
+	<script type="text/javascript">
+		function submit1(){
+			var password=$("[name=password]").val();
+			var cfpassword=$("[name=cfpassword]").val();
+			if(password==""||cfpassword==""){
+				alert("请填写完整信息");
+				return false;
+			}else if(password!=cfpassword){
+				alert("两次密码输入不一致");
+				return false;
+			}else{
+				return true;
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/Public/css/common.css" />
+		<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+	</head>
+
+	<body>
+		<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css">
+		<style type="text/css">
+			.edit_pohto dt img {
+				width: 120px;
+				height: 120px;
+			}
+			
+			.information-def {
+				color: #ddd;
+			}
+			
+			.information-error {
+				color: #f00;
+			}
+			
+			.m_zl_r {
+				overflow: visible;
+			}
+		</style>
+		<link rel="stylesheet" href="/Public/js/croppic/croppic.css" type="text/css">
+
+		<!--header-->
+		<div class="header" id="botop">
+			<div class="h_top">
+				<div class="b_box">
+					<div class="top_nav">
+						<a href="">首页</a><span class="ht_line"></span>
+						<a href="">商家入驻</a><span class="ht_line"></span>
+						<a href="">帮助中心</a><span class="ht_line"></span>
+						<a href="">关于韩汀</a><span class="ht_line"></span>
+						<a href="">联系我们</a>
+					</div>
+					<div class="top_right login_right">
+						<a href="">yuno</a> <span class="ht_line"></span>
+						<a href="">退出</a>
+						<span class="ht_line"></span>
+						<a href=""><img src="Public/images/e_i.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+			<div class="b_box nav_header community_header">
+				<a class="logo my_logo" href="">御品韩汀</a>
+				<ul class="member_nav_ul">
+					<li id="li1">
+						<a href="">商家中心</a><span class="my_nav_i"></span>
+					</li>
+					<style type="text/css">
+						.layui-layer-btn .layui-layer-btn0 {
+							background: #4c1b98;
+						}
+						
+						.layui-layer-btn .layui-layer-btn0:hover {
+							background: #340d6f;
+						}
+					</style>
+					<li id="li2">
+						<a href="">个人中心</a><span class="my_nav_i"></span>
+					</li>
+					<li class="cur" id="li3">
+						<a href="">账户设置</a><span class="my_nav_i"></span>
+					</li>
+					<li id="li4">
+						<a href="">消息</a><span class="my_nav_i"></span>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<!--header end-->
+
+		<div class="bg_c4 pt1">
+			<div class="b_box">
+				<!--member left-->
+				<div class="member_left">
+					<h1 class="member_left_title">账户设置</h1>
+					<ul class="member_system_ul account_ul_a">
+						<li>
+							<a href="/c/szy/user/queryGrzxInfo"><span class="msp2 pre_c1"></span>个人资料</a>
+						</li>
+						<li>
+							<a href="/zhsz-xgmm.html"><span class="msp2 pre_c2"></span>修改密码</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)"><span class="msp2 pre_c4"></span>帐号管理</a>
+						</li>
+						<li class="cur">
+							<a href="/c/szy/user/getdpszInfo"><span class="msp2 pre_c2"></span>店铺信息</a>
+						</li>
+					</ul>
+				</div>
+				<!--member left end-->
+				<!--member right-->
+				<form action="/c/szy/user/updateUserDpxx" method="post" id="formcfg"  enctype="multipart/form-data" onsubmit="return submit1();">
+					<div class="member_right sj_right_box">
+						<div class="member_system_r_top pl15 mt20">
+							店铺信息
+						</div>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>店铺状态</dt>
+							<dd class="mtb" th:if="${User?.businessstate}==1">正常营业</dd>
+							<dd class="mtb" th:if="${User?.businessstate}==2">已暂停</dd>
+							<dd class="mtb" th:if="${User?.businessstate}==3">已关闭</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>商家类别</dt>
+							<dd class="mtb" th:if="${User?.merchanttype}==1">大陆商家用户</dd>
+							<dd class="mtb" th:if="${User?.merchanttype}==2">海外商家用户</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>服务类别</dt>
+							<dd class="mtb">
+								<span name="type"></span>
+							</dd>
+						</dl>
+
+						<dl class="info_form_dl info_form_dl2">
+							<dt>店铺名称</dt>
+							<dd class="mtb" th:text="${User.shopname}">梦的N次方-煎饼果子</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>真实姓名</dt>
+							<dd>
+								<input type="text" name="userrealname" th:value="${User?.userrealname}" class="input_c inf_inc4 validate[required]">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>签名</dt>
+							<dd>
+								<input type="text" name="signature" th:value="${User?.signature}" class="input_c inf_inc validate[required]">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>店铺保证金</dt>
+							<dd class="mtb"><span th:text="${User.guaranteemoney}">500</span>&nbsp;&nbsp;金币
+								<a href="" class="btna_s2 ml10">退保证金</a>
+							</dd>
+						</dl>
+
+						<dl class="info_form_dl info_form_dl2">
+							<dt th:if="${User.identitytype}==null">海外证件号码</dt>
+							<dt th:if="${User.identitytype}!=null">身份证／护照号码</dt>
+							<dd>
+								<span th:if="${User.identitytype}==1">
+									<select name="identitytype" class="sel_f sel_f2 sel_b1" id="idtype">
+										<option value="1" selected="selected">身份证号码</option>
+										<option value="2">护照号码</option>
+									</select>
+								</span>
+								<span th:if="${User.identitytype}==2">
+									<select name="identitytype" class="sel_f sel_f2 sel_b1" id="idtype">
+										<option value="1" >身份证号码</option>
+										<option value="2" selected="selected">护照号码</option>
+									</select>
+								</span>
+								<input name="identitynumder" type="text" class="input_c inf_inc2 validate[required]" th:value="${User.identitynumder}" id="idcard">
+							</dd>
+						</dl>
+
+						<dl class="info_form_dl info_form_dl2">
+							<dt>身份住址</dt>
+							<dd>
+										<select class="sel_f sel_f2 sel_b2" name="provincialid">
+											<option th:if="${session.USER.provincialid}==null" value='0'>请选择</option>
+										</select>
+										<select class="sel_f sel_f2 sel_b2" name="cityid" id="cityid">
+											<option th:if="${session.USER.cityid}==null" value='0'>请选择</option>
+										</select>
+										<select class="sel_f sel_f2 sel_b2 validate[required]" id="countyid" name="countyid">
+											<option th:if="${session.USER.countyid}==null" value='0'>请选择</option>
+										</select>
+								<input name="addetail" type="text" class="input_c inf_inc validate[required]" th:value="${User.addetail}" id="address" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">商家店铺图片</dt>
+							<dd>
+								<p class="c_4 pat1 dx_text">此图片会出现在商家主页商家介绍以及商家推荐展示图，图片尺寸请保持750px*500px，<br>格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过2M。</p>
+								<input name="thumb" type="file" id="thumb"  value="" style="display: none;">
+								<div class="sel_file_d">
+									<a href="javascript:void(0)" class="sel_file_a" id="picbt4" onclick="thumb.click()">重新上传</a>
+								</div>
+								<div class="sfz_al_2"><img th:src="${User.shopimg}" width="120" height="80"></div>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">身份证件<br>（正面）</dt>
+							<dd>
+								<p class="c_4 pat1 dx_text">请提交身份证。 <br>格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+								<input name="idcardpic1" type="file" id="idcardpic1" value="" style="display: none;">
+								<div class="sel_file_d">
+									<a href="javascript:void(0)" class="sel_file_a" id="picbt1" onclick="idcardpic1.click()">重新上传</a>
+								</div>
+								<div class="sfz_al_2"><img th:src="${User.identitypositiveimg}" width="120" height="80"></div>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">身份证件<br>（反面）</dt>
+							<dd>
+								<p class="c_4 pat1 dx_text">请提交身份证。 <br>格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+								<input name="idcardpic2" type="file" id="idcardpic2" value="" style="display: none;">
+								<div class="sel_file_d">
+									<a href="javascript:void(0)" class="sel_file_a" id="picbt2" onclick="idcardpic2.click()" >重新上传</a>
+								</div>
+								<div class="sfz_al_2"><img th:src="${User.identitynegativeimg}" width="120" height="80"></div>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">手持身份证照片<br>（正面）</dt>
+							<dd>
+								<p class="c_4 pat1 dx_text">请提交手持身份证照片。 <br>格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</p>
+								<input name="vippic" type="file" id="vippic" value="" style="display: none;" >
+								<div class="sel_file_d">
+									<a href="javascript:void(0)" class="sel_file_a" id="picbt3" onclick="vippic.click()">重新上传</a>
+								</div>
+								<div class="sfz_al_2"><img th:src="${User.identityhandimg}" width="120" height="80"></div>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">服务语言</dt>
+							<dd>
+							<input type="hidden" name="languagenametext" value="">
+								<span class="mrsp_10"><label>
+								<input type="checkbox" checked="" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="中文" required="">中文</label>
+								</span>
+								<span class="mrsp_10">
+								<label><input type="checkbox" checked="" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="韩语" required="">韩语</label>
+								</span><span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="英语" required="">英语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="日语" >日语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="德语" >德语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="法语" required="">法语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="西班牙语" required="">西班牙语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="意大利语" required="">意大利语</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="languagenametext1" class="checkbox_input validate[required]" id="languagenametext1" value="其它" required="">其它</label></span> </dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt class="mopa">擅长专业</dt>
+								
+							<dd>
+								<input type="hidden" name="majornametext" value="">
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="视觉设计" class="checkbox_input">视觉设计</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="人口学" class="checkbox_input">人口学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="人类学" class="checkbox_input">人类学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="社会学" class="checkbox_input">社会学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="旅游学" class="checkbox_input">旅游学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="经营管理" class="checkbox_input">经营管理</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="其它" class="checkbox_input">其它</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="国语国文" class="checkbox_input">国语国文</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="经济学" class="checkbox_input">经济学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="酒店观光" class="checkbox_input">酒店观光</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="生活科学" class="checkbox_input">生活科学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="理科" class="checkbox_input">理科</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="工科" class="checkbox_input">工科</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="电子信息学" class="checkbox_input">电子信息学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="应用科学" class="checkbox_input">应用科学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="生命科学" class="checkbox_input">生命科学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="国际学部" class="checkbox_input">国际学部</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="艺术设计学" class="checkbox_input">艺术设计学</label></span>
+								<span class="mrsp_10"><label><input type="checkbox" name="majornametext1" value="体育学" class="checkbox_input">体育学</label></span>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>所在城市</dt>
+							<dd>
+								<select name="livecityid" class="sel_f sel_f2 sel_b3" id="livecityid">
+									<option th:if="${User.livecityid}==null" value='0'>请选择</option>
+								</select>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>邮箱地址</dt>
+							<dd>
+								<input name="merchantemail" type="email" th:value="${User.merchantemail}" class="input_c inf_inc validate[required,custom[email]]" id="email" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>联系电话</dt>
+							<dd>
+								<input name="merchantphone" type="tel" th:value="${User.merchantphone}" class="input_c inf_inc3 validate[required,custom[number]]" id="tel" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>QQ</dt>
+							<dd>
+								<input name="qq" type="text" th:value="${User.qq}" class="input_c inf_inc3 validate[required,custom[number]]" id="qq" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>微信</dt>
+							<dd>
+								<input name="wechat" type="text" th:value="${User.wechat}" class="input_c inf_inc3 validate[required]" id="wechat" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>职业</dt>
+							<dd>
+								<input name="profession" type="text" th:value="${User.profession}" class="input_c inf_inc3 validate[required]" id="zhiye" required="">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>身高</dt>
+							<dd>
+								<input name="height" type="text" th:value="${User.height}" class="input_c inf_inc3 validate[required,custom[number]]" id="height" required=""><span class="dw_sp c_4">CM</span>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>星座</dt>
+							<dd>
+								<select name="constellation" class="sel_f sel_f2 sel_b3" id="starsign">
+									<option value="白羊座">白羊座</option>
+									<option value="金牛座">金牛座</option>
+									<option value="双子座">双子座</option>
+									<option value="巨蟹座">巨蟹座</option>
+									<option value="狮子座">狮子座</option>
+									<option value="处女座">处女座</option>
+									<option value="天秤座">天秤座</option>
+									<option value="天蝎座">天蝎座</option>
+									<option value="射手座">射手座</option>
+									<option value="摩羯座">摩羯座</option>
+									<option value="水瓶座">水瓶座</option>
+									<option value="双鱼座">双鱼座</option>
+								</select>
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>年龄</dt>
+							<dd>
+								<input name="age" type="text" class="input_c inf_inc3 validate[required,custom[number]]" id="age" th:value="${User.age}">
+							</dd>
+						</dl>
+						<dl class="info_form_dl info_form_dl2">
+							<dt>自我介绍</dt>
+							<dd>
+								<textarea name="selfintroduction" id="content" style="width: 700px; height: 300px; display: none;">
+									[[${User.selfintroduction}]]
+								</textarea>
+							</dd>
+						</dl>
+						<div class="business_btn_d business_btn_d3">
+							<a href="javascript:void(0)" class="btn_jy_a" onclick="$('#formcfg').submit()">更新</a>
+						</div>
+					</div>
+					<input type="hidden" name="__hash__" value="4a573eb13b72c7835eedf7be568f104c_674afee7904e41e73fabb93131afccf2">
+					
+					</form>
+				<!--member right end-->
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<!--footer-->
+		<div class="footer community_footer_dl">
+			<dl class="footer_dl">
+				<dt>
+					<div class="footer_ewm_box">
+						<img src="/Public/images/footer_ewm.png" alt="">
+					</div>
+					<span class="ft_ewm_name">御品韩汀</span>
+				</dt>
+				<dd>
+					<p class="flink">
+						<a href="">商家入驻</a>|
+						<a href="">帮助中心</a>|
+						<a href="">人才招聘</a>|
+						<a href="">联系我们</a>|
+						<a href="">网站地图</a>|
+						<a href="">使用条款</a>
+					</p>
+					<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 | 邮编：412000</p>
+					<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+					<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+				</dd>
+			</dl>
+		</div>
+		<!--footer end-->
+
+		<!--right nav-->
+		<ul class="right_nav">
+			<li>
+				<a href="" class="rn_tel">客服电话</a>
+				<div class="over_show kf_tel">0731-2286-7673</div>
+			</li>
+			<li>
+				<a href="" class="rn_wx">官方微信</a>
+				<div class="over_show"><img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm"></div>
+			</li>
+			<li>
+				<a href="" class="rn_kf">在线客服</a>
+			</li>
+			<li>
+				<a href="" class="rn_top">Back top</a>
+			</li>
+		</ul>
+		<!--right nav end-->
+
+	</body>
+<script type="text/javascript" th:src="@{/Public/js/kindeditor/kindeditor-all-min.js}"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/zhsz-href.js"></script>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript">
+//富文本
+KindEditor.ready(function(K) {
+	editor = K.create('#content', {
+		afterBlur: function() { this.sync(); },
+		allowFileManager: false,
+		langType: 'zh_CN',
+		allowPreviewEmoticons: false,
+		allowImageUpload: true,
+		height: "300px",
+		width: "95%"
+	});
+});
+
+var provincialID="[[${User.provincialid}]]";
+var cityID="[[${User.cityid}]]";
+//国地址
+function guo(){
+	$.getJSON("/c/szy/user/querySharea",function(data){
+		$.each(data,function(i,obj){
+			if(obj.pid==0){
+				var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+				$("[name=provincialid]").append(option);
+			}
+		})
+		$("[name=provincialid]").val([[${session.USER.provincialid}]]);
+	})
+}
+//省
+function sheng(){
+	$.getJSON("/c/szy/user/querySharea",function(data){
+		if(provincialID!=null){
+			$.each(data,function(i,obj){
+				if(obj.pid==provincialID){
+					var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+					$("[name=cityid]").append(option);
+				}
+			})
+			$("[name=cityid]").val([[${session.USER.cityid}]]);
+		}
+	})
+}
+//市
+function shi(){
+	$.getJSON("/c/szy/user/querySharea",function(data){
+		if(cityID!=null){
+			$.each(data,function(i,obj){
+				if(obj.pid==cityID){
+					var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+					$("[name=countyid]").append(option);
+				}
+			})
+			$("[name=countyid]").val([[${session.USER.countyid}]]);	
+		}
+	})
+}
+guo();sheng();shi();
+
+$("[name=provincialid]").on("change",function(){
+	provincialID=$(this).val();
+	$("[name=cityid]").html("");
+	$("[name=cityid]").append($("<option value='0'>请选择</option>"));
+	sheng();
+	$("[name=countyid]").html("");
+	$("[name=countyid]").append($("<option value='0'>请选择</option>"));
+})
+$("[name=cityid]").on("change",function(){
+	$("[name=countyid]").html("");
+	$("[name=countyid]").append($("<option value='0'>请选择</option>"));
+	cityID=$(this).val();
+	shi();
+})
+var languagenametext1="[[${User.languagenametext}]]";
+$("[name=languagenametext1]").attr("checked",false);
+$.each($("[name=languagenametext1]"),function(i,obj){
+	if(languagenametext1.indexOf($(this).val())>=0){
+		$(obj).attr("checked",true);
+	}
+})
+var majornametext1="[[${User.majornametext}]]";
+$("[name=majornametext1]").attr("checked",false);
+$.each($("[name=majornametext1]"),function(i,obj){
+	if(majornametext1.indexOf($(this).val())>=0){
+		$(obj).attr("checked",true);
+	}
+})
+
+$.getJSON("/c/szy/user/querySharea",function(data){
+		$.each(data,function(i,obj){
+			if(obj.pid==2){
+				var option=$("<option value='"+obj.areaid+"'>"+obj.name+"</option>");
+				$("[name=livecityid]").append(option);
+			}
+		})
+		$("[name=livecityid]").val([[${User.livecityid}]]);	
+})
+$("[name=constellation").val("[[${User.constellation}]]");
+var text="";
+var id1="[[${User.firstserviceid}]]";
+$.getJSON("/c/szy/user/getSerType",{"id":id1},function(data){
+	text=text+" "+data;
+})
+var id2="[[${User.secondserviceid}]]";
+$.getJSON("/c/szy/user/getSerType",{"id":id2},function(data){
+	text=text+" "+data;
+	$("[name=type]").html(text);
+})
+
+	//选择预览图片
+		$("[type=file]").on("change",
+			function(e) {
+				//当前元素
+				var el = $(this);
+				var fr = new FileReader();//读取文件
+				var file = this.files[0];//选择第一个文件
+				var _temp = file.name.match(/\.jpg|\.jpeg|\.png|\.gif|\.bmp/i);
+				if (!_temp) {
+					this.value = "";
+					alert("目前只支持jpg,jpeg,bmp,gif,png格式图片文件");
+					return false;
+				} else if (file.size > (1024 * 1024 * 5)) {
+					this.value = "";
+					alert("目前只支持小于5M大小图片文件");
+					return false;
+				}
+				fr.readAsDataURL(file);//读取文件
+				//操作文件事件
+				fr.onload = function() {
+					var base64Data = this.result;//获得base编码字符串格式
+					el.next().next().find("img").attr("src",base64Data);
+				};
+			}
+		);
+function submit1(){
+	var languagenametext="";
+	$.each($("[name=languagenametext1]"),function(i,obj){
+		if($(obj).attr("checked")=="checked"){
+			languagenametext=languagenametext+""+$(obj).val();
+		}
+	})
+	$("[name=languagenametext]").val(languagenametext);
+	var majornametext="";
+	$.each($("[name=majornametext1]"),function(i,obj){
+		if($(obj).attr("checked")=="checked"){
+			majornametext=majornametext+""+$(obj).val();
+		}
+	})
+	$("[name=majornametext]").val(majornametext);
+	alert("提交");
+	return true;
+}
+</script>
+</html>
