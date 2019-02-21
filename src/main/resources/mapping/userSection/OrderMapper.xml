@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.accp.dao.lwx.OrderDao">
+    	<sql id="Query">select * from</sql>
+    	
+    	<resultMap type="com.accp.vo.lwx.ServicesVo" id="ServiceMap">
+			<association property="user" column="userid" select="queryUserById"></association>
+			<association property="serviceType" column="stid"
+				select="queryServiceTypeById"></association>
+		</resultMap>
+    	<resultMap type="com.accp.vo.lwx.OrdersVo" id="OrderMap">
+			<association property="service" column="serviceid" select="queryServiceById"></association>
+		</resultMap>
+		
+		<select id="queryUserById" resultType="com.accp.vo.lwx.UserVo">
+			select *
+			from user
+			where
+			userid=#{0}
+		</select>
+		<select id="queryServiceTypeById" resultType="servicetype">
+			select *
+			from
+			servicetype
+			where stid=#{0}
+		</select>
+		
+		<select id="queryServiceById" resultMap="ServiceMap">
+			<include refid="Query"/>services
+			where serviceid=#{0}
+		</select>
+    	
+    	<!-- 个人中心》我预定的服务 -->
+    	<select id="queryOrderList" resultMap="OrderMap">
+			<include refid="Query"/>orders
+			where userid=#{order.userid}
+			<if test="order.orderid!=null and order.orderid!=''">
+				and (orderid=#{order.orderid} or serviceid in(select
+				serviceid
+				from services where servicetitle like '%${order.orderid}%'))
+			</if>
+			<if test="order.orderstatus!=null and order.orderstatus!=''">
+				and orderstatus=#{order.orderstatus}
+			</if>
+			<if test="order.commentstatus!=null and order.commentstatus!=''">
+				and commentstatus=#{order.commentstatus}
+			</if>
+			order by orderid desc
+    	</select>
+    	
+    	
+    	<select id="queryOrderById" resultMap="OrderMap">
+			select *
+			from orders
+			where
+			orderid=#{orderid}
+		</select>
+    </mapper>

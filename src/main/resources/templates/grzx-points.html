@@ -84,7 +84,7 @@
 					</li>
 					<li><a href="/zsp/c/goldnotesQueryAll"><span class="msp2 pre_c4"></span>我的金币</a>
 					</li>
-					<li><a href="/zsp/c/QueryAll"><span class="msp2 pre_c5"></span>我的积分</a>
+					<li><a href="/c/lwx/QueryAll"><span class="msp2 pre_c5"></span>我的积分</a>
 					</li>
 					<li><a href="/zsp/c/EvaluationService"><span class="msp2 pre_c6"></span>我的评价</a>
 					</li>
@@ -132,10 +132,11 @@
 
 				<!--page-->
 				<div class="page">
-				      <a th:href="@{/zsp/c/QueryAll(p=0,s=${PAGE_INFO.pageSize})}">首页</a>
-                       <a th:href='@{/zsp/c/QueryAll(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize})}'>上一页</a>					 
-  					   <a th:href="@{/zsp/c/QueryAll(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize})}">下一页</a>
- 					   <a th:href="@{/zsp/c/QueryAll(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize})}">末页</a>					
+				      <a th:href="@{/c/lwx/QueryAll(p=0,s=${PAGE_INFO.pageSize})}">首页</a>
+                       <a th:href='@{/c/lwx/QueryAll(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize})}'>上一页</a>					 
+                       <a th:each="temp:${PAGE_INFO.navigatepageNums}" th:class="${temp==PAGE_INFO.pageNum?'cur':'num'}" th:text="${temp}" th:href="@{/c/lwx/QueryAll(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize})}"></a>
+  					   <a th:href="@{/c/lwx/QueryAll(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize})}">下一页</a>
+ 					   <a th:href="@{/c/lwx/QueryAll(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize})}">末页</a>					
 					
 				</div>
 				<!--page end-->

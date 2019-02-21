@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.accp.dao.lwx.RefundDao">
+    	
+    	<sql id="Query">select * from </sql>
+    
+	    <resultMap type="com.accp.vo.lwx.RefundVo" id="refundMap">
+			<association property="user" column="userid"
+				select="com.accp.dao.lwx.UserDao.queryUserById"></association>
+			<association property="order" column="orderid"
+				select="com.accp.dao.lwx.OrderDao.queryOrderById"></association>
+		</resultMap>
+		
+    	<select id="queryRefundByOrderId" resultMap="refundMap">
+			<include refid="Query"/>
+			refund
+			where orderid=#{orderid}
+		</select>
+    </mapper>

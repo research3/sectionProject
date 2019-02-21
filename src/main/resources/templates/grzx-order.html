@@ -59,7 +59,7 @@
 						}
 					</style>
 					<li class="cur" id="li2">
-						<a href="">个人中心</a><span class="my_nav_i"></span></li>
+						<a href="/c/lwx/center/home">个人中心</a><span class="my_nav_i"></span></li>
 					<li id="li3">
 						<a href="">账户设置</a><span class="my_nav_i"></span></li>
 					<li id="li4">
@@ -116,7 +116,7 @@
 					<div class="member_system_r_top">
 						<div class="search_right_box">
 							<div class="search_sec">
-								<form method="get" action="/c/lhy/order/query/list">
+								<form method="get" action="/c/lwx/order/query/list">
 									<input type="hidden" name="status" th:value="${param.status}">
 									<input type="text" name="orderid" th:value="${param.orderid}" placeholder="输入下单服务标题或订单号进行搜索" class="s_sec_input" /><input type="submit" value="" class="s_sec_btn" />
 								</form>
@@ -126,19 +126,19 @@
 					</div>
 					<ul class="pre_about_info yd_list_2">
 						<li id="zt">
-							<a th:href="@{/c/lhy/order/query/list}">所有预订</a>
+							<a th:href="@{/c/lwx/order/query/list}">所有预订</a>
 						</li>
 						<li id="zt1">
-							<a th:href="@{/c/lhy/order/query/list(status=1)}">待付款<span class="pre_asp" th:text="${orderInfo.topay}">0</span></a>
+							<a th:href="@{/c/lwx/order/query/list(status=1)}">待付款<span class="pre_asp" th:text="${orderInfo.topay}">0</span></a>
 						</li>
 						<li id="zt3">
-							<a th:href="@{/c/lhy/order/query/list(status=3)}">商家接单<span class="pre_asp" th:text="${orderInfo.receipt}">0</span></a>
+							<a th:href="@{/c/lwx/order/query/list(status=3)}">商家接单<span class="pre_asp" th:text="${orderInfo.receipt}">0</span></a>
 						</li>
 						<li id="zt4">
-							<a th:href="@{/c/lhy/order/query/list(status=4)}">待确认<span class="pre_asp" th:text="${orderInfo.tbconfirmed}">0</span></a>
+							<a th:href="@{/c/lwx/order/query/list(status=4)}">待确认<span class="pre_asp" th:text="${orderInfo.tbconfirmed}">0</span></a>
 						</li>
 						<li class="last" id="zt5">
-							<a th:href="@{/c/lhy/order/query/list(status=5,commentstatus=1)}">待评价<span class="pre_asp" th:text="${orderInfo.tbevaluated}">0</span></a>
+							<a th:href="@{/c/lwx/order/query/list(status=5,commentstatus=1)}">待评价<span class="pre_asp" th:text="${orderInfo.tbevaluated}">0</span></a>
 						</li>
 					</ul>
 					<!--booking_list-->
@@ -167,7 +167,7 @@
 										<span class="c_4">预订编号</span><span th:text="${temp.orderid}"></span>
 									</div>
 									<p>
-										<a th:if="${temp.orderstatus!=6&&temp.orderstatus!=7}" th:href="@{/c/lhy/order/query/detail(orderid=${temp.orderid})}">查看详细</a>
+										<a th:if="${temp.orderstatus!=6&&temp.orderstatus!=7}" th:href="@{/c/lwx/order/query/detail(orderid=${temp.orderid})}">查看详细</a>
 										<span th:if="${temp.orderstatus>1&&temp.orderstatus!=6}" class="ht_line2"></span>
 										<a th:if="${temp.orderstatus>1&&temp.orderstatus!=6}" href="" rel="303">站内信商家</a>
 									</p>
@@ -197,21 +197,21 @@
 									<span th:if="${temp.orderstatus==8}">已退款</span>
 								</li>
 								<li class="cel_l5">
-									<a th:href="@{/c/lhy/order/pay(orderid=${temp.orderid})}" class="btna_s1" th:if="${temp.orderstatus==1}">支付金币</a>
+									<a th:href="@{/c/lwx/order/pay(orderid=${temp.orderid})}" class="btna_s1" th:if="${temp.orderstatus==1}">支付金币</a>
 									<br th:if="${temp.orderstatus==1}" />
-									<a th:href="@{/c/lhy/order/ok(page=${param.page},orderid=${param.orderid},updateid=${temp.orderid})}" class="btna_s1" th:if="${temp.orderstatus==4}">确认完成</a>
+									<a th:href="@{/c/lwx/order/ok(page=${param.page},orderid=${param.orderid},updateid=${temp.orderid})}" class="btna_s1" th:if="${temp.orderstatus==4}">确认完成</a>
 									<br th:if="${temp.orderstatus==4}"/>
 									<a th:href="${temp.documentpath}" download="" class="btna_s3 mt5" th:if="${temp.filesatus==2}">下载</a>
 									<br th:if="${temp.filesatus==2}"/>
-									<a th:href="@{/c/lhy/order/evaluate(orderid=${temp.orderid})}" class="btna_s3" th:if="${temp.commentstatus==1}">评价</a>
+									<a th:href="@{/c/lwx/order/evaluate(orderid=${temp.orderid})}" class="btna_s3" th:if="${temp.commentstatus==1}">评价</a>
 									<br th:if="${temp.commentstatus==1}"/>
 									<span class="c_4" th:if="${temp.commentstatus==2}">已评价</span>
 									<br th:if="${temp.commentstatus==2}"/>
 									<span class="c_4" th:if="${temp.commentstatus==3}">双方已评</span>
 									<br th:if="${temp.commentstatus==3}"/>
-									<a th:href="@{/c/lhy/order/cancel(page=${param.page},orderid=${param.orderid},updateid=${temp.orderid})}" onclick="" th:if="${temp.orderstatus==1}">取消服务</a>
-									<a th:href="@{/c/lhy/order/refund(orderid=${temp.orderid})}" th:if="${temp.orderstatus==5&&temp.refundstatus==0}">申请退款</a>
-									<a class="btna_s2" th:href="@{/c/lhy/refund/detail(orderid=${temp.orderid})}" th:if="${temp.refundstatus>0}">查看退款详情</a>
+									<a th:href="@{/c/lwx/order/cancel(page=${param.page},orderid=${param.orderid},updateid=${temp.orderid})}" onclick="" th:if="${temp.orderstatus==1}">取消服务</a>
+									<a th:href="@{/c/lwx/order/refund(orderid=${temp.orderid})}" th:if="${temp.orderstatus==5&&temp.refundstatus==0}">申请退款</a>
+									<a class="btna_s2" th:href="@{/c/lwx/refund/detail(orderid=${temp.orderid})}" th:if="${temp.refundstatus>0}">查看退款详情</a>
 								</li>
 							</ul>
 						</div>
@@ -229,12 +229,12 @@
 					<!--page-->
 					<div class="page" th:if="${pageInfo.total>0}">
 						<div class='nav'>
-							<a class="page_next" th:if="${pageInfo.hasPreviousPage}" th:href="@{/c/lhy/order/query/list(status=${param.status},orderid=${param.orderid},page=${pageInfo.prePage})}">上一页</a>
+							<a class="page_next" th:if="${pageInfo.hasPreviousPage}" th:href="@{/c/lwx/order/query/list(status=${param.status},orderid=${param.orderid},page=${pageInfo.prePage})}">上一页</a>
 							<a class="page_next nextdisabled" th:if="${!pageInfo.hasPreviousPage}" href="javascript:;">上一页</a>
 
-							<a th:each="temp:${pageInfo.navigatepageNums}" th:class="${temp==pageInfo.pageNum?'cur':'num'}" th:text="${temp}" th:href="@{/c/lhy/order/query/list(status=${param.status},orderid=${param.orderid},page=${temp})}"></a>
+							<a th:each="temp:${pageInfo.navigatepageNums}" th:class="${temp==pageInfo.pageNum?'cur':'num'}" th:text="${temp}" th:href="@{/c/lwx/order/query/list(status=${param.status},orderid=${param.orderid},page=${temp})}"></a>
 
-							<a class="page_next" th:if="${pageInfo.hasNextPage}" th:href="@{/c/lhy/order/query/list(status=${param.status},orderid=${param.orderid},page=${pageInfo.nextPage})}">下一页</a>
+							<a class="page_next" th:if="${pageInfo.hasNextPage}" th:href="@{/c/lwx/order/query/list(status=${param.status},orderid=${param.orderid},page=${pageInfo.nextPage})}">下一页</a>
 							<a class="page_next nextdisabled" th:if="${!pageInfo.hasNextPage}" href="javascript:;">下一页</a>
 						</div>
 					</div>

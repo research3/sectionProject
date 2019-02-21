@@ -1,9 +1,9 @@
- ydfwHref="/c/lhy/order/query/list";
+ ydfwHref="/c/lwx/order/query/list";
  xzHref="javascript:void(0)";
  tzHref="javascript:void(0)";
- scHref="/zsp/c/getServicesByUserId";
- jbHref="/zsp/c/goldnotesQueryAll";
- jfHref="/zsp/c/QueryAll";
+ scHref="/c/lwx/getServicesByUserId";
+ jbHref="/c/lwx/goldnotesQueryAll";
+ jfHref="/c/lwx/QueryAll";
  pjHref="/zsp/c/EvaluationService";
  tkHref="/c/lhy/refund/mjlist";
  wlHref="/zsp/c/getListLogistics";

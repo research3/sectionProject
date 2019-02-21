@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.accp.dao.lwx.MyFavoriteDao">
+    
+    <sql id="Query">select * from </sql>
+    
+    	<resultMap id="billMap" type="com.accp.vo.lwx.myfavorite.UserVo">
+			<id column="userName" property="userName"></id>
+			<result column="shopName" property="shopName"></result>
+			<result column="signature" property="signature"></result>
+			<result column="shopImg" property="shopImg"></result>
+			<result column="merchantLevel" property="merchantLevel"></result>
+			<result column="merchantExp" property="merchantExp"></result>
+			<result column="creditScore" property="creditScore"></result>
+			<collection property="servicesVo" ofType="com.accp.vo.lwx.myfavorite.ServicesVo">
+				<result column="serviceCoverImg" property="serviceCoverImg"></result>
+				<result column="serviceFuTitle" property="serviceFuTitle"></result>
+				<result column="servicePrice" property="servicePrice"></result>	
+			</collection>
+			<collection property="serviceTypeVo" ofType="com.accp.vo.lwx.myfavorite.ServiceTypeVo">
+				<result column="stid" property="stid"></result>
+				<result column="stName" property="stName"></result>
+			</collection>
+		</resultMap>
+    
+    
+    	<!-- 查询 当前用户收藏的商家 -->
+			<select id="getMerchantCollectionById" resultMap="billMap">
+			      SELECT  u.userName,u.shopName, u.signature,u.shopImg,u.merchantLevel,u.merchantExp,u.creditScore,
+					s.serviceCoverImg,s.serviceFuTitle,s.servicePrice,st.stid,st.stname
+					FROM `merchantcollection` m
+					JOIN `services` s ON s.userId=m.merchantOrServiceByID
+					JOIN `user` u ON u.userId =m.merchantOrServiceByID
+					JOIN `servicetype` st ON st.stid = m.collectType
+					WHERE m.userId = #{userId}
+					<if test="stid!=null and stid!='' and stid!=0">
+						AND st.stid= #{stid}
+					</if>
+					GROUP BY u.`userID`
+			</select>
+			
+			<select id="getServicesByUserId" resultType="services">
+			    SELECT * FROM `services` WHERE serviceId IN
+			    (SELECT serviceId FROM  ServiceCollection WHERE userId=#{userId})
+			</select>
+			
+			<select id="getUserToServicesVo" resultType="com.accp.vo.lwx.myfavorite.UserToServicesVo">
+		         SELECT u.userName,u.shopName, u.signature,u.shopImg,s.recommendBool, s.serviceCoverImg,s.serviceFuTitle,s.servicePrice
+	             FROM services s LEFT JOIN `user` u ON s.userid=u.userid WHERE s.recommendBool=1
+			</select>
+			
+			<select id="getUser" resultType="user">
+			     SELECT * FROM `user`WHERE userId=#{userId};
+			</select>
+			
+			<!-- 查询金币流行 -->
+			<select id="goldnotesQueryAll" resultType="Goldnotes">
+				 SELECT * FROM GoldnoTes 
+				 <where>
+				     <if test="userId!=null and userId!=''">
+				          and userId=#{userId}
+				     </if>
+				     <if test="acquisitionMode!=null and acquisitionMode!=''">
+				          and acquisitionMode=#{acquisitionMode}
+				     </if>
+				 </where>
+				ORDER BY `recordDate` DESC 
+			</select>
+			
+			<!-- 查询积分流行 -->
+			<select id="IntegralRecordQueryAll" resultType="integralrecord">
+				SELECT * FROM IntegralRecord 
+				<where>
+				    <if test="userId!=null">
+				      and userId=#{userId}
+				    </if>
+				</where>
+			</select>
+    </mapper>
