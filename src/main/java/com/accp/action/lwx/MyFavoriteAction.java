@@ -35,12 +35,12 @@ public class MyFavoriteAction {
 	 * @return 返回商家收藏页面 sc-sj。html
 	 */
 	@GetMapping("getServicesByUserId")
-    public String getServicesByUserId(Model model, HttpSession session,Integer p, Integer s) {
+    public String getServicesByUserId(Model model, HttpSession session,Integer p, Integer s,Integer stid) {
 		if (p == null)p = 1;
 		if (s == null)s = 6;
 //		Integer userId=((User)session.getAttribute("USER")).getUserid();
 		Integer userId=24;
-		PageInfo<Services>pageInfo= myFavoriteBiz.getServicesByUserId(p, s, userId);
+		PageInfo<Services>pageInfo= myFavoriteBiz.getServicesByUserId(p, s, userId,stid);
 		List<UserToServicesVo>list=myFavoriteBiz.getUserToServicesVo();
 		model.addAttribute("LIST",list);
 		model.addAttribute("PAGE_INFO",pageInfo);

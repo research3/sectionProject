@@ -41,9 +41,57 @@
 					GROUP BY u.`userID`
 			</select>
 			
-			<select id="getServicesByUserId" resultType="services">
-			    SELECT * FROM `services` WHERE serviceId IN
-			    (SELECT serviceId FROM  ServiceCollection WHERE userId=#{userId})
+			<resultMap type="com.accp.vo.lwx.myfavorite.Services" id="servicesMap">
+				<result property="serviceid" column="serviceid" />
+				<result property="stid" column="stid" />
+				<result property="userid" column="userid" />
+				<result property="resourceid" column="resourceid" />
+				<result property="servicetitle" column="servicetitle" />
+				<result property="servicefutitle" column="servicefutitle" />
+				<result property="downloadtitle" column="downloadtitle" />
+				<result property="serviceprice" column="serviceprice" />
+				<result property="servicecoverimg" column="servicecoverimg" />
+				<result property="serviceimgurlone" column="serviceimgurlone" />
+				<result property="serviceimgurltwo" column="serviceimgurltwo" />
+				<result property="serviceimgurlthree" column="serviceimgurlthree" />
+				<result property="serviceimgurlfour" column="serviceimgurlfour" />
+				<result property="servicecosttypeid" column="servicecosttypeid" />
+				<result property="serviceintro" column="serviceintro" />
+				<result property="servicecity" column="servicecity" />
+				<result property="country" column="country" />
+				<result property="servicecostinclude" column="servicecostinclude" />
+				<result property="servicestartdate" column="servicestartdate" />
+				<result property="serviceenddate" column="serviceenddate" />
+				<result property="schoolregion" column="schoolregion" />
+				<result property="schoolnamebycn" column="schoolnamebycn" />
+				<result property="majoynamebycn" column="majoynamebycn" />
+				<result property="schoolnamebyrok" column="schoolnamebyrok" />
+				<result property="majoynamebyrok" column="majoynamebyrok" />
+				<result property="goodatmajoy" column="goodatmajoy" />
+				<result property="hospitalname" column="hospitalname" />
+				<result property="servicehour" column="servicehour" />
+				<result property="uploaddataurl" column="uploaddataurl" />
+				<result property="releasetime" column="releasetime" />
+				<result property="browsenumber" column="browsenumber" />
+				<result property="weight" column="weight" />
+				<result property="recommendbool" column="recommendbool" />
+				<result property="shelfstate" column="shelfstate" />
+				<result property="auditstatus" column="auditstatus" />
+				<result property="adminopinion" column="adminopinion" />
+				<collection property="serviceTypeVo" ofType="com.accp.vo.lwx.myfavorite.ServiceTypeVo">
+					<result column="stid" property="stid"></result>
+					<result column="stName" property="stName"></result>
+				</collection>
+			</resultMap>
+			
+			<select id="getServicesByUserId" resultMap="servicesMap">
+			    SELECT s.*,st.stid,st.stname FROM `services` s  
+				JOIN `servicetype` st ON st.stid=s.stid
+				WHERE serviceId IN
+				(SELECT serviceId FROM  ServiceCollection WHERE userId=#{userId})
+				<if test="stid!=null and stid!='' and stid!=0">
+						AND st.stid= #{stid}
+				</if>
 			</select>
 			
 			<select id="getUserToServicesVo" resultType="com.accp.vo.lwx.myfavorite.UserToServicesVo">

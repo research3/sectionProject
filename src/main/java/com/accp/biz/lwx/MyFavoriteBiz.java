@@ -30,9 +30,9 @@ public class MyFavoriteBiz {
 	   * @param userId
 	   * @return
 	   */
-	  public PageInfo<Services>getServicesByUserId(Integer pageNum,Integer pageSize,Integer userId){
+	  public PageInfo<Services>getServicesByUserId(Integer pageNum,Integer pageSize,Integer userId,Integer stid){
 		  PageHelper.startPage(pageNum, pageSize);
-		  return new PageInfo<Services>(myFavoriteDao.getServicesByUserId(userId));
+		  return new PageInfo<Services>(myFavoriteDao.getServicesByUserId(userId,stid));
 	  }
 	  /**
 	   * 查询收藏的服务及商家

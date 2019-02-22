@@ -84,7 +84,13 @@
 			<!--collection_box-->
 			<div class="collection_box">
 				<ul class="pre_about_info collection_nav">
-					<li class="cur"><a href="">全部</a></li>
+					<li><a th:href="@{/c/lwx/getServicesByUserId(p=0,s=${PAGE_INFO.pageSize},stid=0)}">全部</a></li>
+					<li class="cur" th:each="temp3,iterState:${PAGE_INFO.list}">
+						<span th:each="temp4,iterState:${temp3.serviceTypeVo}">
+							<a th:href="@{/c/lwx/getMerchantCollectionById(p=0,s=${PAGE_INFO.pageSize},stid=${temp4.stid})}" >[[${temp4.stName}]] </a>
+						</span>
+						<span class="pre_asp">1</span>
+					</li>
 				</ul>
 				<script>
 					$('.collection_nav li:last').addClass('last');

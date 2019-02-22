@@ -23,7 +23,7 @@ public interface MyFavoriteDao {
      * @param userId
      * @return
      */
-    public List<Services>getServicesByUserId(@Param("userId")Integer userId);
+    public List<Services>getServicesByUserId(@Param("userId")Integer userId,@Param("stid") Integer stid);
     
     /**
      * 查询系统推荐的服务
