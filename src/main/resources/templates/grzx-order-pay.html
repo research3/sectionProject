@@ -20,11 +20,11 @@
 						<a href="">关于韩汀</a><span class="ht_line"></span>
 						<a href="">联系我们</a>
 					</div>
-					<div class="top_right">
-						<a href="">郑石平</a> <span class="ht_line"></span>
-						<a href="">退出</a>
-						<span class="ht_line"></span>
-						<a href=""><img src="/Public/images/e_i.png" alt="" /></a>
+					<div class="" style="float: right;margin-right: 25px;">
+						<a href="javascript.void(0);">小郭</a> <span class="ht_line"></span>
+						<a href="/c/lwx/user/close">退出</a> <span class="ht_line"></span>
+						<a href="javascript.void(0);"><img src="/HanTingProject/../Public/images/e_i.png"
+							alt="" /></a>
 					</div>
 				</div>
 			</div>
@@ -48,8 +48,8 @@
 				</div>
 				<div class="fa_xz">
 					<div class="fa_zf_r">
-						<a th:if="${user.usermoney>=order.smallplan}" th:href="@{/c/lhy/order/pay/ok(orderid=${order.orderid})}" class="btn_jy_a f22" id="payment_btn">支付金币</a>
-						<a th:if="${user.usermoney<order.smallplan}" href="/zsp/c/getLogisticsById" class="btn_jy_a f22" id="payment_btn">充值</a>
+						<a th:if="${user.usermoney>=order.smallplan}" th:href="@{/c/lwx/order/pay/ok(orderid=${order.orderid})}" class="btn_jy_a f22" id="payment_btn">支付金币</a>
+						<a th:if="${user.usermoney<order.smallplan}" href="/c/lwx/getLogisticsById" class="btn_jy_a f22" id="payment_btn">充值</a>
 					</div>
 				</div>
 			</div>

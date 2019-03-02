@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accp.dao.lyl.LylDao">
+	<!-- 查询二级页面数据 -->
+	<select id="erjquery" resultType="com.accp.vo.lyl.ErjixxVo">
+		SELECT s.*,u.`userImgPath`,u.`shopName` FROM `services` AS s
+			JOIN `user` AS u
+			ON s.`userID`=u.`userID`
+		<where>
+				<if test="vo.stid!=0"> and s.stid =#{vo.stid} </if>
+				<if test="vo.start!='notime'"> and s.serviceEndDate  &gt;=#{vo.start} </if>
+				<if test="vo.end!='notime'"> and s.serviceStartDate &lt;=#{vo.end} </if>
+				<if test="vo.resourceid!=0"> and s.resourceid IN (SELECT stid FROM `servicetype` WHERE stpid = #{vo.resourceid}) </if>
+				<if test="vo.country!=0">and s.country=#{vo.country}</if>
+				<if test="vo.city!=0"> and s.city like '%${vo.city}%'</if>
+				<if test="vo.gfrz">and u.authentication=#{vo.gfrz}</if>
+				<if test="vo.minjf!=0">and s.serviceIntegral &gt;=#{vo.minjf}</if>
+				<if test="vo.maxjf!=0">and s.serviceIntegral &lt;=#{vo.maxjf}</if>
+				<if test="vo.servicetitle!=''">and s.servicetitle like '%${vo.servicetitle}%'</if>
+		</where>
+		<if test="vo.price==1">ORDER BY `servicePrice` DESC</if>
+		<if test="vo.price==2">ORDER BY `servicePrice`</if>
+		<if test="vo.browse==1">ORDER BY `browseNumber` DESC</if>
+		<if test="vo.browse==2">ORDER BY `browseNumber`</if>
+	</select>
+	<!-- 查询国家表 -->
+	<select id="queryCountry" resultType="Sharea">
+		SELECT * FROM `sharea` where  pid=#{pid}
+	</select>
+	<!-- 查询类别 -->
+	<select id="queryserType" resultType="serviceType">
+		SELECT * FROM serviceType where stPid=#{stPid}
+	</select>
+	<!-- 查询级别 -->
+	<select id="queryserLeve" resultType="Servicelevel">
+		SELECT * FROM Servicelevel WHERE stid=#{stid}
+	</select>
+	
+	<!-- 智能查询查询最近3次typeid=(1国家,2类别,3级别,4官方) userid(用户编号) stid(1自驾游) 点击数最多的 -->
+	<select id="queryzhin" resultType="love">
+		SELECT a.qbid,SUM(num) AS shul
+		FROM
+		(
+		SELECT t1.*,(SELECT COUNT(*)+1 FROM `like` WHERE qbid=t1.qbid 
+		AND `time`&gt;t1.`time` AND typeid=#{typeid}) AS group_id
+		FROM `like` t1
+		) a
+		WHERE a.group_id &lt;=3 AND 
+		typeid=#{typeid} AND userid =#{userid} AND stid=#{stid}  
+		GROUP BY qbid ORDER BY shul DESC LIMIT 0,1
+	</select>
+	
+	<!-- 查询服务的商家信息 -->
+	<select id="queryServiceMerchantInfo" resultType="com.accp.vo.lyl.ServiceMerchantInfo">
+		SELECT u.`userID`,u.`shopImg`,u.`shopName`,u.`merchantLevel`,
+		(SELECT `serlevelName` FROM `servicelevel` WHERE `stid` = u.`firstServiceID` AND u.`firstServiceMoney` BETWEEN `serviceIntegralMin` AND `serviceIntegralMax`) AS `firstServiceLevelName`,
+		(SELECT `serlevelName` FROM `servicelevel` WHERE `stid` = u.`secondServiceID` AND u.`secondServiceMoney` BETWEEN `serviceIntegralMin` AND `serviceIntegralMax`) AS `SecondServiceLevelName`,
+		(SELECT COUNT(1) FROM `orders` WHERE `serviceID` = #{sid}) AS `orderCount`,
+		(SELECT COUNT(1) FROM `servicecollection` WHERE `serviceID` = #{sid}) AS `collectCount`,
+		sh.`mergerName` AS `liveCityName`,u.`languageNameText`,u.`guaranteeMoney`
+		FROM `user` AS u
+		INNER JOIN `sharea` AS sh
+		ON sh.`areaID` = u.`liveCityID`
+		WHERE u.`userID` = #{uid}
+	</select>
+	<!-- 查询服务描述 -->
+	<select id="queryServiceDes" resultType="Servicedes">
+		select * from
+		`servicedes`
+		WHERE `serviceID` = #{sid}
+	</select>
+
+	<!-- map：查询服务评价 -->
+	<resultMap type="com.accp.vo.lyl.EvaluationserviceVO" id="evaluationserviceVOMap">
+		<id column="serviceAppraiseID" property="serviceAppraiseID"/>
+		<result column="userID" property="userID"/>
+		<result column="userImgPath" property="userImgPath"/>
+		<result column="userName" property="userName"/>
+		<result column="serviceAppraiseLevel" property="serviceAppraiseLevel"/>
+		<result column="serviceAppraiseContent" property="serviceAppraiseContent"/>
+		<result column="serviceAppraiseDate" property="serviceAppraiseDate"/>
+		<association property="obj" select="queryEvaluationserviceVOByReply" column="serviceAppraiseID"></association>
+	</resultMap>
+	<!-- 查询服务评价 -->
+	<select id="queryEvaluationserviceVO" resultMap="evaluationserviceVOMap">
+		SELECT es.`serviceAppraiseID`,u.`userID`,u.`userImgPath`,u.`userName`,es.`serviceAppraiseLevel`,es.`serviceAppraiseContent`,es.`serviceAppraiseDate`
+		FROM `evaluationservice` AS es
+		INNER JOIN `user` AS u
+		ON u.`userID` = es.`userID`
+		WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid}
+	</select>
+	
+	<!-- 查询服务详情 -->
+	<select id="queryServiceDetailInfo" resultType="com.accp.vo.lyl.ServiceDetailInfo">
+		SELECT u.`userID`,ser.`serviceID`,ser.`serviceTitle`,st.`stName`,ser.`serviceFuTitle`,ser.`servicePrice`,ser.`serviceHour`,ser.`serviceCostInclude`,ser.`serviceStartDate`,ser.`serviceEndDate`,ser.`serviceIntro`,ser.`serviceCity`,u.`height`,u.`age`,u.`constellation`,u.`profession`,ser.`serviceCostTypeID`,ser.`schoolRegion`,ser.`schoolNameByCN`,ser.`schoolNameByROK`,ser.`majoyNameByCN`,ser.`majoyNameByROK`,ser.`serviceCoverImg`,ser.`serviceImgUrlOne`,ser.`serviceImgUrlTwo`,ser.`serviceImgUrlThree`,ser.`serviceImgUrlFour`
+		FROM `services` AS ser
+		INNER JOIN `user` AS u
+		ON u.`userID` = ser.`userID`
+		INNER JOIN `servicetype` AS st
+		ON st.`stid` = ser.`stid`
+		WHERE ser.`serviceID` = #{sid}
+	</select>
+	<!-- 查询服务评价星级 -->
+	<select id="queryEsLevelVO" resultType="com.accp.vo.lyl.EsLevelVO">
+		SELECT (SELECT COUNT(1) FROM `evaluationservice` WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid} AND `serviceAppraiseLevel` = 5) AS `level5`,
+		(SELECT COUNT(1) FROM `evaluationservice` WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid} AND `serviceAppraiseLevel` = 4) AS `level4`,
+		(SELECT COUNT(1) FROM `evaluationservice` WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid} AND `serviceAppraiseLevel` = 3) AS `level3`,
+		(SELECT COUNT(1) FROM `evaluationservice` WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid} AND `serviceAppraiseLevel` = 2) AS `level2`,
+		(SELECT COUNT(1) FROM `evaluationservice` WHERE `serviceAppraisePID` = 0 AND `serviceID` = #{sid} AND `serviceAppraiseLevel` = 1) AS `level1`
+		FROM `evaluationservice`
+		LIMIT 1
+	</select>
+	<!-- 查询同城同类型服务 -->
+	<select id="querySameServiceVO" resultType="com.accp.vo.lyl.SameServiceVO">
+		SELECT ser.`serviceID`,ser.`serviceTitle`,ser.`serviceCoverImg`,ser.`servicePrice`,u.`userID`,u.`shopName`,u.`shopImg`
+		FROM `services` AS ser
+		INNER JOIN `user` AS u
+		ON u.`userID` = ser.`userID`
+		WHERE u.`liveCityID` = (SELECT u.`liveCityID` FROM `services` AS ser INNER JOIN `user` AS u ON u.`userID` = ser.`userID` WHERE ser.`serviceID` = #{sid})
+		AND ser.`stid` = (SELECT `stid` FROM `services` WHERE `serviceID` = #{sid})
+		AND ser.`serviceID` != #{sid}
+	</select>
+	<!-- 查询举报原因 -->
+	<select id="queryComplainttype" resultType="Complainttype">
+		select * from
+		`Complainttype`
+	</select>
+	
+	
+	<!-- 进入服务详情添加浏览数 -->
+	<update id="updateServiceBrowseNumber">
+		UPDATE `services` 
+		SET `browseNumber` = `browseNumber` + 1
+		WHERE `serviceID` = #{sid}
+	</update>
+</mapper>

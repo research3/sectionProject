@@ -104,7 +104,7 @@
 			</select>
 			
 			<!-- 查询金币流行 -->
-			<select id="goldnotesQueryAll" resultType="Goldnotes">
+			<select id="goldnotesQueryAll" resultType="com.accp.pojo.Goldnotes">
 				 SELECT * FROM GoldnoTes 
 				 <where>
 				     <if test="userId!=null and userId!=''">
@@ -113,12 +113,15 @@
 				     <if test="acquisitionMode!=null and acquisitionMode!=''">
 				          and acquisitionMode=#{acquisitionMode}
 				     </if>
+				     <if test="recordDate!=null and recordDate!=''">
+				          and recordDate like '%${recordDate}%'
+				     </if>
 				 </where>
 				ORDER BY `recordDate` DESC 
 			</select>
 			
 			<!-- 查询积分流行 -->
-			<select id="IntegralRecordQueryAll" resultType="integralrecord">
+			<select id="IntegralRecordQueryAll" resultType="com.accp.pojo.Integralrecord">
 				SELECT * FROM IntegralRecord 
 				<where>
 				    <if test="userId!=null">
@@ -126,4 +129,5 @@
 				    </if>
 				</where>
 			</select>
+			
     </mapper>

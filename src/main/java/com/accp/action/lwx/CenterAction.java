@@ -31,15 +31,11 @@ public class CenterAction {
 	 */
 	@RequestMapping("/center/home")
 	public String centerHome(Model model, HttpSession session) {
-//		User user = (User) session.getAttribute("USER");
-		//后期加上的（去除）
-		User user = myFavoriteBiz.getUser(25);
+		User user = (User) session.getAttribute("USER");
 		OrdersVo order = new OrdersVo();
-//		order.setUserid(user.getUserid());
-		order.setUserid(25);
+		order.setUserid(user.getUserid());
 		model.addAttribute("list", orderBiz.queryOrderList(order, 1, 10).getList());
-//		model.addAttribute("orderInfo", orderBiz.queryOrderInfo(user.getUserid()));
-		model.addAttribute("orderInfo", orderBiz.queryOrderInfo(25));
+		model.addAttribute("orderInfo", orderBiz.queryOrderInfo(user.getUserid()));
 		model.addAttribute("user", user);
 		return "grzx-index";
 	}

@@ -268,10 +268,10 @@ $(function(){
 	});
 	
 	//删除收藏服务 
-	$('.del_collection').click(function(){
- 		_id = $(this).attr('rel');
-       showConfirm('是否要删除此收藏？', "delservers("+_id+")");		
-	});
+//	$('.del_collection').click(function(){
+// 		_id = $(this).attr('rel');
+//       showConfirm('是否要删除此收藏？', "delservers("+_id+")");		
+//	});
 
 	
 	//删除收藏商家 

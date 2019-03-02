@@ -153,6 +153,10 @@
 									<dt>费用包含</dt>
 									<dd th:text="${serDetailObj.serviceCostInclude}"></dd>
 								</dl>
+								<dl class="online_part_dl2">
+									<dt>可预约日期</dt>
+									<dd>[[${#dates.format(serDetailObj.serviceStartDate,"yyyy-MM-dd")}]]  至 [[${#dates.format(serDetailObj.serviceEndDate,"yyyy-MM-dd")}]]</dd>
+								</dl>
 							</div>					
 							<form id="formbook" method="post"  action="/c/lsm/serReserveUrl" >
 								<dl class="online_dl">

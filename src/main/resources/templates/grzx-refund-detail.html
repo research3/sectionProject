@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link rel="stylesheet" href="/Public/css/common.css" />
+<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+</head>
+
+<body>
+	<!--header-->
+	<div class="header" id="botop">
+		<div class="h_top">
+			<div class="b_box">
+				<div class="top_nav">
+					<a href="">首页</a><span class="ht_line"></span> <a href="">商家入驻</a><span
+						class="ht_line"></span> <a href="">帮助中心</a><span class="ht_line"></span>
+					<a href="">关于韩汀</a><span class="ht_line"></span> <a href="">联系我们</a>
+				</div>
+				<div class="top_right">
+					<a href="">郑石平</a> <span class="ht_line"></span> <a href="">退出</a>
+					<span class="ht_line"></span> <a href=""><img
+						src="/Public/images/e_i.png" alt="" /></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="b_box nav_header community_header">
+			<a class="logo my_logo" href="">御品韩汀</a>
+			<ul class="member_nav_ul">
+				<li id="li1"><a href="">商家中心</a><span class="my_nav_i"></span></li>
+				<style type="text/css">
+				.layui-layer-btn .layui-layer-btn0 {
+					background: #4c1b98;
+				}
+				
+				.layui-layer-btn .layui-layer-btn0:hover {
+					background: #340d6f;
+				}
+				</style>
+				<li class="cur" id="li2"><a href="">个人中心</a><span
+					class="my_nav_i"></span></li>
+				<li id="li3"><a href="">账户设置</a><span class="my_nav_i"></span></li>
+				<li id="li4"><a href="">消息</a><span class="my_nav_i"></span></li>
+
+			</ul>
+		</div>
+	</div>
+	<!--header end-->
+
+	<div class="bg_c4 pt1">
+		<div class="b_box">
+			<div class="sv_path border_c">
+				<div class="fr c_4">
+					<a href="#" class="btna_s2 f14">交易须知</a>
+				</div>
+				<a href="">个人中心</a><span class="s_sp_v">-</span><a href="">我的退款</a><span
+					class="s_sp_v">-</span>退款编号[[${refund.refundid}]]
+			</div>
+
+			<div class="refund_press">
+				<div class="refund_press_line">
+					<div class="refund_press_w"
+						th:style="${order.refundstatus==5?'width:100%':''}"></div>
+					<div class="press_step pst1">
+						<span class="step had_step"></span>
+						<p class="f14">买家提交申请</p>
+						<p class="f12 c_4">服务单已申请成功，待商家处理中</p>
+					</div>
+					<div class="press_step pst2">
+						<span th:class="|step ${order.refundstatus==5?'had_step':''}|"></span>
+						<p class="f14 c_4">商家 处理退款申请</p>
+						<p th:if="${refund.auditstatus==1}" class="f12 c_4">待商家处理</p>
+						<p th:if="${refund.auditstatus==2}" class="f12 c_4">商家同意退款</p>
+						<p th:if="${refund.auditstatus==3}" class="f12 c_4">商家不同意退款</p>
+					</div>
+					<div class="press_step pst3">
+						<span th:class="|step ${order.refundstatus==5?'had_step':''}|"></span>
+						<p class="f14 c_4">完成</p>
+					</div>
+				</div>
+			</div>
+
+			<dl class="refund_list_dl">
+				<dd>
+					<div class="negotiation_records_d">
+						<div class="fr my_tkr">
+							<a th:if="${order.refundstatus==2}" th:href="@{/c/lhy/refund/applyadmin(orderid=${order.orderid})}" class="btna_s2 send_site_email_btna">申请管理员介入</a>
+							<span th:if="${order.refundstatus==2}">|</span>
+							<a href="" class="btna_s2 send_site_email_btna">站内信商家</a>
+						</div>
+						协商记录
+					</div>
+					<ul class="refund_record_ul">
+						<li>
+							<div th:if="${order.refundstatus==1}" class="refund_title">状态：退款申请中</div>
+							<div th:if="${order.refundstatus==2}" class="refund_title">状态：不同意</div>
+							<div th:if="${order.refundstatus==3}" class="refund_title">状态：申请管理员介入</div>
+							<div th:if="${order.refundstatus==4}" class="refund_title">状态：管理员拒绝</div>
+							<div th:if="${order.refundstatus==5}" class="refund_title">状态：退款完成</div>
+							<div th:if="${order.refundstatus==6}" class="refund_title">状态：退款取消</div>
+						</li>
+						<li th:if="${refund.adminstatus>1}">
+							<div class="refund_title">
+								管理员协商结果<span class="ml10">[[${#dates.format(refund.admintime,'yyyy-MM-dd')}]]</span>
+							</div>
+							<p class="refund_p">
+								退款金额：[[${refund.actualrefundmoney}]]金币<br>退款说明：[[${refund.adminremarks}]]
+							</p>
+						</li>
+						<li th:if="${refund.auditstatus>1}">
+							<div th:if="${refund.auditstatus==2}"
+								class="refund_title">
+								商家<a href="" class="btna_s2 mlr10"
+									th:text="${order.service.user.shopname}"></a>[[${#dates.format(refund.audittime,'yyyy-MM-dd')}]]
+							</div>
+							<p th:if="${refund.auditstatus==2}" class="refund_p">
+								商家（[[${order.service.user.shopname}]]）同意退款部分金币<br>退款金额：[[${refund.actualrefundmoney}]]
+								金币<br>退款说明：[[${refund.businessremarks}]]
+							</p>
+							<div th:if="${refund.auditstatus==3}"
+								class="refund_title">
+								商家<a href="" class="btna_s2 mlr10"
+									th:text="${order.service.user.shopname}"></a>[[${#dates.format(refund.audittime,'yyyy-MM-dd')}]]
+							</div>
+							<p th:if="${refund.auditstatus==3}" class="refund_p">
+								商家（[[${order.service.user.shopname}]]）不同意退款部分金币<br>退款金额：0金币<br>退款说明：[[${refund.businessremarks}]]
+							</p>
+						</li>
+						<li class="last">
+							<div class="refund_title">
+								买家<a href="" class="btna_s2 mlr10"
+									th:text="${refund.user.username}"></a>[[${#dates.format(refund.applicationtime,'yyyy-MM-dd')}]]
+							</div>
+							<p class="refund_p">
+								买家（[[${refund.user.username}]]）于[[${#dates.format(refund.applicationtime,'yyyy-MM-dd')}]]创建了退款申请<br>申请金额：[[${refund.applyrefundmoney}]]
+								金币<br>退款原因：[[${refund.refundreason}]]<br>退款说明：[[${refund.refundexplain}]]
+							</p>
+							<div class="tk_img_d" th:if="${refund.refundimg!=null}">
+								<a href=""><img th:src="${refund.refundimg}" width="150"></a>
+							</div>
+						</li>
+					</ul>
+				</dd>
+				<dt>
+					<div class="post_comment_img">
+						<img th:src="${order.service.servicecoverimg}">
+					</div>
+					<p class="p_cment_title" th:text="${order.service.servicetitle}"></p>
+					<p class="p_cment_title" th:text="${order.service.servicefutitle}"></p>
+					<p class="num_1 f14 mt10" th:text="${order.service.serviceprice}"></p>
+					<p class="p_cment_time">
+						<span class="c_4">预定日期</span>[[${#dates.format(order.ordertime,'yyyy-MM-dd')}]]
+					</p>
+					<div class="p_cment_time">
+						<span class="c_4">总计</span>
+						<p class="num_1 f14 mt10" th:text="${order.smallplan}"></p>
+					</div>
+				</dt>
+			</dl>
+		</div>
+	</div>
+
+	<!--站内信 弹框-->
+	<div id="pop_bg"></div>
+	<div class="site_email_pop">
+		<a href="" class="close_pop_btn"></a>
+		<h2 class="site_h2">
+			与<span class="mlr10"></span>站内信
+		</h2>
+		<dl class="send_site_email">
+			<dt>
+				<img src="/Public/images/bbs_user_photo.png" alt=""
+					class="user_photo_site" />
+			</dt>
+			<dd>
+				<input type="hidden" id="smsuid" value="" />
+				<textarea class="input_c in_site_text" id="smsmsg"></textarea>
+				<div class="member_bt_btm2">
+					<a href="" class="btna_acancel">取消</a> <a href=""
+						onclick="sendsms()">发送</a>
+				</div>
+			</dd>
+		</dl>
+	</div>
+	<!--站内信 弹框 end-->
+
+	<!--footer-->
+	<div class="footer community_footer_dl">
+		<dl class="footer_dl">
+			<dt>
+				<div class="footer_ewm_box">
+					<img src="/Public/images/footer_ewm.png" alt="" />
+				</div>
+				<span class="ft_ewm_name">御品韩汀</span>
+			</dt>
+			<dd>
+				<p class="flink">
+					<a href="">商家入驻</a>| <a href="">帮助中心</a>| <a href="">人才招聘</a>| <a
+						href="">联系我们</a>| <a href="">网站地图</a>| <a href="">使用条款</a>
+				</p>
+				<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |
+					邮编：412000</p>
+				<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com |
+					官方热线电话：0731-2286-7673</p>
+				<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>
+			</dd>
+		</dl>
+	</div>
+	<!--footer end-->
+
+	<!--right nav-->
+	<ul class="right_nav">
+		<li><a href="" class="rn_tel">客服电话</a>
+			<div class="over_show kf_tel">0731-2286-7673</div></li>
+		<li><a href="" class="rn_wx">官方微信</a>
+			<div class="over_show">
+				<img src="/Public/images/r_ewm.jpg" alt="" class="gw_ewm" />
+			</div></li>
+		<li><a href="" class="rn_kf">在线客服</a></li>
+		<li><a href="" class="rn_top">Back top</a></li>
+	</ul>
+</body>
+<script type="text/javascript" src="/Public/js/sessionHeader.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-interlinkage.js"></script>
+<script type="text/javascript" src="/Public/js/headLeftNav.js"></script>
+<script type="text/javascript" src="/Public/js/grzx-href.js"></script>
+</html>

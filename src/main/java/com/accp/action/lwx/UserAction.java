@@ -5,6 +5,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accp.biz.lwx.UserBiz;
+import com.accp.pojo.Sharea;
 import com.accp.pojo.User;
 import com.accp.util.code.VerifyCode;
 import com.accp.util.email.Email;
@@ -206,5 +208,64 @@ public class UserAction {
 			map.put("msg", e.getMessage());
 		}
 		return map;
+	}
+	
+	
+	/**
+	 * 退出登陆方法
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/user/close",method=RequestMethod.GET)
+	public String close(HttpSession session) {
+		session.removeAttribute("USER");
+		session.removeAttribute("Email");
+		return "/szy-login.html";
+	}
+	/**
+	 * 获取用户信息方法
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/user/queryGrzxInfo",method=RequestMethod.GET)
+	public String queryGrzxInfo(){
+		return "zhsz-grzl.html";
+	}
+	/**
+	 * 获取用户信息方法
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/user/queryHeaderUser",method=RequestMethod.GET)
+	@ResponseBody
+	public User queryHeaderUser(Integer userid) {
+		return biz.queryUser(userid);
+	}
+	/**
+	 * 查询地址
+	 * @return
+	 */
+	@RequestMapping(value="/user/querySharea",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Sharea> querySharea(){
+		return biz.querySharea();
+	}
+	
+	/**
+	 * 获取当前用户session
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/user/queryAUser")
+	@ResponseBody
+	public User queryAUser(HttpSession session) {
+		if(session.getAttribute("USER")==null) {
+			return null;
+		}else {
+			Integer userID=((User)session.getAttribute("USER")).getUserid();
+			User u=biz.queryUser(userID);
+			session.setAttribute("USER", u);
+			return u;
+		}
 	}
 }

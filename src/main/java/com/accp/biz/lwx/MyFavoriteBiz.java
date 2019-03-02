@@ -57,9 +57,9 @@ public class MyFavoriteBiz {
 		 * @param userId用户id
 		 * @return
 		 */
-	    public  PageInfo<Goldnotes> goldnotesQueryAll(Integer pageNum,Integer pageSize,Integer userId,Integer acquisitionMode) {
+	    public  PageInfo<Goldnotes> goldnotesQueryAll(Integer pageNum,Integer pageSize,Integer userId,Integer acquisitionMode,String recordDate) {
 	    	 PageHelper.startPage(pageNum,pageSize);
-	  	   return new PageInfo<Goldnotes>(myFavoriteDao.goldnotesQueryAll(userId,acquisitionMode));
+	  	   return new PageInfo<Goldnotes>(myFavoriteDao.goldnotesQueryAll(userId,acquisitionMode,recordDate));
 	    }
 	    
 	    /**

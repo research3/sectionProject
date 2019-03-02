@@ -2,21 +2,71 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="com.accp.dao.lwx.RefundDao">
-    	
-    	<sql id="Query">select * from </sql>
-    
-	    <resultMap type="com.accp.vo.lwx.RefundVo" id="refundMap">
-			<association property="user" column="userid"
-				select="com.accp.dao.lwx.UserDao.queryUserById"></association>
-			<association property="order" column="orderid"
-				select="com.accp.dao.lwx.OrderDao.queryOrderById"></association>
-		</resultMap>
-		
-    	<select id="queryRefundByOrderId" resultMap="refundMap">
-			<include refid="Query"/>
-			refund
-			where orderid=#{orderid}
-		</select>
-    </mapper>
+
+<mapper namespace="com.accp.dao.lwx.RefundDao">
+
+	<sql id="Query">select * from </sql>
+
+	<resultMap type="com.accp.vo.lwx.RefundVo" id="refundMap">
+		<association property="user" column="userid"
+			select="com.accp.dao.lwx.UserDao.queryUserById"></association>
+		<association property="order" column="orderid"
+			select="com.accp.dao.lwx.OrderDao.queryOrderById"></association>
+	</resultMap>
+
+	<select id="queryRefundList" resultMap="refundMap">
+		<include refid="Query" />
+		refund
+		where orderid in(select orderid from orders where serviceid
+		in(select
+		serviceid from services where userid=#{userid}))
+		order by
+		refundid desc
+	</select>
+
+	<select id="queryRefundByOrderId" resultMap="refundMap">
+		<include refid="Query" />
+		refund
+		where orderid=#{orderid}
+	</select>
+
+	<select id="queryMyRefundList" resultMap="refundMap">
+		select * from refund
+		where userid=#{userid}
+		order by refundid desc
+	</select>
+
+	<insert id="saveRefund">
+		insert
+		refund(point,orderid,userid,refundimg,applyrefundmoney,applicationtime,refundreason,refundexplain,auditstatus,adminstatus)
+		values(#{refund.point},#{refund.orderid},#{refund.userid},#{refund.refundimg},#{refund.applyrefundmoney},#{refund.applicationtime},#{refund.refundreason},#{refund.refundexplain},#{refund.auditstatus},#{refund.adminstatus})
+	</insert>
+
+	<update id="updateRefund">
+		update refund
+		<set>
+			<if test="refund.actualrefundmoney!=null">
+				actualrefundmoney=#{refund.actualrefundmoney},
+			</if>
+			<if test="refund.audittime!=null">
+				audittime=#{refund.audittime},
+			</if>
+			<if test="refund.auditstatus!=null">
+				auditstatus=#{refund.auditstatus},
+			</if>
+			<if test="refund.admintime!=null">
+				admintime=#{refund.admintime},
+			</if>
+			<if test="refund.adminstatus!=null">
+				adminstatus=#{refund.adminstatus},
+			</if>
+			<if test="refund.businessremarks!=null">
+				businessremarks=#{refund.businessremarks},
+			</if>
+			<if test="refund.adminremarks!=null">
+				adminremarks=#{refund.adminremarks},
+			</if>
+		</set>
+		where orderid=#{refund.orderid}
+	</update>
+</mapper>

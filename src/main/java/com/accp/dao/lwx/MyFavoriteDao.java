@@ -44,7 +44,7 @@ public interface MyFavoriteDao {
 	 * @return
 	 */
     public List<Goldnotes>goldnotesQueryAll(@Param("userId")Integer userId,
-    		@Param("acquisitionMode")Integer acquisitionMode);
+    		@Param("acquisitionMode")Integer acquisitionMode,@Param("recordDate") String recordDate);
     
     /**
      * 查询积分流向

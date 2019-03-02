@@ -2,60 +2,178 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="com.accp.dao.lwx.OrderDao">
-    	<sql id="Query">select * from</sql>
-    	
-    	<resultMap type="com.accp.vo.lwx.ServicesVo" id="ServiceMap">
-			<association property="user" column="userid" select="queryUserById"></association>
-			<association property="serviceType" column="stid"
-				select="queryServiceTypeById"></association>
-		</resultMap>
-    	<resultMap type="com.accp.vo.lwx.OrdersVo" id="OrderMap">
-			<association property="service" column="serviceid" select="queryServiceById"></association>
-		</resultMap>
-		
-		<select id="queryUserById" resultType="com.accp.vo.lwx.UserVo">
-			select *
-			from user
-			where
-			userid=#{0}
-		</select>
-		<select id="queryServiceTypeById" resultType="servicetype">
-			select *
-			from
-			servicetype
-			where stid=#{0}
-		</select>
-		
-		<select id="queryServiceById" resultMap="ServiceMap">
-			<include refid="Query"/>services
-			where serviceid=#{0}
-		</select>
-    	
-    	<!-- 个人中心》我预定的服务 -->
-    	<select id="queryOrderList" resultMap="OrderMap">
-			<include refid="Query"/>orders
-			where userid=#{order.userid}
-			<if test="order.orderid!=null and order.orderid!=''">
-				and (orderid=#{order.orderid} or serviceid in(select
-				serviceid
-				from services where servicetitle like '%${order.orderid}%'))
+
+<mapper namespace="com.accp.dao.lwx.OrderDao">
+	<sql id="Query">select * from</sql>
+
+	<resultMap type="com.accp.vo.lwx.ServicesVo" id="ServiceMap">
+		<association property="user" column="userid"
+			select="queryUserById"></association>
+		<association property="serviceType" column="stid"
+			select="queryServiceTypeById"></association>
+	</resultMap>
+	<resultMap type="com.accp.vo.lwx.OrdersVo" id="OrderMap">
+		<association property="service" column="serviceid"
+			select="queryServiceById"></association>
+	</resultMap>
+
+	<select id="queryUserById" resultType="com.accp.vo.lwx.UserVo">
+		<include refid="Query" />
+		user
+		where
+		userid=#{0}
+	</select>
+	<select id="queryServiceTypeById" resultType="servicetype">
+		<include refid="Query" />
+		servicetype
+		where stid=#{0}
+	</select>
+
+	<select id="queryServiceById" resultMap="ServiceMap">
+		<include refid="Query" />
+		services
+		where serviceid=#{0}
+	</select>
+
+	<!-- 个人中心》我预定的服务 -->
+	<select id="queryOrderList" resultMap="OrderMap">
+		<include refid="Query" />
+		orders
+		where userid=#{order.userid}
+		<if test="order.orderid!=null and order.orderid!=''">
+			and (orderid=#{order.orderid} or serviceid in(select
+			serviceid
+			from services where servicetitle like '%${order.orderid}%'))
+		</if>
+		<if test="order.orderstatus!=null and order.orderstatus!=''">
+			and orderstatus=#{order.orderstatus}
+		</if>
+		<if test="order.commentstatus!=null and order.commentstatus!=''">
+			and commentstatus=#{order.commentstatus}
+		</if>
+		order by orderid desc
+	</select>
+
+
+	<select id="queryOrderById" resultMap="OrderMap">
+		<include refid="Query" />
+		orders
+		where
+		orderid=#{orderid}
+	</select>
+
+	<update id="updateOrder">
+		update orders
+		<set>
+			<if test="order.orderstatus!=null">
+				orderstatus=#{order.orderstatus},
 			</if>
-			<if test="order.orderstatus!=null and order.orderstatus!=''">
-				and orderstatus=#{order.orderstatus}
+			<if test="order.paymenttime!=null">
+				paymenttime=#{order.paymenttime},
 			</if>
-			<if test="order.commentstatus!=null and order.commentstatus!=''">
-				and commentstatus=#{order.commentstatus}
+			<if test="order.completetime!=null">
+				completetime=#{order.completetime},
 			</if>
-			order by orderid desc
-    	</select>
-    	
-    	
-    	<select id="queryOrderById" resultMap="OrderMap">
-			select *
-			from orders
-			where
-			orderid=#{orderid}
-		</select>
-    </mapper>
+			<if test="order.commentstatus!=null">
+				commentstatus=#{order.commentstatus},
+			</if>
+			<if test="order.refundstatus!=null">
+				refundstatus=#{order.refundstatus},
+			</if>
+		</set>
+		where orderid=#{order.orderid}
+	</update>
+
+
+	<!-- ======================= -->
+
+
+	<select id="queryUserOrder" resultMap="queryOrders">
+		<include refid="Query" /> orders
+		WHERE serviceID IN(SELECT `serviceID` FROM
+		services WHERE `userID`=#{userid})
+		<if test="orderStatus!=null and orderStatus!=0">
+			and orderStatus =#{orderStatus}
+		</if>
+		<if test="refundstatus!=null and refundstatus!=-1">
+			and refundstatus =#{refundstatus}
+		</if>
+		<if test='orderID!=null and orderID!=""'>
+			and orderID like '%${orderID}%'
+		</if>
+		ORDER BY `orderTime` DESC
+	</select>
+	<select id="selectUser" resultType="com.accp.pojo.User">
+		<include refid="Query" /> `user`
+		where
+		`userID` = #{0}
+	</select>
+	<select id="querySer" resultType="com.accp.pojo.Services">
+		<include refid="Query" /> `services`
+		WHERE
+		`serviceID`=#{0}
+	</select>
+	<resultMap type="com.accp.vo.lwx.OrderInfoVo"
+		id="queryOrders">
+		<id column="orderID" property="orderid" />
+		<result column="userID" property="userid" />
+		<result column="serviceID" property="serviceid" />
+		<result column="resouroeID" property="resouroeid" />
+		<result column="orderType" property="ordertype" />
+		<result column="orderTime" property="ordertime" />
+		<result column="paymentTime" property="paymenttime" />
+		<result column="receiptTime" property="receipttime" />
+		<result column="provideServicesTime"
+			property="provideservicestime" />
+		<result column="completeTime" property="completetime" />
+		<result column="remarks" property="remarks" />
+		<result column="scheduledStartTime"
+			property="scheduledstarttime" />
+		<result column="scheduledEndTime" property="scheduledendtime" />
+		<result column="population" property="population" />
+		<result column="number" property="number" />
+		<result column="smallPlan" property="smallplan" />
+		<result column="totalPrice" property="totalprice" />
+		<result column="uploadPath" property="uploadpath" />
+		<result column="weight" property="weight" />
+		<result column="integral" property="integral" />
+		<result column="collectGoods" property="collectgoods" />
+		<result column="AddressID" property="addressid" />
+		<result column="orderStatus" property="orderstatus" />
+		<result column="commentstatus" property="commentstatus" />
+		<result column="refundstatus" property="refundstatus" />
+		<result column="filesatus" property="filesatus" />
+		<result column="documentpath" property="documentpath" />
+		<association property="u" column="userID"
+			select="selectUser"></association>
+		<association property="ser" column="serviceID"
+			select="querySer"></association>
+	</resultMap>
+
+	<select id="querySerType" resultType="com.accp.pojo.Servicetype">
+		SELECT * FROM `servicetype`
+		WHERE `stid` = #{stid}
+	</select>
+
+	<update id="updateOrders">
+		UPDATE `orders`
+		SET `orderStatus`=#{orderStatus}
+		<if test="orderStatus==3">
+			,receiptTime=NOW()
+		</if>
+		<if test="orderStatus==4">
+			,provideServicesTime=NOW()
+		</if>
+		WHERE `orderID`=#{orderID}
+	</update>
+	<select id="queryCountOrder" resultType="com.accp.pojo.Orders">
+		SELECT * FROM orders
+		WHERE serviceID IN(SELECT `serviceID` FROM services WHERE
+		`userID`=#{userid})
+	</select>
+	<select id="queryAOrder" resultMap="queryOrders">
+		SELECT * FROM orders
+		WHERE
+		`orderID`=#{orderID}
+	</select>
+</mapper>

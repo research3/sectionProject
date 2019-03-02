@@ -4,9 +4,9 @@
  scHref="/c/lwx/getServicesByUserId";
  jbHref="/c/lwx/goldnotesQueryAll";
  jfHref="/c/lwx/QueryAll";
- pjHref="/zsp/c/EvaluationService";
- tkHref="/c/lhy/refund/mjlist";
- wlHref="/zsp/c/getListLogistics";
+ pjHref="/c/lwx/EvaluationService";
+ tkHref="/c/lwx/refund/mjlist";
+ wlHref="/c/lwx/getListLogistics";
  bzHref="javascript:void(0)";
  $(".member_system_ul li:eq(0) a").attr("href",ydfwHref);
  $(".member_system_ul li:eq(1) a").attr("href",xzHref);

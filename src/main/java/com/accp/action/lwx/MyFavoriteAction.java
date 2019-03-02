@@ -38,8 +38,7 @@ public class MyFavoriteAction {
     public String getServicesByUserId(Model model, HttpSession session,Integer p, Integer s,Integer stid) {
 		if (p == null)p = 1;
 		if (s == null)s = 6;
-//		Integer userId=((User)session.getAttribute("USER")).getUserid();
-		Integer userId=24;
+		Integer userId=((User)session.getAttribute("USER")).getUserid();
 		PageInfo<Services>pageInfo= myFavoriteBiz.getServicesByUserId(p, s, userId,stid);
 		List<UserToServicesVo>list=myFavoriteBiz.getUserToServicesVo();
 		model.addAttribute("LIST",list);
@@ -58,8 +57,7 @@ public class MyFavoriteAction {
 	public String getMerchantCollectionById(Model model, HttpSession session,Integer p, Integer s,Integer stid) {
 		if (p == null)p = 1;
 		if (s == null)s = 6;
-//		Integer userId=((User)session.getAttribute("USER")).getUserid();
-		Integer userId = 24;
+		Integer userId=((User)session.getAttribute("USER")).getUserid();
 		PageInfo<UserVo>pageInfo= myFavoriteBiz.getMerchantCollectionById(p, s, userId,stid);
 		List<UserToServicesVo>list=myFavoriteBiz.getUserToServicesVo();
 		model.addAttribute("LIST",list);
@@ -77,19 +75,19 @@ public class MyFavoriteAction {
 	 * @return
 	 */
 	@GetMapping("goldnotesQueryAll")
-	public String goldnotesQueryAll(Model model, HttpSession session, Integer p, Integer s,Integer acquisitionMode) {
+	public String goldnotesQueryAll(Model model, HttpSession session, Integer p, Integer s,Integer acquisitionMode,String recordDate) {
 		if (p == null)p = 1;
 		if (s == null)s = 6;
 		
-//		Integer userId=((User)session.getAttribute("USER")).getUserid();
-		Integer userId=24;
-		PageInfo<Goldnotes> pageInfo = myFavoriteBiz.goldnotesQueryAll(p, s, userId,acquisitionMode);
+		Integer userId=((User)session.getAttribute("USER")).getUserid();
+		PageInfo<Goldnotes> pageInfo = myFavoriteBiz.goldnotesQueryAll(p, s, userId,acquisitionMode,recordDate);
 		User users = myFavoriteBiz.getUser(userId);
 		if(users.getUsermoney()==null) {
 			users.setUsermoney((float) 0);
 		}
 		model.addAttribute("PAGE_INFO", pageInfo);
 		model.addAttribute("USER", users);
+		model.addAttribute("recordDate",recordDate);
 		return "grzx-moneys";
 	}
 	
@@ -106,8 +104,7 @@ public class MyFavoriteAction {
 	public String IntegralRecordQueryAll(Model model, HttpSession session, Integer p, Integer s) {
 		if (p == null)p = 1;
 		if (s == null)s = 6;
-//		Integer userId=((User)session.getAttribute("USER")).getUserid();
-		Integer userId=24;
+		Integer userId=((User)session.getAttribute("USER")).getUserid();
 		User users=myFavoriteBiz.getUser(userId);
 		PageInfo<Integralrecord> pageInfo = myFavoriteBiz.IntegralRecordQueryAll(p, s, userId);
 		model.addAttribute("PAGE_INFO", pageInfo);
