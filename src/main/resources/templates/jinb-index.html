@@ -113,6 +113,7 @@
 							</div></li>
 					</ul>
 					<div class="rechang_top2">
+						<input type="hidden" th:value="${USER.userid}" name="uuid">					
 						<input type="submit" class="btn_jy_a h40 goto_cz_a" id="submit" value="去支付">
 					</div>
 					<input type="hidden" name="__hash__"
@@ -121,6 +122,7 @@
 				<script type="text/javascript">
 		            	  var submit=document.getElementById("submit");
 		            	  submit.onclick=function(){
+		            		  
 			            	  var num=document.getElementById("money").value;
 		            		  if(isNaN(num)){
 		            			  alert("请填写正确的数字");
@@ -258,8 +260,7 @@
 								</span> <span class="sel_work_text">我要咨询整形</span>
 							</div>
 						</li>
-						<!-- 				<input type="hidden" name="act" value="contact" />
- -->
+						<!-- <input type="text" name="act" value="contact"/> -->
 						<li><a class="border_tj" href="javascript:void(0);"
 							onclick="$('#formtopcontact').submit()" id="submit-btn">立即提交</a></li>
 					</ul>

@@ -500,7 +500,7 @@ public class OrderBiz {
 	  Integralrecord.setIrdescribe("充值送积分");
 	  Integralrecord.setAuditstatus(4);
 	  Integralrecord.setRecordinandout(user.getUserintegral());
-	  goldnotesDao.addIntegralRecord(Integralrecord);
+//	  goldnotesDao.addIntegralRecord(Integralrecord);
 	  goldnotesDao.updGoldnotes(Integer.parseInt(out_trade_no),getAuditstatus);
 	  goldnotesDao.updUser(money, user.getUserintegral(),userId);
   }
