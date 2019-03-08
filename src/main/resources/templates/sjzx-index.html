@@ -81,10 +81,10 @@
         <div class="member_left">
         	<h1 class="member_left_title seller_title">商家中心</h1>
             <ul class="member_system_ul sj_left_ul">
-            	<li ><a href="/c/szy/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID="><span class="msp2 pre_c1"></span>我收到的预定</a></li>
-            	<li ><a href="/zg/c/getServices?pageNum=1&pageSize=3"><span class="msp2 pre_c2"></span>我发布的服务</a></li>
+            	<li ><a href="/c/lwx/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID="><span class="msp2 pre_c1"></span>我收到的预定</a></li>
+            	<li ><a href="/c/lwx/getServices?pageNum=1&pageSize=3"><span class="msp2 pre_c2"></span>我发布的服务</a></li>
                 <li ><a href="#"><span class="msp2 pre_c3"></span>我提交的鉴定</a></li>
-                <li ><a href="/zg/c/queryEvaluation?pageNum=1&pageSize=2"><span class="msp2 pre_c4"></span>我收到的评价</a></li>
+                <li ><a href="/c/lwx/queryEvaluation?pageNum=1&pageSize=2"><span class="msp2 pre_c4"></span>我收到的评价</a></li>
                 <li ><a href="#"><span class="msp2 pre_c5"></span>我发出的物流</a></li>
                 <li ><a href="#"><span class="msp2 pre_c6"></span>我收到的退款<span class="sp_acon_1"></span></a></li>
                 <li ><a href="#"><span class="msp2 pre_c3"></span>我的服务类别</a></li>
@@ -139,9 +139,9 @@
 
 			<div class="db_sx_title">待办事项</div>
 			<ul class="pre_about_info pl15">
-            	<li><a href="/c/szy/order/queryAllOrder?orderStatus=1&refundstatus=0&pageNum=1&pageSize=5&orderID=" >待接单<span class="pre_asp" name="jiedan">0</span></a></li>
-                <li><a href="/c/szy/order/queryAllOrder?orderStatus=3&refundstatus=0&pageNum=1&pageSize=5&orderID=" >待服务<span class="pre_asp" name="fuwu">0</span></a></li>
-                <li class="last"><a href="/c/szy/order/queryAllOrder?orderStatus=5&refundstatus=1&pageNum=1&pageSize=5&orderID=">待退款<span class="pre_asp" name="tuikan">0</span></a></li>
+            	<li><a href="/c/lwx/order/queryAllOrder?orderStatus=1&refundstatus=0&pageNum=1&pageSize=5&orderID=" >待接单<span class="pre_asp" name="jiedan">0</span></a></li>
+                <li><a href="/c/lwx/order/queryAllOrder?orderStatus=3&refundstatus=0&pageNum=1&pageSize=5&orderID=" >待服务<span class="pre_asp" name="fuwu">0</span></a></li>
+                <li class="last"><a href="/c/lwx/order/queryAllOrder?orderStatus=5&refundstatus=1&pageNum=1&pageSize=5&orderID=">待退款<span class="pre_asp" name="tuikan">0</span></a></li>
             </ul>
 			<h2 class="pre_h2_title">最新预订</h2>
             <ul class="you_yd_news business_yd_news">
@@ -149,7 +149,7 @@
 						<div class="you_yd_img">
 								<img th:src="${temp.ser.servicecoverimg}" width="135" height="90"/>
 						</div>
-						<a th:href="@{/c/szy/order/queryAOrder(orderID=${temp.orderid})}" class="btn_a_yyd">查看详细</a>
+						<a th:href="@{/c/lwx/order/queryAOrder(orderID=${temp.orderid})}" class="btn_a_yyd">查看详细</a>
 						<div class="you_yd_text">
 							<div class="yd_xm_title" th:text="${temp.ser.servicetitle}"></div>
 							<p th:text="${temp.ser.servicefutitle}"></p>
@@ -267,11 +267,11 @@
 	$.each($("[name=stid]"),function(i,obj){
 		var stid=$(this).html();
 		var p=$(this);
-		$.getJSON("/c/szy/order/querySerType",{"stid":stid},function(data){
+		$.getJSON("/c/lwx/order/querySerType",{"stid":stid},function(data){
 			p.html(data.stname);
 		})
 	})
-	$.getJSON("/c/szy/order/queryCountOrder",function(data){
+	$.getJSON("/c/lwx/order/queryCountOrder",function(data){
 		var jiedan=0;var fuwu=0;var dwc=0;var tuikan=0;var wancheng=0;
 		$.each(data,function(i,obj){
 			if(obj.orderstatus==2){

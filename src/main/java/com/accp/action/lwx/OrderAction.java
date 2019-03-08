@@ -46,6 +46,7 @@ import com.accp.vo.lwx.OrdersVo;
 import com.accp.vo.lwx.RefundVo;
 import com.accp.vo.lwx.Evaluate.EvaluateVo;
 import com.accp.vo.lwx.Evaluate.EvaluationserviceToservicesVo;
+import com.accp.vo.lwx.merchant.ServicesVo;
 import com.accp.vo.lwx.myfavorite.UserToServicesVo;
 import com.accp.vo.lwx.myfavorite.UserVo;
 import com.accp.vo.lwx.service.AdvertisementVO;
@@ -918,4 +919,21 @@ public class OrderAction {
 		return message;
 	}
 	
+	/**
+	 * 
+	 * @title:queryService
+	 * @Description:TODO我发布的服务
+	 * @param session
+	 * @param model
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@GetMapping("getServices")
+	public String  queryService(HttpSession session,Model model,Integer pageNum,Integer pageSize) {
+		Integer userID=((User)session.getAttribute("USER")).getUserid();
+		PageInfo<ServicesVo> pageInfo=biz.queryServices(pageNum, pageSize,userID);
+		model.addAttribute("PAGE_INFO", pageInfo);
+		return "sjzx-services";
+	}
 }

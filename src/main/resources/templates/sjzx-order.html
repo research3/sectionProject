@@ -179,7 +179,7 @@ span  .time2 {
 								<span th:if="${temp.orderstatus==7}">未接单</span>
 								<span th:if="${temp.orderstatus==8}">已退款</span>
 							<br />
-								<a  href="javascript:void(0)"  th:href="@{/c/szy/order/queryAOrder(orderID=${temp.orderid})}" class="btna_s2">查看详细</a>
+								<a  href="javascript:void(0)"  th:href="@{/c/lwx/order/queryAOrder(orderID=${temp.orderid})}" class="btna_s2">查看详细</a>
 							</li>
 							<li class="cel_l7">
 							<span th:if="${temp.orderstatus==1}">-</span>
@@ -192,7 +192,7 @@ span  .time2 {
 							</span>
 							<span th:if="${temp.orderstatus==4}">-</span>
 							<span th:if="${temp.orderstatus==5}">
-									<a th:href="@{/c/lhy/refund/sjdetail(orderid=${temp.orderid})}" th:if="${temp.refundstatus!=0}" class="btna_s2">查看退款详情<br /></a>
+									<a th:href="@{/c/lwx/refund/sjdetail(orderid=${temp.orderid})}" th:if="${temp.refundstatus!=0}" class="btna_s2">查看退款详情<br /></a>
 									<span class="c_4" th:if="${temp.commentstatus==1}">待评价</span>
 									<span class="c_4" th:if="${temp.commentstatus==2}">已评价</span>
 									<span class="c_4" th:if="${temp.commentstatus==3}">双方已评</span>
@@ -210,12 +210,12 @@ span  .time2 {
 				<!--page-->
 					<div class="page" th:if="${pageInfo.total>0}">
 						<div class='nav'>
-							<a class="page_next" th:if="${pageInfo.hasPreviousPage}" th:href="@{/c/szy/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${pageInfo.prePage},pageSize=5,orderID='')}">上一页</a>
+							<a class="page_next" th:if="${pageInfo.hasPreviousPage}" th:href="@{/c/lwx/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${pageInfo.prePage},pageSize=5,orderID='')}">上一页</a>
 							<a class="page_next nextdisabled" th:if="${!pageInfo.hasPreviousPage}" href="javascript:;">上一页</a>
 
-							<a th:each="temp:${pageInfo.navigatepageNums}" th:class="${temp==pageInfo.pageNum?'cur':'num'}" th:text="${temp}" th:href="@{/c/szy/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${temp},pageSize=5,orderID='')}"></a>
+							<a th:each="temp:${pageInfo.navigatepageNums}" th:class="${temp==pageInfo.pageNum?'cur':'num'}" th:text="${temp}" th:href="@{/c/lwx/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${temp},pageSize=5,orderID='')}"></a>
 
-							<a class="page_next" th:if="${pageInfo.hasNextPage}" th:href="@{/c/szy/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${pageInfo.nextPage},pageSize=5,orderID='')}">下一页</a>
+							<a class="page_next" th:if="${pageInfo.hasNextPage}" th:href="@{/c/lwx/order/queryAllOrder(orderStatus=0,refundstatus=-1,pageNum=${pageInfo.nextPage},pageSize=5,orderID='')}">下一页</a>
 							<a class="page_next nextdisabled" th:if="${!pageInfo.hasNextPage}" href="javascript:;">下一页</a>
 						</div>
 					</div>
@@ -303,11 +303,11 @@ span  .time2 {
 	$.each($("[name=stid]"),function(i,obj){
 		var stid=$(this).html();
 		var p=$(this);
-		$.getJSON("/c/szy/order/querySerType",{"stid":stid},function(data){
+		$.getJSON("/c/lwx/order/querySerType",{"stid":stid},function(data){
 			p.html(data.stname);
 		})
 	})
-	$.getJSON("/c/szy/order/queryCountOrder",function(data){
+	$.getJSON("/c/lwx/order/queryCountOrder",function(data){
 		var jiedan=0;var fuwu=0;var dwc=0;var tuikan=0;var wancheng=0;
 		$.each(data,function(i,obj){
 			if(obj.orderstatus==2){
@@ -343,16 +343,16 @@ span  .time2 {
 		}
 		var orderID=$(this).parents("div").prev().find("ul li:eq(1) span:eq(1)").html();
 		var userID=$(this).parents("ul").attr("id");
-		location.href="/c/szy/order/updateOrders?orderStatus="+orderStatus+"&orderID="+orderID+"&userID="+userID;
+		location.href="/c/lwx/order/updateOrders?orderStatus="+orderStatus+"&orderID="+orderID+"&userID="+userID;
 	})
 	$("#typeul li a").click(function(){
 		var orderStatus=$(this).attr("id");
 		if(orderStatus.trim()==9){
-			location.href="/c/szy/order/queryAllOrder?orderStatus=5&refundstatus=1&pageNum=1&pageSize=5&orderID=";
+			location.href="/c/lwx/order/queryAllOrder?orderStatus=5&refundstatus=1&pageNum=1&pageSize=5&orderID=";
 		}else if(orderStatus.trim()==0){
-			location.href="/c/szy/order/queryAllOrder?orderStatus="+orderStatus+"&refundstatus=-1&pageNum=1&pageSize=5&orderID="
+			location.href="/c/lwx/order/queryAllOrder?orderStatus="+orderStatus+"&refundstatus=-1&pageNum=1&pageSize=5&orderID="
 		}else{
-			location.href="/c/szy/order/queryAllOrder?orderStatus="+orderStatus+"&refundstatus=0&pageNum=1&pageSize=5&orderID="
+			location.href="/c/lwx/order/queryAllOrder?orderStatus="+orderStatus+"&refundstatus=0&pageNum=1&pageSize=5&orderID="
 		}
 	})
 	$("[name=tijiao]").click(function(){
@@ -361,7 +361,7 @@ span  .time2 {
 			alert("请输入订单号");
 			return;
 		}
-		location.href="/c/szy/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID="+orderID;
+		location.href="/c/lwx/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID="+orderID;
 	})
 	
 </script>

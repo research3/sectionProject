@@ -487,6 +487,7 @@ public class OrderBiz {
   @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
   public void updateUserToGoldnotes(Float total_amount,String out_trade_no,Integer userId,Integer getAuditstatus) {
 	  User user=goldnotesDao.getUser(userId);
+	  System.out.println("修改用户总金额：==="+userId);
   	if(user.getUsermoney()==null) {
   		user.setUsermoney((float) 0);
   	}

@@ -1,9 +1,9 @@
- yyHref="/c/szy/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID=";
- fbHref="/zg/c/getServices?pageNum=1&pageSize=5";
- jdHref="/zg/c/queryAppraisalapply";
+ yyHref="/c/lwx/order/queryAllOrder?orderStatus=0&refundstatus=-1&pageNum=1&pageSize=5&orderID=";
+ fbHref="/c/lwx/getServices?pageNum=1&pageSize=5";
+ jdHref="/c/lwx/queryAppraisalapply";
  pjHref="";
  wlHref="";
- tkHref="/c/lhy/refund/list";
+ tkHref="/c/lwx/refund/list";
  lbHref="";
  tgHref="";
  $(".member_system_ul li:eq(0) a").attr("href",yyHref);

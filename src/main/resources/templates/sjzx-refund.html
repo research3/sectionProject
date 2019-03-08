@@ -115,8 +115,8 @@
 							<td nowrap="" align="center"><a
 								th:if="${temp.order.refundstatus==1}" th:href="|javascript:refundOk('${temp.order.orderid}');|" class="btna_s2">同意</a>
 								<br th:if="${temp.order.refundstatus==1}"> <a
-								th:if="${temp.order.refundstatus==1}" th:href="@{/c/lhy/refund/why(orderid=${temp.order.orderid})}" class="btna_s2">不同意</a>
-								<br th:if="${temp.order.refundstatus==1}"> <a th:href="@{/c/lhy/refund/sjdetail(orderid=${temp.order.orderid})}"
+								th:if="${temp.order.refundstatus==1}" th:href="@{/c/lwx/refund/why(orderid=${temp.order.orderid})}" class="btna_s2">不同意</a>
+								<br th:if="${temp.order.refundstatus==1}"> <a th:href="@{/c/lwx/refund/sjdetail(orderid=${temp.order.orderid})}"
 								class="btna_s2">查看详细</a></td>
 						</tr>
 					</tbody>
@@ -125,16 +125,16 @@
 				<div class="page">
 					<div class="nav">
 						<a class="page_next" th:if="${pageInfo.hasPreviousPage}"
-							th:href="@{/c/lhy/refund/list(page=${pageInfo.prePage})}">上一页</a>
+							th:href="@{/c/lwx/refund/list(page=${pageInfo.prePage})}">上一页</a>
 						<a class="page_next nextdisabled"
 							th:if="${!pageInfo.hasPreviousPage}" href="javascript:;">上一页</a>
 
 						<a th:each="temp:${pageInfo.navigatepageNums}"
 							th:class="${temp==pageInfo.pageNum?'cur':'num'}"
-							th:text="${temp}" th:href="@{/c/lhy/refund/list(page=${temp})}"></a>
+							th:text="${temp}" th:href="@{/c/lwx/refund/list(page=${temp})}"></a>
 
 						<a class="page_next" th:if="${pageInfo.hasNextPage}"
-							th:href="@{/c/lhy/refund/list(page=${pageInfo.nextPage})}">下一页</a>
+							th:href="@{/c/lwx/refund/list(page=${pageInfo.nextPage})}">下一页</a>
 						<a class="page_next nextdisabled" th:if="${!pageInfo.hasNextPage}"
 							href="javascript:;">下一页</a>
 					</div>
@@ -216,7 +216,7 @@
 	<script type="text/javascript">
 		function refundOk(orderid) {
 			$.ajax({
-				url : "/c/lhy/refund/ok",
+				url : "/c/lwx/refund/ok",
 				data : {
 					orderid : orderid
 				},

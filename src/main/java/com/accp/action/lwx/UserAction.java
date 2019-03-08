@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.accp.biz.lwx.OrderBiz;
 import com.accp.biz.lwx.UserBiz;
 import com.accp.pojo.Sharea;
 import com.accp.pojo.User;
@@ -33,6 +34,8 @@ import com.accp.vo.lwx.TimeOutEmailDateVo;
 public class UserAction {
 	@Autowired
 	private UserBiz biz;
+	@Autowired
+	private OrderBiz orderBiz;
 	
 	@RequestMapping(value="/user/login",method=RequestMethod.GET)
 	public String login() {
@@ -268,4 +271,19 @@ public class UserAction {
 			return u;
 		}
 	}
+	
+	/**
+	 * 查询信息  商家首页
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/user/getUserBySjzx",method=RequestMethod.GET)
+	public String getUserBySjzx(HttpSession session,Model model) {
+		Integer userID=((User)session.getAttribute("USER")).getUserid();
+		model.addAttribute("orders", orderBiz.queryUserOrder(userID, 0, -1, "", 1, 3));
+		model.addAttribute("user", this.queryAUser(session));
+		return "/sjzx-index.html";
+	}
+		
 }
